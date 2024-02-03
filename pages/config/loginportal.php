@@ -20,6 +20,11 @@ if (isset($_POST['submit']))
             header("Location: ../../index.php");
             exit(); // Ensure script stops execution after redirect
         }
+        else if(strpos($username, "@student"))
+        {
+            header("Location: ../../index.php");
+            exit(); // Ensure script stops execution after redirect
+        }
     } else {
         // Display danger alert if login fails
         echo '

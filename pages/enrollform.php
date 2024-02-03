@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>MYCART - About</title>
+  <title>Pampanga University - Enroll</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -37,14 +37,11 @@
   <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="../index.html">MyCart</a></h1>
+      <h1 class="logo me-auto"><a href="../index.html">PSU</a></h1>
 
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto " href="../index.php#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="../index.php#about">About</a></li>
-          <li><a class="nav-link scrollto" href="../index.php#contact">Contact us</a></li>
-          <li><a class="nav-link scrollto active" href="enrollform.php">Enroll Now</a></li>
           <li><a class="nav-link scrollto" href="login.php">Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -110,17 +107,17 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Username</label>
-                    <input type="user" class="form-control" placeholder="Enter username @student">
+                    <input type="text" class="form-control" placeholder="Enter username @student" name="user" required>
                   </div>
 
                   <div class="form-group">
                     <label for="exampleInputPassword1">Email</label>
-                    <input type="email" class="form-control" placeholder="Email Address">
+                    <input type="email" class="form-control" placeholder="Email Address" name="email" required>
                   </div>
 
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="pass" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Password" name="pass" required>
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -144,12 +141,12 @@
                     <!-- Email Address Input -->
                     <div class="form-group col-md-6">
                       <label for="exampleInputEmail1">Elementary</label>
-                      <input type="text" class="form-control" placeholder="Enter school" name="elem">
+                      <input type="text" class="form-control" placeholder="Enter school" name="elem" required>
                     </div>
                     <!-- Additional Textbox on the Right Side -->
                     <div class="form-group col-md-6">
                       <label for="exampleInputAdditional">Graduation Year</label>
-                      <input type="number" class="form-control" id="exampleInputAdditional" name="elemyear">
+                      <input type="number" class="form-control" id="exampleInputAdditional" name="elemyear" required>
                     </div>
                  </div>
 
@@ -157,12 +154,12 @@
                     <!-- Email Address Input -->
                     <div class="form-group col-md-6">
                       <label for="exampleInputEmail1">Junior High School</label>
-                      <input type="text" class="form-control" placeholder="Enter school" name="jhs">
+                      <input type="text" class="form-control" placeholder="Enter school" name="jhs" required>
                     </div>
                     <!-- Additional Textbox on the Right Side -->
                     <div class="form-group col-md-6">
                       <label for="exampleInputAdditional">Graduation Year</label>
-                      <input type="number" class="form-control" id="exampleInputAdditional" name="jhsyear">
+                      <input type="number" class="form-control" id="exampleInputAdditional" name="jhsyear" required>
                     </div>
                  </div>
 
@@ -170,12 +167,12 @@
                     <!-- Email Address Input -->
                     <div class="form-group col-md-6">
                       <label for="exampleInputEmail1">Senior High School</label>
-                      <input type="text" class="form-control" placeholder="Enter school" name="shs">
+                      <input type="text" class="form-control" placeholder="Enter school" name="shs" required>
                     </div>
                     <!-- Additional Textbox on the Right Side -->
                     <div class="form-group col-md-6">
                       <label for="exampleInputAdditional">Graduation Year</label>
-                      <input type="number" class="form-control" id="exampleInputAdditional" name="shsyear">
+                      <input type="number" class="form-control" id="exampleInputAdditional" name="shsyear" required>
                     </div>
                  </div>
                 </div>
@@ -201,17 +198,17 @@
                   <div class="card-body">
                     <div class="form-group">
                       <label for="inputName">First Name</label>
-                      <input type="text" class="form-control" id="inputName" placeholder="Enter your first name" name="fname">
+                      <input type="text" class="form-control" id="inputName" placeholder="Enter your first name" name="fname" required>
                     </div>
 
                     <div class="form-group">
                       <label for="inputName">Middle Name</label>
-                      <input type="text" class="form-control" id="inputName" placeholder="Enter your middle name" name="mname">
+                      <input type="text" class="form-control" id="inputName" placeholder="Enter your middle name" name="mname" required>
                     </div>
 
                     <div class="form-group">
                       <label for="inputName">Last Name</label>
-                      <input type="text" class="form-control" id="inputName" placeholder="Enter your last name" name="lname">
+                      <input type="text" class="form-control" id="inputName" placeholder="Enter your last name" name="lname" required>
                     </div>
 
                     <div class="form-group">
@@ -244,32 +241,32 @@
 
                     <div class="form-group">
                       <label for="datepicker">Date of Birth</label>
-                      <input type="date" class="form-control" id="datepicker" placeholder="Select date" name="birthday">
+                      <input type="date" class="form-control" id="datepicker" placeholder="Select date" name="birthday" required>
                     </div>
 
                     <div class="form-group">
                       <label for="inputName">Home Address</label>
-                      <input type="text" class="form-control"  name="address">
+                      <input type="text" class="form-control"  name="address" required>
                     </div>
 
                     <div class="form-group">
                       <label for="inputName">Phone Number</label>
-                      <input type="number" class="form-control"  name="number">
+                      <input type="number" class="form-control"  name="number" required>
                     </div>
 
                     <div class="form-group">
                       <label for="inputName">Guardian name</label>
-                      <input type="text" class="form-control"  name="guardianname">
+                      <input type="text" class="form-control"  name="guardianname" required>
                     </div>
 
                     <div class="form-group">
                       <label for="inputName">Guardian Phone Number</label>
-                      <input type="number" class="form-control"  name="guardiannumber">
+                      <input type="number" class="form-control"  name="guardiannumber" required>
                     </div>
 
                     <div class="form-group">
                       <label for="inputName">Guardian Address</label>
-                      <input type="text" class="form-control"  name="guardianaddress">
+                      <input type="text" class="form-control"  name="guardianaddress" required>
                     </div>
 
                     <div class="form-group">

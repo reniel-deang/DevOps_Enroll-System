@@ -4,6 +4,9 @@ session_start();
 
 if (isset($_POST['submit']))
 {
+    $user = $_POST['user']."@student";
+    $pass = $_POST['pass'];
+    $email = $_POST['email'];
     $elem = $_POST['elem'];
     $elemyear = $_POST['elemyear'];
     $jhs = $_POST['jhs'];
@@ -22,13 +25,36 @@ if (isset($_POST['submit']))
     $guardianname = $_POST['guardianname'];
     $guardiannumber = $_POST['guardiannumber'];
     $guardianaddress = $_POST['guardianaddress'];
-    
-    $sql = "INSERT INTO tb_studentinfo (elem, elem_year, jhs, jhs_year, shs, shs_year, fname, mname, lname, gender, course, year, birthday, address, num, guardian, guardian_number, guardian_address) VALUES ('$elem', '$elemyear', '$jhs', '$jhsyear', '$shs', '$shsyear', '$fname', '$mname', '$lname', '$gender', '$course', '$year', '$birthday', '$address', '$number', '$guardianname', '$guardiannumber', '$guardianaddress')";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+    // Prepare userdata query
+    $user_data = $conn->prepare("INSERT INTO tb_userdata (username, pass, email) VALUES (?, ?, ?)");
+    $user_data->bind_param("sss", $user, $pass, $email);
+    $user_data->execute();
+
+    // Get the inserted user ID
+    $find_id = $conn->prepare("SELECT user_id FROM tb_userdata WHERE username = ? AND pass = ? AND email = ?");
+    $find_id->bind_param("sss", $user, $pass, $email);
+    $find_id->execute();
+    $result_id = $find_id->get_result();
+
+    if ($result_id->num_rows > 0) {
+        $row =  $result_id->fetch_assoc();
+        $id = $row['user_id'];
+
+        // Prepare studentinfo query
+        $sql = $conn->prepare("INSERT INTO tb_studentinfo (elem, elem_year, jhs, jhs_year, shs, shs_year, fname, mname, lname, gender, course, year, birthday, address, num, guardian, guardian_number, guardian_address, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $sql->bind_param("ssssssssssssssssssi", $elem, $elemyear, $jhs, $jhsyear, $shs, $shsyear, $fname, $mname, $lname, $gender, $course, $year, $birthday, $address, $number, $guardianname, $guardiannumber, $guardianaddress, $id);
+        
+        if ($sql->execute()) {
+            header("Location: ../../index.php");
+            exit(); 
+        } else {
+            echo "Error";
+        }
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Something Wrong, Please Try again";
+        header("Location: ../../index.php");
+        exit(); 
     }
 }
 
