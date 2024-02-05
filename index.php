@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  <?php
+  session_start();
+  if(isset($_SESSION))
+  {
+    session_unset();
+  }
+  
+  ?>
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -36,7 +43,7 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">PSU</a></h1>
+      <h1 class="logo me-auto"><a href="index.php">PSU</a></h1>
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -70,6 +77,7 @@
   </section><!-- End Hero -->
 
   <main id="main">
+    
 
     <!-- ======= About Us Section ======= -->
     <section id="about" class="about">
@@ -94,7 +102,7 @@
             <p>
               Reviews from other customers serve as valuable indicators of a site's dependability, aiding prospective shoppers in making informed decisions. Ultimately, a reliable shopping site builds trust, encouraging repeat business and long-lasting customer relationships
             </p>
-            <a href="pages/about.html" class="btn-learn-more">Learn More</a>
+            <a href="pages/enrollform.php" class="btn-learn-more">Enroll Now</a>
           </div>
         </div>
 
@@ -139,7 +147,7 @@ If you have any inquiries or questions, please feel free to use the contact form
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="#" method="post" role="form" class="php-email-form">
+            <form action="pages/config/contactform.php" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Your Name</label>
@@ -163,7 +171,7 @@ If you have any inquiries or questions, please feel free to use the contact form
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" name = "submit">Send Message</button></div>
             </form>
           </div>
 

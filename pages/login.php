@@ -1,9 +1,29 @@
-<?php 
-include 'config/loginportal.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
+  <?php 
+  session_start();
+
+  if(isset($_SESSION['status']))
+  {
+    if($_SESSION['status'] == "pending")
+    {
+      echo '<div class="alert alert-info"> Your Application is not currently Approve, Please Wait for the notification </div>';
+    }
+    else if($_SESSION['status'] == "error")
+    {
+      echo '<div class="alert alert-danger"> Login Error, Please Check your credentials and try again </div>';
+    }
+    else if($_SESSION['status'] == "admin")
+    {
+      echo '<div class="alert alert-primary">Hello Admin hehe!</div>';
+    }
+    else{
+      echo '<div class="alert alert-success"> Your user_id == '.$_SESSION['status'].'</div>';
+    }
+
+    session_unset();
+  }
+  ?>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">

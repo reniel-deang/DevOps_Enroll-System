@@ -8,29 +8,43 @@ if (isset($_POST['submit']))
     $pass = $_POST['pass'];
 
     // Using prepared statements to prevent SQL injection
-    $sql = "SELECT username, pass FROM tb_userdata WHERE username = ? AND pass = ?";
+    $sql = "SELECT username, pass, verified, user_id FROM tb_userdata WHERE username = ? AND  pass = BINARY ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $username, $pass);
     $stmt->execute();
     $result = $stmt->get_result();
     
     if ($result->num_rows > 0) {
-        if(strpos($username, "@admin"))
+        $row = $result->fetch_assoc();
+        $_SESSION['status'];
+
+        if(strpos($username, "@student"))
         {
-            header("Location: ../../index.php");
-            exit(); // Ensure script stops execution after redirect
+            if($row['verified'] == 0)
+            {
+                $_SESSION['status'] = "pending";
+                header("Location: ../login.php");
+                exit(); 
+                
+            }
+            else
+            {
+                $_SESSION['status'] = $row['user_id'];
+                header("Location: ../login.php");
+                exit(); 
+            }
         }
-        else if(strpos($username, "@student"))
+        else if(strpos($username, "@admin"))
         {
-            header("Location: ../../index.php");
+            $_SESSION['status'] = "admin";
+            header("Location: ../login.php");
             exit(); // Ensure script stops execution after redirect
         }
     } else {
         // Display danger alert if login fails
-        echo '
-        <div class="alert alert-danger">
-            <strong>Danger!</strong> Invalid username or password.
-        </div>';
+        $_SESSION['status'] = "error";
+        header("Location: ../login.php");
+        exit(); 
     }
     $stmt->close();
 }

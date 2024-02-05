@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<?php 
+session_start();
+?>
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -29,15 +32,16 @@
 
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
-</head>
 
+  <script src="config/registervalidation.js"></script>
+</head>
 <body>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="../index.html">PSU</a></h1>
+      <h1 class="logo me-auto"><a href="../index.php">PSU</a></h1>
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -56,7 +60,21 @@
   <div class="container" data-aos="fade-up">
     <br>
     <br>
+    <?php
+    if(isset($_SESSION['validation']))
+    {
+      if($_SESSION['validation'] == "OK")
+      {
+        echo '<div class="alert alert-success">
+      Your application is Successfully Submitted, Please wait for your Enrollment approval!
+    </div>';
+      }
+    }
+    ?>
 
+    <?php 
+    session_unset();
+    ?>
     <div class="section-title">
       <h2>Enroll now</h2>
       <p>
@@ -66,7 +84,7 @@
     <section>
     <div class="container mt-3">
       <h2>Select Your Appointment Schedule</h2>
-      <p>Please Check the available dates below.</p>  
+      <p>Please check first the available schedules below.</p>  
       <br>          
       <table class="table table-striped">
         <thead>
@@ -82,7 +100,7 @@
             <td>February 1, 2024 | Thursday</td>
             <td>9:00 AM - 10:00 AM</td>
             <td>10</td>
-            <td>Hehe</td>
+            <td><input type="radio" name="select" value="#"></td>
           </tr>
         </tbody>
       </table>
@@ -99,25 +117,33 @@
           <br>   
             <div class="card">
               <div class="card-header">
-                <h2 class="card-title">Please Enter required text below</h2>
+                <h2 class="card-title">Login Credentials</h2>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               
                 <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Username</label>
-                    <input type="text" class="form-control" placeholder="Enter username @student" name="user" required>
-                  </div>
+                <div class="form-row">
+                    <!-- Email Address Input -->
+                    <div class="form-group col-md-6">
+                      <label for="exampleInputEmail1">Username</label>
+                      <input type="text" class="form-control" placeholder="Enter Username" name="user" id="name">
+                    </div>
+                    <!-- Additional Textbox on the Right Side -->
+                    <div class="form-group col-md-6">
+                      <label for="exampleInputAdditional">User Type</label>
+                      <input type="number" class="form-control" placeholder="@student" name="extension" disabled>
+                    </div>
+                 </div>
 
                   <div class="form-group">
                     <label for="exampleInputPassword1">Email</label>
-                    <input type="email" class="form-control" placeholder="Email Address" name="email" required>
+                    <input type="email" class="form-control" placeholder="Email Address" name="email" id="email">
                   </div>
 
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" placeholder="Password" name="pass" required>
+                    <input type="password" class="form-control" placeholder="Password" name="pass" id="pass" >
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -131,7 +157,7 @@
           <br>   
             <div class="card">
               <div class="card-header">
-                <h2 class="card-title">Input required informations</h2>
+                <h2 class="card-title">About Educational Experiences</h2>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -141,12 +167,12 @@
                     <!-- Email Address Input -->
                     <div class="form-group col-md-6">
                       <label for="exampleInputEmail1">Elementary</label>
-                      <input type="text" class="form-control" placeholder="Enter school" name="elem" required>
+                      <input type="text" class="form-control" placeholder="Enter school" name="elem" id="elem"  required>
                     </div>
                     <!-- Additional Textbox on the Right Side -->
                     <div class="form-group col-md-6">
                       <label for="exampleInputAdditional">Graduation Year</label>
-                      <input type="number" class="form-control" id="exampleInputAdditional" name="elemyear" required>
+                      <input type="number" class="form-control" name="elemyear" id="elemyear"  required max="9999" required>
                     </div>
                  </div>
 
@@ -154,12 +180,12 @@
                     <!-- Email Address Input -->
                     <div class="form-group col-md-6">
                       <label for="exampleInputEmail1">Junior High School</label>
-                      <input type="text" class="form-control" placeholder="Enter school" name="jhs" required>
+                      <input type="text" class="form-control" placeholder="Enter school" name="jhs" id="jhs" required>
                     </div>
                     <!-- Additional Textbox on the Right Side -->
                     <div class="form-group col-md-6">
                       <label for="exampleInputAdditional">Graduation Year</label>
-                      <input type="number" class="form-control" id="exampleInputAdditional" name="jhsyear" required>
+                      <input type="number" class="form-control"  name="jhsyear" id="jhsyear" required max="9999" required>
                     </div>
                  </div>
 
@@ -167,12 +193,12 @@
                     <!-- Email Address Input -->
                     <div class="form-group col-md-6">
                       <label for="exampleInputEmail1">Senior High School</label>
-                      <input type="text" class="form-control" placeholder="Enter school" name="shs" required>
+                      <input type="text" class="form-control" placeholder="Enter school" name="shs" id="shs" required>
                     </div>
                     <!-- Additional Textbox on the Right Side -->
                     <div class="form-group col-md-6">
                       <label for="exampleInputAdditional">Graduation Year</label>
-                      <input type="number" class="form-control" id="exampleInputAdditional" name="shsyear" required>
+                      <input type="number" class="form-control" id="shsyear" name="shsyear" required max="9999" required>
                     </div>
                  </div>
                 </div>
@@ -189,7 +215,7 @@
             <br>   
               <div class="card">
                 <div class="card-header">
-                  <h2 class="card-title">Please Enter your Information</h2>
+                  <h2 class="card-title">General Information</h2>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -198,7 +224,127 @@
                   <div class="card-body">
                     <div class="form-group">
                       <label for="inputName">First Name</label>
-                      <input type="text" class="form-control" id="inputName" placeholder="Enter your first name" name="fname" required>
+                      <input type="text" class="form-control" id="fname" placeholder="Enter your first name" name="fname" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputName">Middle Name</label>
+                      <input type="text" class="form-control" id="mname" placeholder="Enter your middle name" name="mname" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputName">Last Name</label>
+                      <input type="text" class="form-control" id="lname" placeholder="Enter your last name" name="lname" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="genderSelect">Gender</label>
+                      <select class="form-control" id="genderSelect" name="gender">
+                        <option value="" selected></option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="courseSelect">Course</label>
+                      <select class="form-control"  name="course" id = "courseSelect">
+                        <option value="" selected></option>
+                        <option value="bscs">BS Computer Science</option>
+                        <option value="bsit">BS Information Technology</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="courseSelect">Year</label>
+                      <select class="form-control"  name="year" id = "yearSelect">
+                        <option value="" selected></option>
+                        <option value="I">I</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                        <option value="Iv">Iv</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="datepicker">Date of Birth</label>
+                      <input type="date" class="form-control" id="datepicker" placeholder="Select date" name="birthday" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputName">Home Address</label>
+                      <input type="text" class="form-control" id="address"  name="address" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputName">Phone Number (Philippine Format)</label>
+                      <input type="text" class="form-control" name="number" id="number" required pattern="^(09|\+639)\d{9}$" title="Please enter a valid Philippine phone number starting with '09' or '+639' followed by 9 digits">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputName">Guardian name</label>
+                      <input type="text" class="form-control"  name="guardianname" id="elemyear" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputName">Phone Number (Philippine Format)</label>
+                      <input type="text" class="form-control" name="guardiannumber" id="guardiannumber" required pattern="^(09|\+639)\d{9}$" title="Please enter a valid Philippine phone number starting with '09' or '+639' followed by 9 digits">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputName">Guardian Address</label>
+                      <input type="text" class="form-control"  name="guardianaddress" id="guardianaddress" required>
+                    </div>
+
+                    <div class="form-group">
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" name = "verify" data-bs-target="#myModal">
+                        Open modal
+                      </button>
+                    </div>
+
+                    <div class="form-group">
+                      <button type="submit" name = "submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+               
+              </div>
+            </div>
+          </div>
+        </section>
+        </div>
+      </div>
+    </section>
+    </form>
+  </div>
+  <!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Verify Your Info</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+         <div class="row">
+            <div class="col-md-12">
+            <br>   
+              <div class="card">
+                <div class="card-header">
+                  <h2 class="card-title">General Information</h2>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+               
+
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="inputName">First Name</label>
+                      <input type="text" class="form-control" value ="" disabled >
                     </div>
 
                     <div class="form-group">
@@ -214,6 +360,7 @@
                     <div class="form-group">
                       <label for="genderSelect">Gender</label>
                       <select class="form-control" id="genderSelect" name="gender">
+                        <option value="" selected></option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                       </select>
@@ -268,24 +415,21 @@
                       <label for="inputName">Guardian Address</label>
                       <input type="text" class="form-control"  name="guardianaddress" required>
                     </div>
-
-                    <div class="form-group">
-                      <button type="submit" name = "submit" class="btn btn-primary">Submit</button>
-                    </div>
                   </div>
                   <!-- /.card-body -->
                
               </div>
             </div>
           </div>
-        </section>
-        </div>
       </div>
 
-    </section>
-    </form>
-
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
+</div>
 </section><!-- End Services Section -->
 
 
@@ -353,16 +497,28 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="../assets/vendor/aos/aos.js"></script>
-  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="../assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('form').addEventListener('submit', function (event) {
+      // Iterate through all text and textarea input elements
+      document.querySelectorAll('input[type="text"], textarea').forEach(function (input) {
+        // Convert each input value to sentence case
+        input.value = toSentenceCase(input.value);
+      });
+    });
+
+    function toSentenceCase(str) {
+      return str.replace(/\w\S*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      });
+    }
+  });
+</script>
 
 </body>
 

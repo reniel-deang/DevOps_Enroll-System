@@ -25,10 +25,11 @@ if (isset($_POST['submit']))
     $guardianname = $_POST['guardianname'];
     $guardiannumber = $_POST['guardiannumber'];
     $guardianaddress = $_POST['guardianaddress'];
+    $verified = 0;
 
     // Prepare userdata query
-    $user_data = $conn->prepare("INSERT INTO tb_userdata (username, pass, email) VALUES (?, ?, ?)");
-    $user_data->bind_param("sss", $user, $pass, $email);
+    $user_data = $conn->prepare("INSERT INTO tb_userdata (username, pass, email, verified) VALUES (?, ?, ?, ?)");
+    $user_data->bind_param("sssi", $user, $pass, $email, $verified);
     $user_data->execute();
 
     // Get the inserted user ID
@@ -46,7 +47,8 @@ if (isset($_POST['submit']))
         $sql->bind_param("ssssssssssssssssssi", $elem, $elemyear, $jhs, $jhsyear, $shs, $shsyear, $fname, $mname, $lname, $gender, $course, $year, $birthday, $address, $number, $guardianname, $guardiannumber, $guardianaddress, $id);
         
         if ($sql->execute()) {
-            header("Location: ../../index.php");
+            $_SESSION["validation"] = "OK";
+            header("Location: ../enrollform.php");
             exit(); 
         } else {
             echo "Error";
