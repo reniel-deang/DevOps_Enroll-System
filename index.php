@@ -12,7 +12,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pampanga University - Home</title>
+  <title> - Home</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -65,8 +65,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-          <h1>Welcome to Pampanga State University</h1>
-          <h2>Your School with a heart!</h2>
+          <h1>Welcome to East Bridge State University</h1>
+          <h2> We Don't Choose Excellence We Create Them</h2>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
           <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
@@ -84,23 +84,23 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Why PSU?</h2>
+          <h2>Why Would I Choose EBS?</h2>
         </div>
 
         <div class="row content">
           <div class="col-lg-6">
             <p>
-             The reliability of our shopping site is crucial for a positive online shopping experience. A dependable platform ensures the security of customer information, maintains transparent business practices, and offers timely customer support.
+            where intellectual curiosity meets limitless possibilities. Established on the pillars of academic excellence, innovation, and inclusivity, our university stands as a beacon of knowledge, shaping the minds of tomorrow's leaders and thinkers.
             </p>
             <ul>
-              <li><i class="ri-check-double-line"></i> Transparency: Maintains clear and honest business practices, including accurate product descriptions and fair pricing.</li>
-              <li><i class="ri-check-double-line"></i> Customer Support: Provides timely and efficient assistance to address any concerns or issues.</li>
-              <li><i class="ri-check-double-line"></i> Trustworthy Reviews: Offers valuable insights from other customers, aiding informed decision-making.</li>
+              <li><i class="ri-check-double-line"></i>Academic Excellence:The university is renowned for its rigorous academic programs and distinguished faculty, providing students with a supportive learning environment that promotes critical thinking, problem-solving, and intellectual growth. </li>
+              <li><i class="ri-check-double-line"></i> Cutting-edge Research Opportunities: Our University offers students unique research opportunities across various disciplines, fostering collaboration and independent study, allowing them to explore their interests and contribute significantly to their fields.</li>
+              <li><i class="ri-check-double-line"></i> State-of-the-Art Facilities and Resources: The University offers advanced facilities, libraries, laboratories, and technology resources to enhance learning experiences, support student research, and provide access to modern classrooms and specialized equipment.</li>
             </ul>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
             <p>
-              Reviews from other customers serve as valuable indicators of a site's dependability, aiding prospective shoppers in making informed decisions. Ultimately, a reliable shopping site builds trust, encouraging repeat business and long-lasting customer relationships
+            Our alumni parents are a testament to the quality of education and transformative experiences provided by our university. Their achievements in research, innovation, leadership roles, and community change demonstrate the institution's commitment to academic rigor, personal growth, and cultivating principled leaders. Their legacy reflects our dedication to empowering the next generation of leaders.
             </p>
             <a href="pages/enrollform.php" class="btn-learn-more">Enroll Now</a>
           </div>
@@ -126,13 +126,13 @@ If you have any inquiries or questions, please feel free to use the contact form
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location:</h4>
-                <p>Sta. Ana, Pampanga</p>
+                <p>Angeles, Pampanga</p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>PampangaUniversity@gmail.com</p>
+                <p>@gmail.com</p>
               </div>
 
               <div class="phone">
@@ -192,10 +192,10 @@ If you have any inquiries or questions, please feel free to use the contact form
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>MYCART</h3>
+            <h3>Information</h3>
             <p>
-              San Joaqin <br>
-              Sta.Ana, Pampanga<br>
+              <Sto class="Rosario"></Sto><br>
+              Angeles, Pampanga<br>
               Philippines <br><br>
               <strong>Phone:</strong> +63912345678<br>
               <strong>Email:</strong> info@example.com<br>
@@ -221,8 +221,8 @@ If you have any inquiries or questions, please feel free to use the contact form
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Social Networks</h4>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+            <h4>East Bridge State University</h4>
+            <p>Established 79 years ago,  is a beacon of excellence in a vibrant, culturally diverse community, attracting students, scholars, and innovators worldwide.</p>
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
               <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -238,7 +238,7 @@ If you have any inquiries or questions, please feel free to use the contact form
 
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>MYCART</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>EAST BRIDGE</span></strong>. All Rights Reserved 1945
       </div>
     </div>
   </footer><!-- End Footer -->
