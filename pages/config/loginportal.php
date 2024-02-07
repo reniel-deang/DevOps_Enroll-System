@@ -23,21 +23,21 @@ if (isset($_POST['submit']))
             if($row['verified'] == 0)
             {
                 $_SESSION['status'] = "pending";
-                header("Location: ../login.php");
+                header("Location:  ../../dashboard.php");
                 exit(); 
                 
             }
             else
             {
                 $_SESSION['status'] = $row['user_id'];
-                header("Location: ../login.php");
+                header("Location:  ../../dashboard.php");
                 exit(); 
             }
         }
         else if(strpos($username, "@admin"))
         {
             $_SESSION['status'] = "admin";
-            header("Location: ../login.php");
+            header("Location: ../../dashboard.php");
             exit(); // Ensure script stops execution after redirect
         }
     } else {
