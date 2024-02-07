@@ -41,7 +41,7 @@ session_start();
   <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="../index.php">PSU</a></h1>
+      <h1 class="logo me-auto"><a href="../index.php">EBS</a></h1>
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -295,13 +295,6 @@ session_start();
                       <label for="inputName">Guardian Address</label>
                       <input type="text" class="form-control"  name="guardianaddress" id="guardianaddress" required>
                     </div>
-
-                    <div class="form-group">
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" name = "verify" data-bs-target="#myModal">
-                        Open modal
-                      </button>
-                    </div>
-
                     <div class="form-group">
                       <button type="submit" name = "submit" class="btn btn-primary">Submit</button>
                     </div>
@@ -317,119 +310,6 @@ session_start();
     </section>
     </form>
   </div>
-  <!-- The Modal -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog modal-fullscreen">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Verify Your Info</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-         <div class="row">
-            <div class="col-md-12">
-            <br>   
-              <div class="card">
-                <div class="card-header">
-                  <h2 class="card-title">General Information</h2>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-               
-
-                  <div class="card-body">
-                    <div class="form-group">
-                      <label for="inputName">First Name</label>
-                      <input type="text" class="form-control" value ="" disabled >
-                    </div>
-
-                    <div class="form-group">
-                      <label for="inputName">Middle Name</label>
-                      <input type="text" class="form-control" id="inputName" placeholder="Enter your middle name" name="mname" required>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="inputName">Last Name</label>
-                      <input type="text" class="form-control" id="inputName" placeholder="Enter your last name" name="lname" required>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="genderSelect">Gender</label>
-                      <select class="form-control" id="genderSelect" name="gender">
-                        <option value="" selected></option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="courseSelect">Course</label>
-                      <select class="form-control"  name="course">
-                        <option value="" selected></option>
-                        <option value="bscs">BS Computer Science</option>
-                        <option value="bsit">BS Information Technology</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="courseSelect">Year</label>
-                      <select class="form-control"  name="year">
-                        <option value="" selected></option>
-                        <option value="I">I</option>
-                        <option value="II">II</option>
-                        <option value="III">III</option>
-                        <option value="Iv">Iv</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="datepicker">Date of Birth</label>
-                      <input type="date" class="form-control" id="datepicker" placeholder="Select date" name="birthday" required>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="inputName">Home Address</label>
-                      <input type="text" class="form-control"  name="address" required>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="inputName">Phone Number</label>
-                      <input type="number" class="form-control"  name="number" required>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="inputName">Guardian name</label>
-                      <input type="text" class="form-control"  name="guardianname" required>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="inputName">Guardian Phone Number</label>
-                      <input type="number" class="form-control"  name="guardiannumber" required>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="inputName">Guardian Address</label>
-                      <input type="text" class="form-control"  name="guardianaddress" required>
-                    </div>
-                  </div>
-                  <!-- /.card-body -->
-               
-              </div>
-            </div>
-          </div>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 </section><!-- End Services Section -->
 
 

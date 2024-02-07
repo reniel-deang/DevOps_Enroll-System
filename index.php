@@ -2,17 +2,17 @@
 <html lang="en">
   <?php
   session_start();
-  if(isset($_SESSION))
-  {
-    session_unset();
-  }
+  if (isset($_SESSION['status']))
+    {
+      session_unset();
+    }
   
   ?>
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title> - Home</title>
+  <title>EBS - Home</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -27,11 +27,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   <!-- Latest compiled and minified CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <!-- Latest compiled JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -43,7 +40,7 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.php">PSU</a></h1>
+      <h1 class="logo me-auto"><a href="index.php">EBS</a></h1>
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -90,12 +87,12 @@
         <div class="row content">
           <div class="col-lg-6">
             <p>
-            where intellectual curiosity meets limitless possibilities. Established on the pillars of academic excellence, innovation, and inclusivity, our university stands as a beacon of knowledge, shaping the minds of tomorrow's leaders and thinkers.
+            Where intellectual curiosity meets limitless possibilities. Established on the pillars of academic excellence, innovation, and inclusivity, our university stands as a beacon of knowledge, shaping the minds of tomorrow's leaders and thinkers.
             </p>
             <ul>
-              <li><i class="ri-check-double-line"></i>Academic Excellence:The university is renowned for its rigorous academic programs and distinguished faculty, providing students with a supportive learning environment that promotes critical thinking, problem-solving, and intellectual growth. </li>
-              <li><i class="ri-check-double-line"></i> Cutting-edge Research Opportunities: Our University offers students unique research opportunities across various disciplines, fostering collaboration and independent study, allowing them to explore their interests and contribute significantly to their fields.</li>
-              <li><i class="ri-check-double-line"></i> State-of-the-Art Facilities and Resources: The University offers advanced facilities, libraries, laboratories, and technology resources to enhance learning experiences, support student research, and provide access to modern classrooms and specialized equipment.</li>
+              <li><i class="ri-check-double-line">✓</i>Academic Excellence:The university is renowned for its rigorous academic programs and distinguished faculty, providing students with a supportive learning environment that promotes critical thinking, problem-solving, and intellectual growth. </li>
+              <li><i class="ri-check-double-line">✓</i> Cutting-edge Research Opportunities: Our University offers students unique research opportunities across various disciplines, fostering collaboration and independent study, allowing them to explore their interests and contribute significantly to their fields.</li>
+              <li><i class="ri-check-double-line">✓</i> State-of-the-Art Facilities and Resources: The University offers advanced facilities, libraries, laboratories, and technology resources to enhance learning experiences, support student research, and provide access to modern classrooms and specialized equipment.</li>
             </ul>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
@@ -116,7 +113,7 @@
         <div class="section-title">
           <h2>Contact</h2>
           <p>
-If you have any inquiries or questions, please feel free to use the contact form below.</p>
+            If you have any inquiries or questions, please feel free to use the contact form below.</p>
         </div>
 
         <div class="row">

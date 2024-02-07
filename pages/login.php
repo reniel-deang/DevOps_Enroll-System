@@ -2,32 +2,11 @@
 <html lang="en">
   <?php 
   session_start();
-
-  if(isset($_SESSION['status']))
-  {
-    if($_SESSION['status'] == "pending")
-    {
-      echo '<div class="alert alert-info"> Your Application is not currently Approve, Please Wait for the notification </div>';
-    }
-    else if($_SESSION['status'] == "error")
-    {
-      echo '<div class="alert alert-danger"> Login Error, Please Check your credentials and try again </div>';
-    }
-    else if($_SESSION['status'] == "admin")
-    {
-      echo '<div class="alert alert-primary">Hello Admin hehe!</div>';
-    }
-    else{
-      echo '<div class="alert alert-success"> Your user_id == '.$_SESSION['status'].'</div>';
-    }
-
-    session_unset();
-  }
   ?>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pampanga University - Portal</title>
+  <title>EBS - Portal</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -38,7 +17,7 @@
   
 <div class="login-box">
   <div class="login-logo">
-    <a href="../index.php"><b>PSU Portal</a>
+    <a href="../index.php"><b>EBS Portal</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">

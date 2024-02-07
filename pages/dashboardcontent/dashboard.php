@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php 
+  include '../config/dbcon.php';
   session_start();
 
   if (isset($_SESSION['status']))
 
   {
-   
+    $total = "SELECT * FROM tb_studentinfo";
+    $result = $conn->query($total);
+    $showtotal = mysqli_num_rows($result);
+
+    $enrolled = "SELECT * FROM tb_userdata WHERE verified = 1";
+    $result1 = $conn->query($enrolled);
+    $showenrolled = mysqli_num_rows($result1);
+
+    $pending = "SELECT * FROM tb_userdata WHERE verified = 0";
+    $result2 = $conn->query($pending);
+    $showpending = mysqli_num_rows($result2);
+
   }
   else
   {
-    header('Location: index.php');
+    header('Location: ../../index.php');
     session_unset();
   }
  
+  
  
   ?>
 <head>
@@ -24,7 +37,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- overlayScrollbars -->
@@ -72,6 +85,14 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="../config/logout.php" role="button">
+          <i class="fas fa-people-arrows"></i>
+        </a>
+      </li>
+
+      
 
     </ul>
   </nav>
@@ -124,7 +145,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Forms
+                Manage Content
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -141,7 +162,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Tables
+                Manage Students
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -149,7 +170,7 @@
               <li class="nav-item">
                 <a href="pages/tables/simple.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Tables</p>
+                  <p>General</p>
                 </a>
               </li>
             </ul>
@@ -184,12 +205,12 @@
 
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3><?php echo $showtotal; ?></h3>
 
                 <p>Applications</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+                <i class="ion ion-person-add"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -199,7 +220,7 @@
 
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3><?php echo $showenrolled; ?></sup></h3>
 
                 <p>Enrolled</p>
               </div>
@@ -214,7 +235,7 @@
  
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3><?php echo $showpending; ?></h3>
 
                 <p>Pending</p>
               </div>

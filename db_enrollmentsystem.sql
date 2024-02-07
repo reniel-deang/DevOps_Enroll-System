@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2024 at 01:00 PM
+-- Generation Time: Feb 07, 2024 at 02:36 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -88,10 +88,7 @@ CREATE TABLE `tb_studentinfo` (
 --
 
 INSERT INTO `tb_studentinfo` (`student_id`, `elem`, `elem_year`, `jhs`, `jhs_year`, `shs`, `shs_year`, `fname`, `mname`, `lname`, `gender`, `course`, `year`, `birthday`, `address`, `num`, `guardian`, `guardian_number`, `guardian_address`, `user_id`) VALUES
-(26, 'San Isidro Elementary School', '2015', 'San Isidro High School', '2019', 'Holy Cross College', '2021', 'Reniel ', 'Ostia', 'Deang', 'male', 'bscs', 'III', '2002-08-08', '508 San Isidro Sta.ana Pampanga', '09555328922', 'Reniel Deang', '09555328922', 'San Isidro', 27),
-(27, 'San Isidro', '2014', 'San Isidro', '2014', 'San Isidro', '2014', 'Angella Monic', 'Hermogeno', 'De Guzman', 'female', 'bscs', 'I', '2004-05-04', 'Banahaw Cubao Quezon City', '09555328922', 'Kelly De Guzman', '09555328922', 'Banahaw Cubao Quezon City', 28),
-(28, 'San Isidro Elementary School', '2015', 'San Isidro High School', '2019', 'Holy Cross College', '2021', 'Reniel', 'Ostia', 'Deang', 'male', 'bscs', 'III', '2002-08-08', '508 San Isidro Sta.ana Pampanga', '09555328922', 'Anelyn Deang', '09555328922', '508 San Isidro Sta. Ana Pampanga', 29),
-(29, 'San Isidro', '2014', 'San Isidro', '2014', 'San Isidro', '2014', 'Reniel', 'Turla', 'De Guzman', 'male', 'bsit', 'I', '2001-01-02', 'Dsad', '09555328922', 'Nanay', '09555328922', 'San Simon', 30);
+(30, 'Admin', '2014', 'Admin', '2014', 'Admin', '2014', 'Admin', 'Admin', 'Admin', 'male', 'bscs', 'I', '1999-01-07', 'Admin', '09894561258', 'Admin', '09184598745', 'Admin', 31);
 
 -- --------------------------------------------------------
 
@@ -112,11 +109,8 @@ CREATE TABLE `tb_userdata` (
 --
 
 INSERT INTO `tb_userdata` (`user_id`, `username`, `pass`, `email`, `verified`) VALUES
-(1, 'Admin@admin', 'admin', '', 0),
-(27, 'Admin@student', 'password08', 'admin@gmail.com', 1),
-(28, 'Monic04@student', 'cutelove08', 'moniclabniel@uniromax.com', 0),
-(29, 'Nielo@student', 'grimlocker08', 'rxthespankengine@gmail.com', 0),
-(30, 'Admin@student', 'adminadmin', 'moniclabniel@uniromax.com', 1);
+(1, 'Admin@admin', 'admin', '', 3),
+(31, 'Admin@student', 'adminadmin', 'admin@gmail.com', 0);
 
 --
 -- Indexes for dumped tables
@@ -167,13 +161,13 @@ ALTER TABLE `tb_messages`
 -- AUTO_INCREMENT for table `tb_studentinfo`
 --
 ALTER TABLE `tb_studentinfo`
-  MODIFY `student_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `student_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `tb_userdata`
 --
 ALTER TABLE `tb_userdata`
-  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables
