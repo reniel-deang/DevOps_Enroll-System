@@ -16,6 +16,10 @@ if (isset($_SESSION['status'])) {
   $pending = "SELECT * FROM tb_userdata WHERE verified = 0";
   $result2 = $conn->query($pending);
   $showpending = mysqli_num_rows($result2);
+
+  $messages = "SELECT * FROM tb_messages";
+  $result3 = $conn->query($messages);
+  $showmessages = mysqli_num_rows($result3);
 } else {
   header('Location: ../../index.php');
   session_unset();
@@ -40,6 +44,11 @@ if (isset($_SESSION['status'])) {
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+  <!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
@@ -122,7 +131,7 @@ if (isset($_SESSION['status'])) {
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -131,7 +140,7 @@ if (isset($_SESSION['status'])) {
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="./index.html" class="nav-link active">
+                  <a href="dashboard.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Main Dashboard</p>
                   </a>
@@ -173,7 +182,7 @@ if (isset($_SESSION['status'])) {
               </ul>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-table"></i>
                 <p>
                   Messages
@@ -182,7 +191,7 @@ if (isset($_SESSION['status'])) {
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="message.php" class="nav-link">
+                  <a href="" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
                     <p>View Messages</p>
                   </a>
@@ -203,7 +212,7 @@ if (isset($_SESSION['status'])) {
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Admin Dashboard</h1>
+              <h1 class="m-0">Messages</h1>
             </div>
           </div>
         </div>
@@ -212,63 +221,85 @@ if (isset($_SESSION['status'])) {
 
 
       <section class="content">
-        <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Fixed Header Table</h3>
 
-          <div class="row">
-            <div class="col-lg-3 col-6">
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3><?php echo $showtotal; ?></h3>
-
-                  <p>Applications</p>
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
-            </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0" style="height: 300px;">
+                <table class="table table-head-fixed text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Sender</th>
+                      <th>Email Address</th>
+                      <th>Date and Time</th>
+                      <th>Subject</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
 
-            <div class="col-lg-3 col-6">
+                  <?php
+                  if ($result3->num_rows > 0) {
+                    // output data of each row
+                    while ($row = $result3->fetch_assoc()) {
+                      echo '<tbody><tr>
+                        <td>' . $row['messageid'] . '</td>
+                        <td>' . $row['name'] . '</td>
+                        <td>' . $row['email'] . '</td>
+                        <td>' . $row['date'] . '</td>
+                        <td>' . $row['subject'] . '</td>
+                        <td> <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#open">Open</button>
+                        <button type = "button" class = "btn btn-danger ">Delete</button></td>
+                      </tr></tbody>';
+                    }
+                  }
+                  ?>
 
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3><?php echo $showenrolled; ?></sup></h3>
-
-                  <p>Enrolled</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </table>
               </div>
+              <!-- /.card-body -->
             </div>
-
-            <div class="col-lg-3 col-6">
-
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3><?php echo $showpending; ?></h3>
-
-                  <p>Pending</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-
+            <!-- /.card -->
           </div>
+        </div>
 
-          <div class="row">
+        <div class="modal" id="open">
+          <div class="modal-dialog">
+            <div class="modal-content">
 
-            <section class="col-lg-7 connectedSortable">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
 
-            </section>
+              <!-- Modal body -->
+              <div class="modal-body">
+                Modal body..
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+
+            </div>
           </div>
-
         </div>
       </section>
 
