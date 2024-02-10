@@ -4,31 +4,6 @@
   <?php 
   include '../config/dbcon.php';
   session_start();
-
-  if (isset($_SESSION['status']))
-
-  {
-    $total = "SELECT * FROM tb_studentinfo";
-    $result = $conn->query($total);
-    $showtotal = mysqli_num_rows($result);
-
-    $enrolled = "SELECT * FROM tb_userdata WHERE verified = 1";
-    $result1 = $conn->query($enrolled);
-    $showenrolled = mysqli_num_rows($result1);
-
-    $pending = "SELECT * FROM tb_userdata WHERE verified = 0";
-    $result2 = $conn->query($pending);
-    $showpending = mysqli_num_rows($result2);
-
-  }
-  else
-  {
-    header('Location: ../../index.php');
-    session_unset();
-  }
- 
-  
- 
   ?>
 <head>
   <meta charset="utf-8">
@@ -195,21 +170,73 @@
 <!-- ****** BODY ****** -->
 
   <div class="content-wrapper" style="padding: 25px;">
+  
   <?php
-    if(isset($_SESSION['alert'])){
-      echo $_SESSION['alert'];
-    }
-  ?>  
+  if(isset($_SESSION['alert']))
+
+  echo $_SESSION['alert'] ;
+
+  ?>
+    
     <div id="footer" class="shadow p-3 mb-5 bg-body rounded text-center">
         <h3 style="text-align: center;"> Update Logo </h3>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#profilepicModal">
             Update
         </button>
-        <br><br>	
-        <div class="container h-100 d-flex align-items-center justify-content-center">
-            <img style="width: 40vh" src="../assets/logo/icon.png" alt="Logo" class="img-fluid">
+        <br><br>
+            <?php
+              $sql =  "SELECT * FROM tb_profile";
+              $result = mysqli_query($conn, $sql);
+              $datas = array();
+              if(mysqli_num_rows($result) > 0 ){
+                  while($row =mysqli_fetch_assoc($result)){
+                      $datas[] = $row;
+                  }
+              }
+              
+              if($datas == null)
+              {
+                echo '<img src="../../assets/img/cms-image/gif/profile.jpg" alt="Empty Logo" style="width: 30%">
+                <br>
+                <p><strong style="color: #1c1c1c:"> You can upload a profile photo for your account</strong></p>';
+              }else
+              {
+                foreach($datas as $data){
+              echo'
+                <div class="container h-100 d-flex align-items-center justify-content-center">
+                <img style="width: 35vh" src="../../assets/img/cms-image/profile/'. $data['img'] .'" alt="Logo" class="img-fluid">
+                </div>';
+                }
+                
+              }
+            ?>
+        <!-- modal  -->
+        <div class="modal fade" id="profilepicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change the logo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" >
+                        <form method="post" enctype="multipart/form-data" action="../config/profileAdd.php">
+                            <input type="file" name="image" required>
+                            <input type="submit" value="Upload" class="btn btn-primary" name="submitProfile">
+                        </form>
+                        
+                    </div>
+                    
+                </div>
+            </div>
         </div>
-        </div>
+
+        
+        
+        
+        
+    </div>
+
+
   <form method="POST">
         <div id="footer" class="shadow p-3 mb-5 bg-body rounded">
             <h3 style="text-align: center;"> School Profile </h3>
@@ -328,10 +355,7 @@
                         </form>
                         
                     </div>
-                    <div class="modal-footer" >
                     
-                    
-                    </div>
                 </div>
             </div>
         </div>
@@ -341,36 +365,44 @@
         <div class="row" style="margin-top: 20px; display: flex; justify-content: center;"> 
 
             <?php
-            $glob = glob("../..//assets/img/cms-image/cover-page/"."*.png");
+            $sql =  "SELECT * FROM tb_preCoverPhoto";
+            $result = mysqli_query($conn, $sql);
+            $datas = array();
+            if(mysqli_num_rows($result) > 0 ){
+                while($row =mysqli_fetch_assoc($result)){
+                    $datas[] = $row;
+                }
+            }
 
 
-            if($glob == null)
+            if($datas == null)
             {
-            echo '<img src="../../assets/img/cms-image/cover-page/gif empty.gif" alt="Empty Logo" style="width: 30%">
+            echo '<img src="../../assets/img/cms-image/gif/emp.gif" alt="Empty Logo" style="width: 30%">
             <br>
             <p><strong> You can upload a cover photo for your website homepage </strong></p>';
             }else
             {
-                foreach($glob as $file){
+                foreach($datas as $data){
 
                 echo '  <div class="card" style="width: 300px; margin: 20px; padding: 0;">
-                            <img class="card-img-top" src="' . $file .' " style="height: 300px; width: 100%" alt="Card image">
+                            <img class="card-img-top" src="../../assets/img/cms-image/cover-page/' . $data['img'] .' " style="height: 300px; width: 100%" alt="Card image">
                             <div class="card-body">
-                                <h5 class="card-title">
-                                    <form method="POST">
-                                        <input type="text" class="form-control"  style="border: none;" placeholder="Insert a title" name="title"> 
-                                        <input type="hidden" value="23" name="id">
-                                    </form>
-                                </h5>
-                                <p class="card-text">
-                                    <textarea placeholder="Insert a Caption" class="form-control" name="caption" style="border: none; background-color: inherit;"></textarea>
-                                </p>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save"></i>
-                                </button>
-                                <button formaction="../config/deleteImages.php" type="submit" class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
+                                  <h5 class="card-title">
+                                  <form method="POST">
+                                    <input type="text" class="form-control"  style="border: none;" value="' . $data['title'] .'" placeholder="Insert a Title" name="title"> 
+                                    <input type="hidden" name="'. $data['id'] .'">
+                                      
+                                    </h5>
+                                    <p class="card-text">
+                                        <textarea placeholder="Insert a Caption" class="form-control" name="caption" style="border: none; background-color: inherit;">' . $data['caption'] .'</textarea>
+                                    </p>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save"></i>
+                                    </button>
+                                    <button formaction="../config/deleteImages.php" type="submit" class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                  </form>
                             </div>
                         </div>
                     ';
@@ -404,7 +436,7 @@
                           <br>
                         <div class="form-group">
                           <label for="textInput">Title:</label>
-                          <input type="text" class="form-control" id="textInput" name="title" required="">
+                          <input type="text" class="form-control" id="textInput" name="title" required="" >
                         </div>
                         <div class="form-group">
                           <label for="textAreaInput">Caption:</label>
@@ -425,40 +457,46 @@
         <!-- grid layout -->
         <div class="row" style="margin-top: 20px; display: flex; justify-content: center;"> 
 
-            <?php
-            $globImage = glob("../..//assets/img/cms-image/card-and-imag/"."*.png");
+          <?php
+            $sql =  "SELECT * FROM tb_preUploadCard";
+            $result = mysqli_query($conn, $sql);
+            $datas = array();
+            if(mysqli_num_rows($result) > 0 ){
+                while($row =mysqli_fetch_assoc($result)){
+                    $datas[] = $row;
+                }
+            }
 
-            echo $globImage == null ;
-
-
-
-            if($globImage == null)
+            if($datas == null)
             {
-            echo '<img src="../../assets/img/cms-image/card-and-imag/gif robot.gif" alt="Empty Logo" style="width: 30%">
+            echo '<img src="../../assets/img/cms-image/gif/emptygif.gif" alt="Empty Logo" style="width: 30%">
             <br>
             <p><strong> You can upload a cards and images to showcase in your home </strong></p>';
             }else
             {
-                foreach($globImage as $file){
+                foreach($datas as $data){
 
                 echo '  <div class="card" style="width: 300px; margin: 20px; padding: 0;">
-                            <img class="card-img-top" src="' . $file .' " style="height: 300px; width: 100%" alt="Card image">
+                            <img class="card-img-top" src="../../assets/img/cms-image/card-and-imag/'. $data['img'] .' " style="height: 300px; width: 100%" alt="Card image">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <form method="POST">
-                                        <input type="text" class="form-control"  style="border: none;" placeholder="Insert a title" name="title"> 
-                                        <input type="hidden" value="23" name="id">
-                                    </form>
-                                </h5>
-                                <p class="card-text">
-                                    <textarea placeholder="Insert a Caption" class="form-control" name="caption" style="border: none; background-color: inherit;"></textarea>
-                                </p>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save"></i>
-                                </button>
-                                <button formaction="../config/deleteImages.php" type="submit" class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
+                                <form method="POST">
+                                  
+
+                                  <input type="text" class="form-control" value="'. $data['title'] .'"  style="border: none;" placeholder="'. $data['title'] .'" name="title"> 
+                                  <input type="hidden" name="'. $data['id'] .'">
+                                    
+                                  </h5>
+                                  <p class="card-text">
+                                      <textarea  placeholder="'. $data['caption'] .'" class="form-control" name="caption" style="border: none; background-color: inherit;">'. $data['caption'] .'</textarea>
+                                  </p>
+                                  <button formaction="../config/addingCardtoHomepage.php " type="submit" class="btn btn-primary">
+                                      <i class="fas fa-save"></i>
+                                  </button>
+                                  <button formaction="../config/deleteImages.php" type="submit" class="btn btn-danger">
+                                      <i class="fa fa-trash"></i>
+                                  </button>
+                                </form>
                             </div>
                         </div>
                     ';
@@ -469,7 +507,82 @@
 
 
   </div>
-  
+
+
+
+<!-- GRID CONTENT  BEGINING -->
+
+    <div class="shadow p-3 mb-5 bg-body rounded" style="text-align: center">
+        <h3 id="content"> Grid Contents </h3>
+        <div class="row" style=" margin-top: 20px; display: flex;  justify-content: center;">
+
+          <div class="card" style="width:300px; margin: 20px; padding: 0">
+              <div class="card-body">
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <form method="POST">
+                        <h6>Title</h6>
+                        <input type="text" class="form-control" required="" placeholder="Insert a title" name="title"> 
+                        <input type="hidden" value="<br /><b>Warning</b>:  Trying to access array offset on value of type null in <b>/storage/ssd5/962/21842962/public_html/dashboard/adminDashboard.php</b> on line <b>340</b><br />" name="id">
+                    
+                    <p class="card-text">
+                    <h6>Caption</h6></p>
+                    <textarea required="" placeholder="Insert a Caption" class="form-control" name="caption" background-color:="" inherit;"=""></textarea><p></p>
+                    <h5 class="card-title"></h5><h6>Size</h6>
+                    <input type="number" min="1" max="5" class="form-control" placeholder="Insert a size" name="size" required=""> 
+                    <h6>Background Color</h6>
+                    <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#ffffff" title="Choose your color" style="height: 25px; margin-bottom: 7px;" name="color">
+                    <button formaction="../config/grid-content.php" type="submit" class="btn btn-primary" name="submit3">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    </form>
+                </div>
+              </div>
+          </div>
+
+          <?php
+            $sql =  "SELECT * FROM tb_preContent";
+            $result = mysqli_query($conn, $sql);
+            $datas = array();
+            if(mysqli_num_rows($result) > 0 ){
+              while($row =mysqli_fetch_assoc($result)){
+                  $datas[] = $row;
+              }
+            }
+            foreach($datas as $data){
+            echo '
+            <div class="card" style="width:300px; margin: 20px; padding: 0">
+            <div class="card-body">
+              <div class="card-body">
+                  <h5 class="card-title"></h5>
+                  <form method="POST">
+                      <h6>Title</h6>
+                      <input type="text" class="form-control" required="" value="'.$data['title'].'" placeholder="'.$data['title'].'" name="title"> 
+                      <input type="hidden" value="'.$data['id'].'" name="id">
+                  <p class="card-text">
+                  <h6>Caption</h6></p>
+                  <textarea required="" placeholder="'.$data['caption'].'" class="form-control" name="caption" background-color:="" inherit;"="">'.$data['caption'].'</textarea><p></p>
+                  <h5 class="card-title"></h5><h6>Size</h6>
+                  <input type="number" min="1" max="5" class="form-control" value="'.$data['sizes'].'" placeholder="'.$data['sizes'].'" name="size" required=""> 
+                  <h6>Background Color</h6>
+                  <input type="color" class="form-control form-control-color" id="exampleColorInput" value="'.$data['color'].'" title="Choose your color" style="height: 25px; margin-bottom: 7px;" name="color">
+                  <button formaction="../config/addingContent.php" type="submit" class="btn btn-primary">
+		                <i class="fa fa-save"></i>
+		              </button>
+                  <button formaction="../config/deleteContent.php" type="submit" class="btn btn-danger">
+		                <i class="fa fa-trash"></i>
+		              </button>
+                  </form>
+              </div>
+            </div>
+        </div>';
+            }
+
+          ?>
+
+
+        </div>
+  </div>
 
   <footer class="main-footer">
     All rights reserved

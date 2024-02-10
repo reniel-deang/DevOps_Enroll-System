@@ -1,5 +1,21 @@
 <?php
 
+session_start();
+include "dbcon.php";
+
+$image = $_FILES['image']['name'];
+$title = $_POST['title'];
+$caption = $_POST['caption'];
+
+$sql = "INSERT INTO tb_preUploadCard (img, title, caption)
+VALUES ('$image', '$title', '$caption')";
+
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit2"])) {
     $uploadDir = '../../assets/img/cms-image/card-and-imag/'; // Create a folder named 'uploads' in the same directory as this script
 
