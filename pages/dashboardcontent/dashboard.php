@@ -171,6 +171,12 @@
                 <a href="pages/tables/simple.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>General</p>
+                  
+                </a>
+
+                <a href="class.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Grades</p>
                 </a>
               </li>
             </ul>
