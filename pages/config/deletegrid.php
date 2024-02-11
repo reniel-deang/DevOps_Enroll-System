@@ -3,10 +3,9 @@
 session_start();
 include "dbcon.php";
 $delete = $_POST['delete'];
-$link = $_POST['image'];
+$data = $_POST['id'];
 
-echo $link;
-$sql = "DELETE FROM $delete WHERE img= '$link'";
+$sql = "DELETE FROM $delete WHERE id= '$data'";
 
 if ($conn->query($sql) === TRUE) {
     $_SESSION['alert'] = '<div class="alert alert-danger" role="alert">
@@ -14,9 +13,7 @@ if ($conn->query($sql) === TRUE) {
     unlink($link);
     header("Location: ../dashboardcontent/ManageElem.php");
 } else {
-  echo "Error deleting record: " . $conn->error;
+    echo "Error deleting record: " . $conn->error;
 }
 
 $conn->close();
-
-?>
