@@ -1,5 +1,21 @@
 <?php
 
+session_start();
+include "dbcon.php";
+
+$image = $_FILES['image']['name'];
+$title = $_POST['title'];
+$caption = $_POST['caption'];
+
+$sql = "INSERT INTO tb_cardHomepage (img, title, caption, ToHome)
+VALUES ('$image', '$title', '$caption', 0)";
+
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit2"])) {
     $uploadDir = '../../assets/img/cms-image/card-and-imag/'; // Create a folder named 'uploads' in the same directory as this script
 
@@ -45,13 +61,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit2"])) {
         // Move the uploaded file to the specified directory
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
             echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
-            $_SESSION['alert'] = '<div class="alert alert-success" role="alert">
-			 THE FILE '. $_FILES["image"]["name"] .' HAS BEEN UPLOADED.</div>';
+            
 
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
     }
+    $_SESSION['alert'] = '<div class="alert alert-success" role="alert">
+			 THE FILE '. $_FILES["image"]["name"] .' HAS BEEN UPLOADED.</div>';
     header("Location: ../dashboardcontent/ManageElem.php");
 
 } else {

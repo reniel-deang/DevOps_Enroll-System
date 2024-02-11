@@ -271,6 +271,9 @@
   <aside class="control-sidebar control-sidebar-dark">
 
   </aside>
+ <?php
+ $_SESSION['alert'] == null; 
+ ?> 
 
 </div>
 
