@@ -157,7 +157,7 @@ if (isset($_SESSION['status'])) {
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
+                <i class="nav-icon fas fa-people-arrows"></i>
                 <p>
                   Manage Students
                   <i class="fas fa-angle-left right"></i>
@@ -174,7 +174,7 @@ if (isset($_SESSION['status'])) {
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
+                <i class="nav-icon fas fa-mail-bulk"></i>
                 <p>
                   Messages
                   <i class="fas fa-angle-left right"></i>

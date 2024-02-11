@@ -166,7 +166,7 @@ if (isset($_SESSION['status'])) {
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
+                <i class="nav-icon fas fa-people-arrows"></i>
                 <p>
                   Manage Students
                   <i class="fas fa-angle-left right"></i>
@@ -183,7 +183,7 @@ if (isset($_SESSION['status'])) {
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>
+                <i class="nav-icon fas fa-mail-bulk"></i>
                 <p>
                   Messages
                   <i class="fas fa-angle-left right"></i>
@@ -252,12 +252,13 @@ if (isset($_SESSION['status'])) {
                       <th>Action</th>
                     </tr>
                   </thead>
+                  <tbody>
 
                   <?php
                   if ($result3->num_rows > 0) {
                     // output data of each row
                     while ($row = $result3->fetch_assoc()) {
-                      echo '<tbody><tr>
+                      echo '<tr>
                         <td>' . $row['messageid'] . '</td>
                         <td>' . $row['name'] . '</td>
                         <td>' . $row['email'] . '</td>
@@ -265,10 +266,11 @@ if (isset($_SESSION['status'])) {
                         <td>' . $row['subject'] . '</td>
                         <td> <button type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#open">Open</button>
                         <button type = "button" class = "btn btn-danger ">Delete</button></td>
-                      </tr></tbody>';
+                      </tr>';
                     }
                   }
                   ?>
+                  </tbody>
 
                 </table>
               </div>
