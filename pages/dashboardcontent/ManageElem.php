@@ -183,7 +183,7 @@
             Update
         </button>
         <br><br>
-            <?php
+              <?php
               $sql =  "SELECT * FROM tb_profile";
               $result = mysqli_query($conn, $sql);
               $datas = array();
@@ -402,7 +402,7 @@
                                     
                                     <input type="text" class="form-control"  style="border: none;" value="' . $data['title'] .'" placeholder="Insert a Title" name="title"> 
                                     <input type="hidden" name="id" value="'. $data['id'] .'">
-                                    <input type="hidden" value="'. $data['img'] .'" name="image">
+                                    <input type="hidden" value="/cover-page/'. $data['img'].'" name="image">
                                     <input type="hidden" value="tb_coverphotohomepage" name="delete">
                                     
                                     <p class="card-text">
@@ -520,7 +520,7 @@
                               
                                   <input type="text" class="form-control" value="'. $data['title'] .'"  style="border: none;" placeholder="'. $data['title'] .'" name="title"> 
                                   <input type="hidden" value="'. $data['id'] .'" name="id">
-                                  <input type="hidden" value="'. $data['img'] .'" name="image">
+                                  <input type="hidden" value="card-and-imag'. $data['img'] .'" name="image">
                                   <input type="hidden" value="tb_cardHomepage" name="delete">
                                     
                                   </h5>

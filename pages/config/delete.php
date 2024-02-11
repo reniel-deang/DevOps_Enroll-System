@@ -4,6 +4,14 @@ session_start();
 include "dbcon.php";
 $id = $_POST['id'];
 $delete = $_POST['delete'];
+$image = $_POST['image'];
+
+$path = "../../assets/img/cms-image$image";
+echo $path;
+
+if(!unlink($path)){
+  echo "You have an error";
+}
 
 $sql = "DELETE FROM $delete WHERE id=$id";
 
