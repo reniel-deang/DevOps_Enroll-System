@@ -23,7 +23,7 @@ if (isset($_POST['submit']))
             if($row['verified'] == 0)
             {
                 $_SESSION['status'] = "pending";
-                header("Location:  ../dashboardcontent/dashboard.php");
+                header("Location: ../login.php");
                 exit(); 
                 
             }
