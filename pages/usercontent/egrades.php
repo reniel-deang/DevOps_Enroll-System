@@ -2,24 +2,7 @@
 <html lang="en">
 <?php
 include '../config/dbcon.php';
-session_start();
 
-if (isset($_SESSION['status'])) {
-  $total = "SELECT * FROM tb_studentinfo";
-  $result = $conn->query($total);
-  $showtotal = mysqli_num_rows($result);
-
-  $enrolled = "SELECT * FROM tb_userdata WHERE verified = 1";
-  $result1 = $conn->query($enrolled);
-  $showenrolled = mysqli_num_rows($result1);
-
-  $pending = "SELECT * FROM tb_userdata WHERE verified = 0";
-  $result2 = $conn->query($pending);
-  $showpending = mysqli_num_rows($result2);
-} else {
-  header('Location: ../../index.php');
-  session_unset();
-}
 
 
 
@@ -28,7 +11,7 @@ if (isset($_SESSION['status'])) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Management Dashboard</title>
+  <title>User Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -83,12 +66,13 @@ if (isset($_SESSION['status'])) {
           </a>
         </li>
 
+        <!--
         <li class="nav-item">
           <a class="nav-link" href="../config/logout.php" role="button">
             <i class="fas fa-people-arrows"></i>
           </a>
         </li>
-
+        -->
 
 
       </ul>
@@ -99,84 +83,66 @@ if (isset($_SESSION['status'])) {
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
       <a href="#" class="brand-link">
-        <span class="brand-text font-weight-light">Administration</span>
+       <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png" style="width: 60px">
+        <span class="brand-text font-weight-light">University</span>
       </a>
 
 
       <div class="sidebar">
 
         <br>
-        <div class="form-inline">
-          <div class="input-group" data-widget="sidebar-search">
-            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-sidebar">
-                <i class="fas fa-search fa-fw"></i>
-              </button>
-            </div>
-          </div>
-        </div>
+        
 
 
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+
+          <li class="nav-item">
+            <a href="userdashboard.php" class="nav-link">
+              <i class="nav-icon fas fa-th-large"></i>
               <p>
                 Dashboard
-                <i class="right fas fa-angle-left"></i>
+                
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="dashboard.php" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Main Dashboard</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Manage Content
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="ManageElem.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>General Elements</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
-              <p>
-                Manage Students
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>General</p>
-                  
-                </a>
+            
 
-                <a href="class.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Grades</p>
-                </a>
-              </li>
-            </ul>
           </li>
+          <li class="nav-item">
+            <a href="userprofile.php" class="nav-link">
+              <i class="nav-icon fas fa fa-user"></i>
+              <p>
+                Profile
+                
+              </p>
+            </a>
+            
+
+          </li>
+          <li class="nav-item menu-open">
+            <a href="egrades.php" class="nav-link">
+              <i class="nav-icon fas fa fa-book"></i>
+              <p>
+                E-Grades
+                
+              </p>
+            </a>
+            
+            
+          </li>
+
+          <li class="nav-item">
+            <a href="../config/logout.php" class="nav-link">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                Logout
+                
+              </p>
+            </a>
+            
+            
+          </li>
+
         </ul>
       </nav>
 
@@ -187,7 +153,8 @@ if (isset($_SESSION['status'])) {
 
     <div class="content-wrapper">
 
-      <div class="content-header">
+    <!--  
+    <div class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
@@ -196,68 +163,73 @@ if (isset($_SESSION['status'])) {
           </div>
         </div>
       </div>
-
+    -->
 
 
       <section class="content">
-        <div class="container-fluid">
+      
+      <div class="col-sm p-3 min-vh-100">
+<div class="shadow p-3 mb-5 bg-body round">
+    
+ <div class="container mt-3">
+        
+ <h1 style="margin-bottom: 20px;">E-Grades</h1>
+   
 
-          <div class="row">
-            <div class="col-lg-3 col-6">
+    
+      <div class="row">
+  <div class="col-md-6">
+  
+    <p><strong> Name: </strong><!--Echo--></p>
+    <p><strong>Course: </strong><!--Echo--></p>
+<p><strong>Status:</strong> <span style="padding: 10px" class="badge bg-success"><!--Echo--></span></p>
 
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3><?php echo $showtotal; ?></h3>
+  </div>
+  <div class="col-md-6">
+    <p><strong>Year:  </strong><!--Echo--></p>
+    <p><strong>Section:  </strong><!--Echo--></p> 
+    
+  </div>
+</div>
 
-                  <p>Applications</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
+		<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Instructor</th>
+        <th>Prelim</th>
+		<th>Midterm</th>
+		<th>Finals</th>
+		<th>Average</th>
+		<th>Remarks</th>
+      </tr>
+    </thead>
+    <tbody>
+	 	      <tr>
+	 
+     <td><!--Echo--></td>
+       <td><!--Echo--></td>
+ <td><!--Echo--></td>
+<td><!--Echo--></td>
+<td><!--Echo--></td>
+<td><!--Echo--></td>
+<td><div style="color: ">
+    <!--Echo--></div>
+</td>
+		
+		
+      </tr>
+        </tbody>
+  </table>
+</div>
 
-            <div class="col-lg-3 col-6">
+			
+	    </div>
+	   </div>
+	 </div>
 
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3><?php echo $showenrolled; ?></sup></h3>
 
-                  <p>Enrolled</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-6">
-
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3><?php echo $showpending; ?></h3>
-
-                  <p>Pending</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="row">
-
-            <section class="col-lg-7 connectedSortable">
-
-            </section>
-          </div>
-
-        </div>
       </section>
 
     </div>
@@ -273,10 +245,7 @@ if (isset($_SESSION['status'])) {
     <aside class="control-sidebar control-sidebar-dark">
 
     </aside>
-    <?php
-    $_SESSION['alert'] == null;
-    ?>
-
+    
   </div>
 
 
