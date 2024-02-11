@@ -127,7 +127,6 @@ if (isset($_SESSION['status'])) {
             </div>
           </div>
         </div>
-        <br>
 
 
         <nav class="mt-2">
@@ -159,7 +158,7 @@ if (isset($_SESSION['status'])) {
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="ManageElement.php" class="nav-link active">
+                  <a href="ManageElem.php" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
                     <p>General Elements</p>
                   </a>
@@ -176,10 +175,15 @@ if (isset($_SESSION['status'])) {
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="pages/tables/simple.html" class="nav-link">
+                  <a href="#" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>General</p>
                   </a>
+                  <a href="class.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Grades</p>
+                </a>
+
                 </li>
               </ul>
             </li>
