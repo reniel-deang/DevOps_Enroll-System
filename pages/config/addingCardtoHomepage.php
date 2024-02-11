@@ -3,19 +3,24 @@
 session_start();
 include "dbcon.php";
 
-$image = $_FILES['image']['name'];
+
+$image = $_POST['image'];
 $title = $_POST['title'];
 $caption = $_POST['caption'];
+$id = $_POST['id'];
 
-$sql = "INSERT INTO tb_cardHomepage (img, title, caption)
-VALUES ('$image', '$title', '$caption')";
+$sql = "UPDATE tb_cardHomepage SET img = '$image', title = '$title' , caption = '$caption' , ToHome = 1 WHERE id = $id";
 
 if ($conn->query($sql) === TRUE) {
     $_SESSION['alert'] = '<div class="alert alert-success" role="alert">
-    THE FILE '. $_FILES["image"]["name"] .' HAS BEEN UPLOADED TO HOMEPAGE.</div>';
+    THE FILE '. $_FILES["image"]["name"] .' HAS BEEN UPLOADED.</div>';
     header("Location: ../dashboardcontent/ManageElem.php");
+  
 } else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
+  echo "failed";
+  
 }
+
+
 
 ?>

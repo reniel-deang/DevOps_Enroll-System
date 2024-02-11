@@ -11,7 +11,7 @@ session_start();
     echo $title , $caption , $size , $color;
     
     
-    $sql = "INSERT INTO tb_preContent (sizes,title,caption,color)
+    $sql = "INSERT INTO tb_contenthomepage (sizes,title,caption,color)
     VALUES ('$size','$title','$caption','$color')";
     
     if ($conn->query($sql) === TRUE) {

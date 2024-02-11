@@ -6,7 +6,7 @@ include "dbcon.php";
 $image = $_FILES['image']['name'];
 
 
-$sql = "INSERT INTO tb_preCoverPhoto (img)
+$sql = "INSERT INTO tb_coverphotohomepage (img)
 VALUES ('$image')";
 
 if ($conn->query($sql) === TRUE) {

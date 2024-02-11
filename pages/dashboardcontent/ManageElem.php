@@ -236,101 +236,112 @@
         
     </div>
 
-
-  <form method="POST">
-        <div id="footer" class="shadow p-3 mb-5 bg-body rounded">
-            <h3 style="text-align: center;"> School Profile </h3>
-            <div class="container mt-3">
-            <div class="table-responsive">
-                <table class="table table-borderless">
-                        <thead>
-                            <tr>
-                            <th>Category</th>
-                            <th>Details</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        
-                    <tr>
-                    <td><i class="fas fa-user"></i> Name</td>
-                    <td>
-                        <div class="input-group">
-                        <input type="text" value="Holy Cross College of Pampanga" placeholder="Insert a school name here" style="background-color: inherit; width: 250px; height: 30px; padding: 20px; border-style: solid;" name="schoolName" required="">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                    </td>
-                    </tr>
-                    
-                    <tr>
-                    <td><i class="fas fa-map-marker-alt"></i> Location</td>
-                    <td>
-                        <div class="input-group">
-                        <input type="text" value="Sta. Lucia, Sta. Ana, Pampanga" placeholder="Insert a school address here" style="background-color: inherit; width: 250px; height: 30px; padding: 20px; border-style: solid;" name="schoolAddress" required="">
-                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                        </div>
-                    </td>
-                    </tr>
-                    
-                    <tr>
-                    <td><i class="fas fa-envelope"></i> Email Address</td>
-                    <td>
-                        <div class="input-group">
-                        <input type="text" placeholder="Insert a school email here" value="sample@gmail.com" style="background-color: inherit; width: 250px; height: 30px; padding: 20px; border-style: solid;" name="schoolEmail" required="">
-                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        </div>
-                    </td>
-                    </tr>
-                    
-                    <tr>
-                    <td><i class="fas fa-mobile-alt"></i> Mobile Number</td>
-                    <td>
-                        <div class="input-group">
-                        <input type="text" value="09123456789" placeholder="Insert a school phone number here" style="background-color: inherit; width: 250px; height: 30px; padding: 20px; border-style: solid;" name="schoolMobilePhone" required="">
-                        <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
-                        </div>
-                    </td>
-                    </tr>
-                    
-                    <tr>
-                    <td><i class="fas fa-phone"></i> Telephone Number</td>
-                    <td>
-                        <div class="input-group">
-                        <input type="text" value="09246810121" placeholder="Insert a school tel number here" style="background-color: inherit; width: 250px; height: 30px; padding: 20px; border-style: solid;" name="schoolTelePhone" required="">
-                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                        </div>
-                    </td>
-                    </tr>
-                    
-                    <tr>
-                    <td><i class="fas fa-comment"></i> Description</td>
-                    <td>
-                    <div class="input-group">
-                        <input type="text" value="Preliminary Exam" placeholder="Insert a school description here" style="background-color: inherit; width: 250px; height: 30px; padding: 20px; border-style: solid;" name="schoolDescriptiom" required="">
-                        <span class="input-group-text"><i class="fas fa-comment"></i></span>
-                        </div>
-                    </td>
-                    </tr>
-                    
-                    
-                    
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                            <button style="float: right" formaction="../config/updateFooter.php" type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i>
-                            </button>
-                        </td>
-                        </tr>
-                        </tbody>
-                </table>
-            </div>
-            </div>
-            
-            
-    </div>
-    </form>
-
+    <?php
+            $sql =  "SELECT * FROM tb_SchoolProfile";
+            $result = mysqli_query($conn, $sql);
+            $datas = array();
+            if(mysqli_num_rows($result) > 0 ){
+              while($row =mysqli_fetch_assoc($result)){
+                  $datas[] = $row;
+              }
+            }
+            foreach($datas as $data){
+            echo'
+                <form method="POST">
+                      <div id="footer" class="shadow p-3 mb-5 bg-body rounded">
+                          <h3 style="text-align: center;"> School Profile </h3>
+                          <div class="container mt-3">
+                          <div class="table-responsive">
+                              <table class="table table-borderless">
+                                      <thead>
+                                          <tr>
+                                          <th>Category</th>
+                                          <th>Details</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                      
+                                  <tr>
+                                  <td><i class="fas fa-user"></i> Name</td>
+                                  <td>
+                                      <div class="input-group">
+                                      <input type="text" value="'.$data['SchoolName'].'" placeholder="Insert a school name here" style="background-color: inherit; width: 250px; height: 30px; padding: 20px; border-style: solid;" name="schoolName" required="">
+                                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  
+                                  <tr>
+                                  <td><i class="fas fa-map-marker-alt"></i> Location</td>
+                                  <td>
+                                      <div class="input-group">
+                                      <input type="text" value="'.$data['Lokation'].'" placeholder="Insert a school address here" style="background-color: inherit; width: 250px; height: 30px; padding: 20px; border-style: solid;" name="schoolAddress" required="">
+                                      <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  
+                                  <tr>
+                                  <td><i class="fas fa-envelope"></i> Email Address</td>
+                                  <td>
+                                      <div class="input-group">
+                                      <input type="text" placeholder="Insert a school email here" value="'.$data['Email'].'" style="background-color: inherit; width: 250px; height: 30px; padding: 20px; border-style: solid;" name="schoolEmail" required="">
+                                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  
+                                  <tr>
+                                  <td><i class="fas fa-mobile-alt"></i> Mobile Number</td>
+                                  <td>
+                                      <div class="input-group">
+                                      <input type="text" value="'.$data['MobileNumber'].'" placeholder="Insert a school phone number here" style="background-color: inherit; width: 250px; height: 30px; padding: 20px; border-style: solid;" name="schoolMobilePhone" required="">
+                                      <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  
+                                  <tr>
+                                  <td><i class="fas fa-phone"></i> Telephone Number</td>
+                                  <td>
+                                      <div class="input-group">
+                                      <input type="text" value="'.$data['TelephoneNumber'].'" placeholder="Insert a school tel number here" style="background-color: inherit; width: 250px; height: 30px; padding: 20px; border-style: solid;" name="schoolTelePhone" required="">
+                                      <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  
+                                  <tr>
+                                  <td><i class="fas fa-comment"></i> Description</td>
+                                  <td>
+                                  <div class="input-group">
+                                      <input type="text" value="'.$data['Discription'].'" placeholder="Insert a school description here" style="background-color: inherit; width: 250px; height: 30px; padding: 20px; border-style: solid;" name="schoolDescriptiom" required="">
+                                      <span class="input-group-text"><i class="fas fa-comment"></i></span>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  
+                                  
+                                  
+                                  <tr>
+                                      <td>
+                                      </td>
+                                      <td>
+                                          <button style="float: right" formaction="../config/SchoolProfileUpdate.php" type="submit" class="btn btn-primary">
+                                              <i class="fas fa-save"></i>
+                                          </button>
+                                      </td>
+                                      </tr>
+                                      </tbody>
+                              </table>
+                          </div>
+                          </div>
+                          
+                          
+                  </div>
+                  </form>
+                  ';}
+                  ?> 
 
     <!--********  COVER PAGE  ********--> 
 
@@ -365,7 +376,7 @@
         <div class="row" style="margin-top: 20px; display: flex; justify-content: center;"> 
 
             <?php
-            $sql =  "SELECT * FROM tb_preCoverPhoto";
+            $sql =  "SELECT * FROM tb_coverphotohomepage";
             $result = mysqli_query($conn, $sql);
             $datas = array();
             if(mysqli_num_rows($result) > 0 ){
@@ -387,21 +398,47 @@
                 echo '  <div class="card" style="width: 300px; margin: 20px; padding: 0;">
                             <img class="card-img-top" src="../../assets/img/cms-image/cover-page/' . $data['img'] .' " style="height: 300px; width: 100%" alt="Card image">
                             <div class="card-body">
-                                  <h5 class="card-title">
+                                  <h5 class="card-title"></h5>
                                   <form method="POST">
+                                    
                                     <input type="text" class="form-control"  style="border: none;" value="' . $data['title'] .'" placeholder="Insert a Title" name="title"> 
-                                    <input type="hidden" name="'. $data['id'] .'">
-                                      
-                                    </h5>
+                                    <input type="hidden" name="id" value="'. $data['id'] .'">
+                                    <input type="hidden" value="'. $data['img'] .'" name="image">
+                                    <input type="hidden" value="tb_coverphotohomepage" name="delete">
+                                    
                                     <p class="card-text">
                                         <textarea placeholder="Insert a Caption" class="form-control" name="caption" style="border: none; background-color: inherit;">' . $data['caption'] .'</textarea>
                                     </p>
-                                    <button type="submit" class="btn btn-primary">
+                                    <button formaction="../config/addingCovertoHomepage.php" type="submit" class="btn btn-primary">
                                         <i class="fas fa-save"></i>
                                     </button>
-                                    <button formaction="../config/deleteImages.php" type="submit" class="btn btn-danger">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalDeleteWarning2">
+                                    <i class="fas fa-trash"></i>
+                                  </button>
+                                  
+                                  <!-- Button trigger modal -->
+
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="ModalDeleteWarning2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          Are you sure to delete this card?
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                          <button type="submit" formaction="../config/delete.php"" class="btn btn-danger">DELETE</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+
                                   </form>
                             </div>
                         </div>
@@ -458,7 +495,7 @@
         <div class="row" style="margin-top: 20px; display: flex; justify-content: center;"> 
 
           <?php
-            $sql =  "SELECT * FROM tb_preUploadCard";
+            $sql =  "SELECT * FROM tb_cardHomepage";
             $result = mysqli_query($conn, $sql);
             $datas = array();
             if(mysqli_num_rows($result) > 0 ){
@@ -481,21 +518,45 @@
                             <div class="card-body">
                                 <h5 class="card-title">
                                 <form method="POST">
-                                  
-
+                              
                                   <input type="text" class="form-control" value="'. $data['title'] .'"  style="border: none;" placeholder="'. $data['title'] .'" name="title"> 
-                                  <input type="hidden" name="'. $data['id'] .'">
+                                  <input type="hidden" value="'. $data['id'] .'" name="id">
+                                  <input type="hidden" value="'. $data['img'] .'" name="image">
+                                  <input type="hidden" value="tb_cardHomepage" name="delete">
                                     
                                   </h5>
                                   <p class="card-text">
                                       <textarea  placeholder="'. $data['caption'] .'" class="form-control" name="caption" style="border: none; background-color: inherit;">'. $data['caption'] .'</textarea>
                                   </p>
                                   <button formaction="../config/addingCardtoHomepage.php " type="submit" class="btn btn-primary">
-                                      <i class="fas fa-save"></i>
+                                    <i class="fas fa-save"></i>
                                   </button>
-                                  <button formaction="../config/deleteImages.php" type="submit" class="btn btn-danger">
-                                      <i class="fa fa-trash"></i>
+                                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalDeleteWarning">
+                                    <i class="fas fa-trash"></i>
                                   </button>
+                                  
+                                  <!-- Button trigger modal -->
+
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="ModalDeleteWarning" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          Are you sure to delete this card?
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                          <button type="submit" formaction="../config/delete.php" class="btn btn-danger">DELETE</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                              
                                 </form>
                             </div>
                         </div>
@@ -541,7 +602,7 @@
           </div>
 
           <?php
-            $sql =  "SELECT * FROM tb_preContent";
+            $sql =  "SELECT * FROM tb_contenthomepage";
             $result = mysqli_query($conn, $sql);
             $datas = array();
             if(mysqli_num_rows($result) > 0 ){
@@ -549,6 +610,7 @@
                   $datas[] = $row;
               }
             }
+            
             foreach($datas as $data){
             echo '
             <div class="card" style="width:300px; margin: 20px; padding: 0">
@@ -557,8 +619,10 @@
                   <h5 class="card-title"></h5>
                   <form method="POST">
                       <h6>Title</h6>
+                      <input type="hidden" value="tb_contenthomepage" name="delete">
                       <input type="text" class="form-control" required="" value="'.$data['title'].'" placeholder="'.$data['title'].'" name="title"> 
                       <input type="hidden" value="'.$data['id'].'" name="id">
+                      
                   <p class="card-text">
                   <h6>Caption</h6></p>
                   <textarea required="" placeholder="'.$data['caption'].'" class="form-control" name="caption" background-color:="" inherit;"="">'.$data['caption'].'</textarea><p></p>
@@ -569,9 +633,34 @@
                   <button formaction="../config/addingContent.php" type="submit" class="btn btn-primary">
 		                <i class="fa fa-save"></i>
 		              </button>
-                  <button formaction="../config/deleteContent.php" type="submit" class="btn btn-danger">
-		                <i class="fa fa-trash"></i>
-		              </button>
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalDeleteWarning3">
+                  <i class="fas fa-trash"></i>
+                  </button>
+                  
+                  <!-- Button trigger modal -->
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="ModalDeleteWarning3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Are you sure to delete this card?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" formaction="../config/delete.php" class="btn btn-danger">DELETE</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  
+
+
                   </form>
               </div>
             </div>
