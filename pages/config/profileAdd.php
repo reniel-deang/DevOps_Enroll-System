@@ -4,16 +4,33 @@ session_start();
 include "dbcon.php";
 
 $image = $_FILES['image']['name'];
+$imag = $_SESSION['imag'];
+$id = $_SESSION['id'];
 
 
-$sql = "INSERT INTO tb_profile (img)
+
+$sql = "UPDATE tb_profile SET img = '$image' WHERE id = 12";
+
+
+/*
+$sql1 = "INSERT INTO tb_profile (img)
 VALUES ('$image')";
 
-if ($conn->query($sql) === TRUE) {
+if ($conn->query($sql1) === TRUE) {
   echo "New record created successfully";
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
+*/
+
+
+$path = "../../assets/img/cms-image/profile/$imag";
+echo $path;
+
+if(!unlink($path)){
+  echo "You have an error";
+}
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submitProfile"])) {
     $uploadDir = '../../assets/img/cms-image/profile/'; // Create a folder named 'uploads' in the same directory as this script
@@ -73,4 +90,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submitProfile"])) {
     header("Location: index.html");
     exit();
 }
+
+
+if ($conn->query($sql) === TRUE) {
+    $_SESSION['alert'] = '<div class="alert alert-success" role="alert">
+    THE FILE '. $_FILES["image"]["name"] .' HAS BEEN UPLOADED.</div>';
+    header("Location: ../dashboardcontent/ManageElem.php");
+  
+} else {
+  echo "failed";
+  
+}
+
+
 ?>

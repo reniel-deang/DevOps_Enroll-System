@@ -119,7 +119,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
+                <a href="dashboard.php" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Main Dashboard</p>
                 </a>
@@ -136,7 +136,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="ManageElement.php" class="nav-link">
+                <a href="ManageElem.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>General Elements</p>
                 </a>
@@ -156,6 +156,12 @@
                 <a href="pages/tables/simple.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>General</p>
+                  
+                </a>
+
+                <a href="class.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Grades</p>
                 </a>
               </li>
             </ul>
@@ -193,6 +199,7 @@
                   }
               }
               
+              
               if($datas == null)
               {
                 echo '<img src="../../assets/img/cms-image/gif/profile.jpg" alt="Empty Logo" style="width: 30%">
@@ -201,13 +208,20 @@
               }else
               {
                 foreach($datas as $data){
-              echo'
-                <div class="container h-100 d-flex align-items-center justify-content-center">
-                <img style="width: 35vh" src="../../assets/img/cms-image/profile/'. $data['img'] .'" alt="Logo" class="img-fluid">
-                </div>';
-                }
                 
+              echo'
+                <input type="hidden" value="'.$data['img'].'" class="btn btn-primary" name="id">
+                <div class="container h-100 d-flex align-items-center justify-content-center">
+                <img style="width: 35vh" src="../../assets/img/cms-image/profile/'.$data['img'].'" alt="Logo" class="img-fluid">
+                </div>';
+                
+                $_SESSION['id'] = $data['id'];
+                $_SESSION['imag'] = $data['img'];
+                }
               }
+              
+                
+              
             ?>
         <!-- modal  -->
         <div class="modal fade" id="profilepicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -520,7 +534,7 @@
                               
                                   <input type="text" class="form-control" value="'. $data['title'] .'"  style="border: none;" placeholder="'. $data['title'] .'" name="title"> 
                                   <input type="hidden" value="'. $data['id'] .'" name="id">
-                                  <input type="hidden" value="card-and-imag'. $data['img'] .'" name="image">
+                                  <input type="hidden" value="/card-and-imag/'.$data['img'].'" name="image">
                                   <input type="hidden" value="tb_cardHomepage" name="delete">
                                     
                                   </h5>
