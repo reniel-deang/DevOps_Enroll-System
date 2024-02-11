@@ -620,14 +620,14 @@
                   <form method="POST">
                       <h6>Title</h6>
                       <input type="hidden" value="tb_contenthomepage" name="delete">
-                      <input type="text" class="form-control" required="" value="'.$data['title'].'" placeholder="'.$data['title'].'" name="title"> 
+                      <input type="text" class="form-control"  value="'.$data['title'].'" placeholder="'.$data['title'].'" name="title"> 
                       <input type="hidden" value="'.$data['id'].'" name="id">
                       
                   <p class="card-text">
                   <h6>Caption</h6></p>
-                  <textarea required="" placeholder="'.$data['caption'].'" class="form-control" name="caption" background-color:="" inherit;"="">'.$data['caption'].'</textarea><p></p>
+                  <textarea  placeholder="'.$data['caption'].'" class="form-control" name="caption" background-color:="" inherit;"="">'.$data['caption'].'</textarea><p></p>
                   <h5 class="card-title"></h5><h6>Size</h6>
-                  <input type="number" min="1" max="5" class="form-control" value="'.$data['sizes'].'" placeholder="'.$data['sizes'].'" name="size" required=""> 
+                  <input type="number" min="0" max="5" class="form-control" value="'.$data['sizes'].'" placeholder="'.$data['sizes'].'" name="size" > 
                   <h6>Background Color</h6>
                   <input type="color" class="form-control form-control-color" id="exampleColorInput" value="'.$data['color'].'" title="Choose your color" style="height: 25px; margin-bottom: 7px;" name="color">
                   <button formaction="../config/addingContent.php" type="submit" class="btn btn-primary">
@@ -702,5 +702,13 @@
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+
+<?php
+  if(isset($_SESSION['alert']))
+
+  $_SESSION['alert'] = null ;
+
+  ?>
+
 </body>
 </html>
