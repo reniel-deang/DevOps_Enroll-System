@@ -64,7 +64,6 @@
           </form>
         </div>
       </li>
-
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -167,7 +166,7 @@
     </div>
 
   </aside>
-<!-- ****** BODY ****** -->
+  <!-- ****** BODY ****** -->
 
   <div class="content-wrapper" style="padding: 25px;">
   
@@ -571,7 +570,7 @@
 
 
 
-<!-- GRID CONTENT  BEGINING -->
+  <!-- GRID CONTENT  BEGINING -->
 
     <div class="shadow p-3 mb-5 bg-body rounded" style="text-align: center">
         <h3 id="content"> Grid Contents </h3>
@@ -673,7 +672,7 @@
         </div>
   </div>
 
-  <footer class="main-footer">
+  <footer class="shadow p-3 mb-5 bg-body rounded" style="color: #6d6d6d; margin-bottom: 3rem!important; " >
     All rights reserved
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0
@@ -681,16 +680,13 @@
   </footer>
 
 
-  <aside class="control-sidebar control-sidebar-dark">
-
-  </aside>
+  </div>
     
-    
-</div>
 
-<div class="container mt-3">
 
-</div>
+
+
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

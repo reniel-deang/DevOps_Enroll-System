@@ -272,7 +272,7 @@
 
   </aside>
  <?php
- $_SESSION['alert'] = null; 
+ $_SESSION['alert'] == null; 
  ?> 
 
 </div>
