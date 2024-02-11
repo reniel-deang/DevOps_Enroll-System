@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "db_enrollmentsystem";
+$dbname = "db_testdatabase";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -12,3 +12,5 @@ if ($conn->connect_error) {
 }
 
 ?>
+
+

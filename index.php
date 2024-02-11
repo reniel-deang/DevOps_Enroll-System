@@ -2,9 +2,13 @@
 <html lang="en">
   <?php
   session_start();
-  if (isset($_SESSION['status']))
+  if (!isset($_SESSION['status']))
     {
       session_unset();
+    }
+
+    else{
+      header('Location: pages/dashboardcontent/dashboard.php');
     }
   
   ?>
