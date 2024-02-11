@@ -9,28 +9,28 @@ $usersData = array(); // Array to store user data
 
 
 if (isset($_SESSION['status'])) {
-    $total = "SELECT tb_userdata.*, tb_studentinfo.* FROM tb_userdata
+  $total = "SELECT tb_userdata.*, tb_studentinfo.* FROM tb_userdata
     INNER JOIN tb_studentinfo ON tb_userdata.user_id = tb_studentinfo.user_id";
-    $result = $conn->query($total);
+  $result = $conn->query($total);
 
-    if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-          // Store each row in the $usersData array
-          $usersData[] = array(
-              'fname' => $row['fname'],
-              'mname' => $row['mname'],
-              'lname' => $row['lname'],
-              'username' => $row['username'],
-              'course' => $row['course'],
-              'year' => $row['year']
-          );
-      }
-    } else {
-        echo "No records found";
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      // Store each row in the $usersData array
+      $usersData[] = array(
+        'fname' => $row['fname'],
+        'mname' => $row['mname'],
+        'lname' => $row['lname'],
+        'username' => $row['username'],
+        'course' => $row['course'],
+        'year' => $row['year']
+      );
     }
+  } else {
+    echo "No records found";
+  }
 } else {
-    header('Location: ../../index.php');
-    session_unset();
+  header('Location: ../../index.php');
+  session_unset();
 }
 
 
@@ -52,26 +52,11 @@ if (isset($_SESSION['status'])) {
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="grades.css">
 
 </head>
 
-<style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
 
 
 
@@ -229,51 +214,57 @@ tr:nth-child(even) {
           </div>
         </div>
       </div>
-      
+
 
 
 
       <section class="content">
         <div class="container-fluid">
 
-          <div class="row">
+          <div class="row" >
 
-          
-                      <div class="col-md-3">
-                        <label for="course-select" class="form-label">Course</label>
-                        <select name="course" class="form-select" id="course-select" required="">
-                          <option selected="">BS Computer Engineering</option>
-                          <option value="BS Computer Engineering">BS Computer Engineering</option>
-                          <option value="BS Computer Science">BS Computer Science</option>
-                          <option value="BS Information Technology">BS Information Technology</option>
-                        </select>
-                      </div>
-                      <div class="col-md-3">
-                        <label for="year-select" class="form-label">Year</label>
-                        <select name="year" class="form-select" id="year-select" required="">
-                          <option selected="">I</option>
-                          <option value="I">I</option>
-                          <option value="II">II</option>
-                          <option value="III">III</option>
-                          <option value="IV">IV</option>
-                        </select>
-                      </div>
-                      <div class="col-md-3">
-                        <label for="section-select" class="form-label">Section</label>
-                        <select name="section" class="form-select" id="section-select" required="">
-                          <option selected="">A</option>
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                          <option value="C">C</option>
-                          <option value="D">D</option>
-                        </select>
-                      </div>
-                      <div class="col-md-3  align-self-end">
-                        <input type="submit" value="Submit" class="btn btn-primary">
-                      </div>
-                    
+  <div class="col-md-2 custom-col">
+    <label for="course-select" class="form-label">Course</label>
+    <select name="course" class="form-select custom-select" id="course-select" required="">
+      <option selected="">BS Computer Engineering</option>
+      <option value="BS Computer Engineering">BS Computer Engineering</option>
+      <option value="BS Computer Science">BS Computer Science</option>
+      <option value="BS Information Technology">BS Information Technology</option>
+    </select>
+  </div>
 
-            <table class="table table-bordered">
+  <div class="col-md-2 custom-col">
+    <label for="year-select" class="form-label">Year</label>
+    <select name="year" class="form-select custom-select" id="year-select" required="">
+      <option selected="">I</option>
+      <option value="I">I</option>
+      <option value="II">II</option>
+      <option value="III">III</option>
+      <option value="IV">IV</option>
+    </select>
+  </div>
+
+  <div class="col-md-2 custom-col">
+    <label for="section-select" class="form-label">Section</label>
+    <select name="section" class="form-select custom-select" id="section-select" required="">
+      <option selected="">A</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+    </select>
+  </div>
+
+  <div class="col-md-2 custom-col">
+    <label for="submit-btn" class="form-label" style="visibility: hidden;">Hidden Label</label>
+    <input type="submit" value="Submit" class="btn btn-primary custom-btn">
+  </div>
+
+
+            
+
+
+            <table class="table table-bordered" style="margin-top: 20px;">
               <tr>
                 <th>Name</th>
                 <th>Username</th>
@@ -282,27 +273,27 @@ tr:nth-child(even) {
                 <th>Sections</th>
                 <th>Actions</th>
               </tr>
-              
+
 
 
               <!--Display the Contents -->
               <?php
-                    // Loop through the $usersData array to display each row
-                    foreach ($usersData as $userData) {
-                        echo "<tr>";
-                        echo "<td>{$userData['fname']} {$userData['mname']} {$userData['lname']}</td>";
-                        echo "<td>{$userData['username']}</td>";
-                        echo "<td>{$userData['course']}</td>";
-                        echo "<td>{$userData['year']}</td>";
-                        echo "<td>A</td>";
-                        echo '<td> <button type="button" class="btn btn-primary"><a href="grades.php" style="color:White;">View</a></button> </td>';
+              // Loop through the $usersData array to display each row
+              foreach ($usersData as $userData) {
+                echo "<tr>";
+                echo "<td>{$userData['fname']} {$userData['mname']} {$userData['lname']}</td>";
+                echo "<td>{$userData['username']}</td>";
+                echo "<td>{$userData['course']}</td>";
+                echo "<td>{$userData['year']}</td>";
+                echo "<td>A</td>";
+                echo '<td> <button type="button" class="btn btn-primary"><a href="grades.php" style="color:White;">View</a></button> </td>';
 
-                        // Add more columns if needed
-                        echo "</tr>";
-                    }
-                    ?>
-              
-              
+                // Add more columns if needed
+                echo "</tr>";
+              }
+              ?>
+
+
             </table>
 
           </div>
