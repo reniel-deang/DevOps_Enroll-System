@@ -151,6 +151,15 @@ $resultlist = $conn->query($list);
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+                            <a href="inbox.php" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-envelope"></i>
+                                <p>
+                                    Inbox
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                        </li>
             <li class="nav-item" style="color:white; padding-top: 20px; padding-bottom: 20px;">
               _______________________________
 
@@ -168,6 +177,7 @@ $resultlist = $conn->query($list);
 
 
             </li>
+
 
           </ul>
         </nav>
