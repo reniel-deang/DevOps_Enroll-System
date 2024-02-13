@@ -1,9 +1,9 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
 include '../config/dbcon.php';
 
-session_start();
 
 $usersData = array(); // Array to store user data
 
@@ -100,11 +100,7 @@ if (isset($_SESSION['status'])) {
           </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="../config/logout.php" role="button">
-            <i class="fas fa-people-arrows"></i>
-          </a>
-        </li>
+
 
 
 
@@ -116,6 +112,8 @@ if (isset($_SESSION['status'])) {
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
       <a href="#" class="brand-link">
+        <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png"
+          style="width: 60px">
         <span class="brand-text font-weight-light">Administration</span>
       </a>
 
@@ -139,62 +137,63 @@ if (isset($_SESSION['status'])) {
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="dashboard.php" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="dashboard.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Main Dashboard</p>
-                  </a>
-                </li>
-              </ul>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="ManageElem.php" class="nav-link">
                 <i class="nav-icon fas fa-edit"></i>
                 <p>
                   Manage Content
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="ManageElem.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>General Elements</p>
-                  </a>
-                </li>
-              </ul>
+
             </li>
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>
+
+            <li class="nav-item">
+              <a href="enrollmentsystem.php" class="nav-link">
+                <i class="nav-icon fas fa-edit"></i>
                 <p>
-                  Manage Students
+                  Enrollment Sytem
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>General</p>
 
-                  </a>
-
-                  <a href="class.php" class="nav-link active">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Grades</p>
-                  </a>
-                </li>
-              </ul>
             </li>
+
+            <li class="nav-item menu-open">
+              <a href="class.php" class="nav-link active">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                  Class List
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+            </li>
+            <li class="nav-item" style="color:white; padding-top: 20px; padding-bottom: 20px;">
+              _______________________________
+
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#profilepicModal">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>
+                  Log Out
+
+                </p>
+              </a>
+
+
+            </li>
+
           </ul>
         </nav>
 
@@ -204,6 +203,30 @@ if (isset($_SESSION['status'])) {
 
 
     <div class="content-wrapper">
+
+
+      <!--MODAL FOR LOGOUT-->
+      <div class="modal fade" id="profilepicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to logout?
+            </div>
+            <div class="modal-footer">
+              <a href="../config/logout.php"><button type="button" class="btn btn-primary">Yes</button></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--End Modal For Log Out-->
+
+
+
 
       <div class="content-header">
         <div class="container-fluid">
@@ -221,47 +244,47 @@ if (isset($_SESSION['status'])) {
       <section class="content">
         <div class="container-fluid">
 
-          <div class="row" >
+          <div class="row">
 
-  <div class="col-md-2 custom-col">
-    <label for="course-select" class="form-label">Course</label>
-    <select name="course" class="form-select custom-select" id="course-select" required="">
-      <option selected="">BS Computer Engineering</option>
-      <option value="BS Computer Engineering">BS Computer Engineering</option>
-      <option value="BS Computer Science">BS Computer Science</option>
-      <option value="BS Information Technology">BS Information Technology</option>
-    </select>
-  </div>
+            <div class="col-md-2 custom-col">
+              <label for="course-select" class="form-label">Course</label>
+              <select name="course" class="form-select custom-select" id="course-select" required="">
+                <option selected="">BS Computer Engineering</option>
+                <option value="BS Computer Engineering">BS Computer Engineering</option>
+                <option value="BS Computer Science">BS Computer Science</option>
+                <option value="BS Information Technology">BS Information Technology</option>
+              </select>
+            </div>
 
-  <div class="col-md-2 custom-col">
-    <label for="year-select" class="form-label">Year</label>
-    <select name="year" class="form-select custom-select" id="year-select" required="">
-      <option selected="">I</option>
-      <option value="I">I</option>
-      <option value="II">II</option>
-      <option value="III">III</option>
-      <option value="IV">IV</option>
-    </select>
-  </div>
+            <div class="col-md-2 custom-col">
+              <label for="year-select" class="form-label">Year</label>
+              <select name="year" class="form-select custom-select" id="year-select" required="">
+                <option selected="">I</option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+              </select>
+            </div>
 
-  <div class="col-md-2 custom-col">
-    <label for="section-select" class="form-label">Section</label>
-    <select name="section" class="form-select custom-select" id="section-select" required="">
-      <option selected="">A</option>
-      <option value="A">A</option>
-      <option value="B">B</option>
-      <option value="C">C</option>
-      <option value="D">D</option>
-    </select>
-  </div>
+            <div class="col-md-2 custom-col">
+              <label for="section-select" class="form-label">Section</label>
+              <select name="section" class="form-select custom-select" id="section-select" required="">
+                <option selected="">A</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+              </select>
+            </div>
 
-  <div class="col-md-2 custom-col">
-    <label for="submit-btn" class="form-label" style="visibility: hidden;">Hidden Label</label>
-    <input type="submit" value="Submit" class="btn btn-primary custom-btn">
-  </div>
+            <div class="col-md-2 custom-col">
+              <label for="submit-btn" class="form-label" style="visibility: hidden;">Hidden Label</label>
+              <input type="submit" value="Submit" class="btn btn-primary custom-btn">
+            </div>
 
 
-            
+
 
 
             <table class="table table-bordered" style="margin-top: 20px;">
@@ -324,6 +347,11 @@ if (isset($_SESSION['status'])) {
 
   </div>
 
+
+  <!--Modal LogOut-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!--Modal LogOut-->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -5,7 +6,6 @@ include '../config/dbcon.php';
 session_start();
 <?php
 include '../config/dbcon.php';
-session_start();
 
 if (isset($_SESSION['status'])) {
   $total = "SELECT * FROM tb_studentinfo";
@@ -53,7 +53,8 @@ if (isset($_SESSION['status'])) {
   <title>Management Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -141,6 +142,7 @@ if (isset($_SESSION['status'])) {
           </a>
         </li>
 
+        
         <li class="nav-item">
           <a class="nav-link" href="../config/logout.php" role="button">
             <i class="fas fa-people-arrows"></i>
@@ -165,6 +167,7 @@ if (isset($_SESSION['status'])) {
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
       <a href="#" class="brand-link">
+      <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png" style="width: 60px">
         <span class="brand-text font-weight-light">Administration</span>
       </a>
 
@@ -346,6 +349,26 @@ if (isset($_SESSION['status'])) {
 
 
     <div class="content-wrapper">
+
+    <!--MODAL FOR LOGOUT-->
+    <div class="modal fade" id="profilepicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to logout?
+            </div>
+            <div class="modal-footer">
+              <a href="../config/logout.php"><button type="button" class="btn btn-primary">Yes</button></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--End Modal For Log Out-->
     <div class="content-wrapper">
 
       <div class="content-header">
@@ -385,9 +408,11 @@ if (isset($_SESSION['status'])) {
                   <h3><?php echo $showtotal; ?></h3>
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3><?php echo $showtotal; ?></h3>
+                  <h3>
+                    <?php echo $showtotal; ?>
+                  </h3>
 
-                  <p>Applications</p>
+                  <p>Total Students</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
@@ -412,7 +437,9 @@ if (isset($_SESSION['status'])) {
                   <h3><?php echo $showenrolled; ?></sup></h3>
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3><?php echo $showenrolled; ?></sup></h3>
+                  <h3>
+                    <?php echo $showenrolled; ?></sup>
+                  </h3>
 
                   <p>Enrolled</p>
                 </div>
@@ -440,7 +467,9 @@ if (isset($_SESSION['status'])) {
 
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3><?php echo $showpending; ?></h3>
+                  <h3>
+                    <?php echo $showpending; ?>
+                  </h3>
 
                   <p>Pending</p>
                 </div>
@@ -503,13 +532,21 @@ if (isset($_SESSION['status'])) {
 
     </aside>
     </aside>
-    <?php
-    $_SESSION['alert'] == null;
-    ?>
 
   </div>
   </div>
 
+  <!--Modal LogOut-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--Modal LogOut-->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+    integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
