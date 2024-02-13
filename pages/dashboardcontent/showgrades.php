@@ -1,25 +1,17 @@
 <?php session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
 include '../config/dbcon.php';
 
-
 $user_id = $_POST['user_id'];
+$list = "SELECT * FROM tb_grades WHERE user_id = '$user_id'";
+$resultlist = $conn->query($list);
 
-$subject = "SELECT * FROM tb_studentinfo where user_id = '$user_id'";
-$resultsubject = $conn->query($subject);
-$row1 = $resultsubject->fetch_assoc();
-$course = $row1['course'];
-$year = $row1['year'];
-
-$subject = "SELECT * FROM tb_subject where course = '$course' AND years = '$year'";
-$resultsubject = $conn->query($subject);
 
 ?>
-
-
 
 <head>
   <meta charset="utf-8">
@@ -27,7 +19,6 @@ $resultsubject = $conn->query($subject);
   <title>Management Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
-
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
@@ -38,7 +29,12 @@ $resultsubject = $conn->query($subject);
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="grades.css">
+
 </head>
+
+
+
+
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
@@ -112,6 +108,7 @@ $resultsubject = $conn->query($subject);
         </div>
 
 
+
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
@@ -179,7 +176,8 @@ $resultsubject = $conn->query($subject);
               </a>
 
 
-              </li>
+            </li>
+
 
           </ul>
         </nav>
@@ -188,7 +186,9 @@ $resultsubject = $conn->query($subject);
 
     </aside>
 
+
     <div class="content-wrapper">
+
 
       <!--MODAL FOR LOGOUT-->
       <div class="modal fade" id="profilepicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -209,32 +209,21 @@ $resultsubject = $conn->query($subject);
         </div>
       </div>
       <!--End Modal For Log Out-->
-
-
+      <?php 
+      if(isset($_SESSION['grade']))
+      {
+        echo $_SESSION['grade'];
+        unset($_SESSION['grade']);
+      }
+      ?>
 
 
       <div class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">E-Grades</h1>
+              <h1 class="m-0">Grades</h1>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-
-
-            <p>Name:<?php echo $row1['fname'] .' '.$row1['mname'].' '.$row1['lname']; ?></p>
-            <p>Course: <?php echo $row1['course']; ?></p>
-          </div>
-          <div class="col-md-6">
-
-            <p>Year: <?php echo $year; ?></p>
-            <p>Section: <?php echo $row1['section']; ?></p>
           </div>
         </div>
       </div>
@@ -245,85 +234,53 @@ $resultsubject = $conn->query($subject);
       <section class="content">
         <div class="container-fluid">
 
-          <div class="table-responsive">
-            <table class="table table-bordered">
+         
+
+
+            <table class="table table-bordered" style="margin-top: 20px;">
               <thead>
                 <tr>
                   <th>Subject</th>
                   <th>Instructor</th>
-                  <th style="width: 10%">Prelim</th>
-                  <th style="width: 10%">Midterm</th>
-                  <th style="width: 10%">Finals</th>
-                  <th style="width: 10%">Average</th>
-                  <th style="width: 10%">Remarks</th>
-                  <th style="width: 10%">Actions</th>
+                  <th>Course</th>
+                  <th>Year</th>
+                  <th>Prelim</th>
+                  <th>Midterms</th>
+                  <th>Finals</th>
+                  <th>Average</th>
+                  <th>Remarks</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
-                if ($resultsubject->num_rows > 0) {
+                if ($resultlist->num_rows > 0) {
                   // output data of each row
-                  while ($row = $resultsubject->fetch_assoc()) {
-                    echo ' <form action="../config/updategrades.php" method="POST">
-                                    <tr>
-                                        <td>' . $row['subjectname'] . '</td>
-                                        <td>' . $row['instructor'] . '</td>
-                                        <td><input type="text" value="" class="form-control" name="prelim"> </td>
-                                        <td><input type="text" value="" class="form-control" name="midterm"></td>
-                                        <td><input type="text" value="" class="form-control" name="finals"></td>
-                                        <td><input type="text"  value="" class="form-control" name="average"></td>
-                                        <td><input type="text"  value="" class="form-control" name="remarks"></td>
-                                        <td>
-                                            <input type="submit" class="btn btn-primary" value="Upload" name = "create">
-                                            <input type="hidden"  value="' . $row['subjectname'] . '" class="form-control" name="subject">
-                                            <input type="hidden"  value="' . $row['instructor'] . '" class="form-control" name="instructor">
-                                            <input type="hidden"  value="' . $row1['course'] . '" class="form-control" name="course">
-                                            <input type="hidden"  value="' . $row1['year'] . '" class="form-control" name="year">
-                                            <input type="hidden"  value="' . $user_id . '" class="form-control" name="user_id">
-                                        </td>
-                                    </tr>
-                                </form>';
+                  while ($row = $resultlist->fetch_assoc()) {
+                    echo '<tr>
+                        <form action="" method="POST">
+                            <td>'.$row['subject'].'</td>
+                            <td>'.$row['instructor'].'</td>
+                            <td>'.$row['course'].'</td>
+                            <td>'.$row['year'].'</td>
+                            <td>'.$row['prelim'].'</td>
+                            <td>'.$row['midterm'].'</td>
+                            <td>'.$row['finals'].'</td>
+                            <td>'.$row['average'].'</td>
+                            <td>'.$row['remarks'].'</td>
+                            <td><input type="submit" class="btn btn-danger" value="Delete" formaction = "../config/gradedelete.php?id='.$row['grades_id'].'"></td>
+                            
+                        </form>
+                    </tr>';
                   }
-                }
+                } 
                 ?>
               </tbody>
+
+
             </table>
+
           </div>
-
-          
-          <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Get all input elements
-        var prelimInputs = document.querySelectorAll('input[name="prelim"]');
-        var midtermInputs = document.querySelectorAll('input[name="midterm"]');
-        var finalsInputs = document.querySelectorAll('input[name="finals"]');
-        var averageInputs = document.querySelectorAll('input[name="average"]');
-        var remarksInputs = document.querySelectorAll('input[name="remarks"]');
-
-        // Calculate average and determine remarks dynamically
-        function calculateAverageAndRemarks() {
-            for (var i = 0; i < prelimInputs.length; i++) {
-                var prelim = parseFloat(prelimInputs[i].value) || 0;
-                var midterm = parseFloat(midtermInputs[i].value) || 0;
-                var finals = parseFloat(finalsInputs[i].value) || 0;
-
-                var average = (prelim + midterm + finals) / 3;
-                var remarks = (average >= 75 && average <= 100) ? 'PASSED' : 'FAILED';
-
-                averageInputs[i].value = average.toFixed(2);
-                remarksInputs[i].value = remarks;
-            }
-        }
-
-        // Add event listeners to input elements
-        prelimInputs.forEach(input => input.addEventListener('input', calculateAverageAndRemarks));
-        midtermInputs.forEach(input => input.addEventListener('input', calculateAverageAndRemarks));
-        finalsInputs.forEach(input => input.addEventListener('input', calculateAverageAndRemarks));
-
-        // Initial calculation on page load
-        calculateAverageAndRemarks();
-    });
-</script>
 
           <div class="row">
 
@@ -350,6 +307,7 @@ $resultsubject = $conn->query($subject);
     </aside>
 
   </div>
+
 
   <!--Modal LogOut-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,9 +1,8 @@
-
+<?php   session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <?php 
   include '../config/dbcon.php';
-  session_start();
   if (isset($_SESSION['status'])) {
     $total = "SELECT * FROM tb_studentinfo";
     $result = $conn->query($total);
@@ -118,9 +117,6 @@
           </div>
         </div>
       </div>
-      <br>
-
-
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">

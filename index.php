@@ -1,8 +1,8 @@
+<?php   session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <?php
   include 'pages/config/dbcon.php';
-  session_start();
   if (!isset($_SESSION['status']))
     {
       session_unset();
@@ -50,7 +50,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto active" href="index.php">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact us</a></li>
           <li><a class="nav-link scrollto" href="pages/enrollform.php">Enroll Now</a></li>

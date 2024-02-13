@@ -319,9 +319,7 @@ $resultsubject = $conn->query($subject);
                                           </td>
                                   </tr></form>';
                                         }
-                                    } else {
-                                        echo "0 results";
-                                    }
+                                    } 
 
                                     ?>
 

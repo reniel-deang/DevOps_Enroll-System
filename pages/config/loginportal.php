@@ -17,7 +17,7 @@ if (isset($_POST['submit']))
     
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $_SESSION['status'];
+        $id = $row['user_id'];
 
         if(strpos($username, "@student"))
         {
@@ -25,27 +25,26 @@ if (isset($_POST['submit']))
             {
                 $_SESSION['status'] = "pending";
                 header("Location: ../login.php");
-                exit(); 
+              
                 
             }
             else
             {
-                $_SESSION['status'] = $row['user_id'];
+                $_SESSION['status'] = $id;
                 header("Location:  ../usercontent/userdashboard.php");
-                exit(); 
             }
         }
         else if(strpos($username, "@admin"))
         {
             $_SESSION['status'] = "admin";
             header("Location: ../dashboardcontent/dashboard.php");
-            exit(); // Ensure script stops execution after redirect
+          
         }
     } else {
         // Display danger alert if login fails
         $_SESSION['status'] = "error";
         header("Location: ../login.php");
-        exit(); 
+        
     }
     $stmt->close();
 }

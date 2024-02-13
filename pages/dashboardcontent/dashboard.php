@@ -239,7 +239,7 @@ if (isset($_SESSION['status'])) {
                     <?php echo $showtotal; ?>
                   </h3>
 
-                  <p>Applications</p>
+                  <p>Total Students</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>

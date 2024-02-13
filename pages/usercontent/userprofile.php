@@ -4,16 +4,9 @@
 <?php
 include '../config/dbcon.php';
 
-if(!isset($_SESSION['status']))
-{
-  header('Location: ../../index.php');
-
+if (!isset($_SESSION['status'])) {
+    header('Location: ../../index.php');
 }
-
-$user_id = $_SESSION['status'];
-
-$sql = "SELECT * FROM tb_studentinfo WHERE user_id = '$user_id'";
-$result = $conn->query($sql);
 
 
 ?>
@@ -24,8 +17,7 @@ $result = $conn->query($sql);
     <title>User Dashboard</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -34,6 +26,14 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+    <?php
+    $id = $_SESSION['status'];
+
+    $sql = "SELECT * FROM tb_studentinfo WHERE user_id = $id ";
+    $result = $conn->query($sql);
+
+    $row = $result->fetch_assoc();
+    ?>
 
 </head>
 
@@ -57,8 +57,7 @@ $result = $conn->query($sql);
                     <div class="navbar-search-block">
                         <form class="form-inline">
                             <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                                    aria-label="Search">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                                 <div class="input-group-append">
                                     <button class="btn btn-navbar" type="submit">
                                         <i class="fas fa-search"></i>
@@ -95,8 +94,7 @@ $result = $conn->query($sql);
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
             <a href="#" class="brand-link">
-                <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png"
-                    style="width: 60px">
+                <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png" style="width: 60px">
                 <span class="brand-text font-weight-light">University</span>
             </a>
 
@@ -108,8 +106,7 @@ $result = $conn->query($sql);
 
 
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                         <li class="nav-item">
                             <a href="userdashboard.php" class="nav-link">
@@ -176,21 +173,18 @@ $result = $conn->query($sql);
         <div class="content-wrapper">
 
             <!--MODAL FOR LOGOUT-->
-            <div class="modal fade" id="profilepicModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="profilepicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal"
-                                aria-label="Close">&times;</button>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                         </div>
                         <div class="modal-body">
                             Are you sure you want to logout?
                         </div>
                         <div class="modal-footer">
-                            <a href="../config/logout.php"><button type="button"
-                                    class="btn btn-primary">Yes</button></a>
+                            <a href="../config/logout.php"><button type="button" class="btn btn-primary">Yes</button></a>
                         </div>
                     </div>
 
@@ -209,7 +203,13 @@ $result = $conn->query($sql);
         </div>
       </div>
     -->
-
+<?php 
+if(isset($_SESSION['pass']))
+{
+    echo $_SESSION['pass'];
+    unset($_SESSION['pass']);
+}
+?>
 
             <section class="content">
 
@@ -236,8 +236,8 @@ $result = $conn->query($sql);
                                         <label>Username:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input name="username" type="hidden" value="anitamaxwynn@student">
-                                        anitamaxwynn@student
+                                        <?php echo $row['username']; ?>
+
                                     </div>
 
 
@@ -245,28 +245,28 @@ $result = $conn->query($sql);
                                         <label>First Name:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        Anita </div>
+                                        <?php echo $row['fname']; ?></div>
 
 
                                     <div class="col-sm-6">
                                         <label>Middle Name:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        Max </div>
+                                        <?php echo $row['mname']; ?></div>
 
 
                                     <div class="col-sm-6">
                                         <label>Last Name:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        Wynn </div>
+                                        <?php echo $row['lname']; ?></div>
 
 
                                     <div class="col-sm-6">
                                         <label>Sex:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        Male
+                                        <?php echo $row['gender']; ?>
                                     </div>
 
 
@@ -274,7 +274,7 @@ $result = $conn->query($sql);
                                         <label>Course:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        BS Computer Engineering
+                                        <?php echo $row['course']; ?>
                                     </div>
 
 
@@ -282,14 +282,14 @@ $result = $conn->query($sql);
                                         <label>Year:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        III </div>
+                                        <?php echo $row['year']; ?></div>
 
 
                                     <div class="col-sm-6">
                                         <label>Section:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        A
+                                        <?php echo $row['section']; ?>
                                     </div>
 
 
@@ -297,91 +297,84 @@ $result = $conn->query($sql);
                                         <label>Birthdate:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        2001-02-14 </div>
+                                        <?php echo $row['birthday']; ?></div>
 
 
                                     <div class="col-sm-6">
                                         <label>Home Address:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        Los Angeles </div>
+                                        <?php echo $row['address']; ?> </div>
 
 
                                     <div class="col-sm-6">
                                         <label>Phone Number:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        09971541052 </div>
-
-
-                                    <div class="col-sm-6">
-                                        <label>Email:</label>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        anitamaxwynn@gmail.com </div>
+                                        <?php echo $row['num']; ?> </div>
 
 
                                     <div class="col-sm-6">
                                         <label>Guardian Name:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        Drake Wynn </div>
+                                        <?php echo $row['guardian']; ?></div>
 
 
                                     <div class="col-sm-6">
                                         <label>Guardian Phone:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        09774477382 </div>
+                                        <?php echo $row['guardian_number']; ?></div>
 
 
                                     <div class="col-sm-6">
                                         <label>Guardian Address:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        Las Vegas </div>
+                                        <?php echo $row['guardian_address']; ?> </div>
 
 
                                     <div class="col-sm-6">
                                         <label>Elementary School:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        Anita Elem </div>
+                                        <?php echo $row['elem']; ?> </div>
 
 
                                     <div class="col-sm-6">
                                         <label>Elementary Graduation Year:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        2010 </div>
+                                        <?php echo $row['elem_year']; ?></div>
 
 
                                     <div class="col-sm-6">
                                         <label>Junior High School:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        Max High School </div>
+                                        <?php echo $row['jhs']; ?> </div>
 
 
                                     <div class="col-sm-6">
                                         <label>Junior High Graduation Year:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        2016 </div>
+                                        <?php echo $row['jhs_year']; ?> </div>
 
 
                                     <div class="col-sm-6">
                                         <label>Senior High School:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        Wynn College </div>
+                                        <?php echo $row['shs']; ?> </div>
 
 
                                     <div class="col-sm-6">
                                         <label>Senior High Graduation Year:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        2022 </div>
+                                        <?php echo $row['shs_year']; ?> </div>
 
                                 </div>
                             </div>
@@ -395,7 +388,7 @@ $result = $conn->query($sql);
                     <div class="shadow p-3 mb-5 bg-body round">
                         <div class="container mt-3">
                             <h3>Password</h3>
-                            <form action="#" method="POST">
+                            <form action="../config/updatepass.php" method="POST">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-5">
@@ -403,13 +396,13 @@ $result = $conn->query($sql);
                                             <input type="hidden" class="form-control">
                                             <input type="hidden" class="form-control">
                                             <label for="password1" class="form-label">Current Password</label>
-                                            <input type="password" class="form-control">
+                                            <input type="password" class="form-control" name = "currentpass">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-5">
                                             <label for="password2" class="form-label">New Password</label>
-                                            <input type="password" class="form-control">
+                                            <input type="password" class="form-control" name = "pass1">
                                         </div>
 
                                     </div>
@@ -417,13 +410,14 @@ $result = $conn->query($sql);
                                     <div class="row">
                                         <div class="col-md-5">
                                             <label for="password2" class="form-label">Retype New Password</label>
-                                            <input type="password" class="form-control">
+                                            <input type="password" class="form-control" name = "pass2">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-12" style="margin-left: 8px">
-                                        <input type="submit" class="btn btn-success" value="Update">
+                                    <input type = "hidden" name = "id" value="<?php echo $id; ?>">
+                                        <input type="submit" class="btn btn-success" value="Update" name="submit">
                                     </div>
                                 </div>
                         </div>
@@ -457,12 +451,8 @@ $result = $conn->query($sql);
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!--Modal LogOut-->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
-        integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>

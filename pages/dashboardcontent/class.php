@@ -209,8 +209,18 @@ $resultlist = $conn->query($list);
         </div>
       </div>
       <!--End Modal For Log Out-->
-
-
+      <?php 
+      if(isset($_SESSION['grade']))
+      {
+        echo $_SESSION['grade'];
+        unset($_SESSION['grade']);
+      }
+      else if(isset( $_SESSION['deletegrade']))
+      {
+        echo  $_SESSION['deletegrade'];
+        unset($_SESSION['grade']);
+      }
+      ?>
 
 
       <div class="content-header">
@@ -300,7 +310,8 @@ $resultlist = $conn->query($list);
                             <td> <input type="hidden" value="' . $row['year'] . '" name="year">' . $row['year'] . '</td>
                             <td> <input type="hidden" value="' . $row['section'] . '" name="section">' . $row['section'] . '</td>
                             <input type="hidden" value="' . $row['user_id'] . '" name="user_id">
-                            <td> <input type="submit" class="btn btn-primary" value="View"></td>
+                            <td> <input type="submit" class="btn btn-primary" value="Edit">
+                            <input type="submit" class="btn btn-success" value="Show" formaction = "showgrades.php"></td>
                         </form>
                     </tr>';
                   }
