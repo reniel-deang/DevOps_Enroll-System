@@ -1,9 +1,9 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
 include '../config/dbcon.php';
 
-session_start();
 
 $usersData = array(); // Array to store user data
 

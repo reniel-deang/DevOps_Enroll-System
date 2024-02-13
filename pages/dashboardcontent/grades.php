@@ -1,12 +1,10 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
 include '../config/dbcon.php';
 
-session_start();
-
 $usersCourse = array(); // Array to store user data
-
 
 if (isset($_SESSION['status'])) {
   $total = "SELECT * FROM tb_studentinfo";
