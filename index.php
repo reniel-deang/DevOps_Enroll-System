@@ -68,6 +68,13 @@ $row = $result->fetch_assoc();
 
   <!-- ======= Hero Section ======= -->
 
+  <?php 
+  if(isset($_SESSION["send"])) {
+    echo $_SESSION['send'];
+    unset($_SESSION['send']);
+  }
+  ?>
+
   <?php
   $sql =  "SELECT * FROM tb_coverphotohomepage WHERE ToHome = 1";
   $result = mysqli_query($conn, $sql);
