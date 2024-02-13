@@ -99,12 +99,12 @@
 
 
 
-
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-
-      <a href="#" class="brand-link">
-        <span class="brand-text font-weight-light">Administration</span>
-      </a>
+ 
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    
+    <a href="#" class="brand-link">
+      <span class="brand-text font-weight-light">Administration</span>
+    </a>
 
  
     <div class="sidebar">
@@ -123,50 +123,72 @@
       <br>
 
 
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item menu-open">
-              <a href="dashboard.php" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Dashboard
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="ManageElem.php" class="nav-link active">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>
-                  Manage Content
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item menu-open">
+            <a href="dashboard.php" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="dashboard.php" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Main Dashboard</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="ManageElem.php" class="nav-link active">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Manage Content
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            
             </li>
 
-            <li class="nav-item">
-              <a href="enrollmentsystem.php" class="nav-link">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>
+              <li class="nav-item">
+                <a href="enrollmentsystem.php" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>
                 Enrollment Sytem
                   <i class="fas fa-angle-left right"></i>
                 </p>
-              </a>
+                </a>
               
-            </li>
+          </li>
 
-            <li class="nav-item">
-              <a href="class.php" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
-                <p>
-                    Class List
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-            </li>
-          </ul>
-        </nav>
+          <li class="nav-item">
+            <a href="class.php" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Class List
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/tables/simple.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>General</p>
+                  
+                </a>
+
+                <a href="class.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Grades</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
 
     </div>
 
@@ -209,16 +231,15 @@
                 foreach($datas as $data){
                 
               echo'
-                <input type="hidden" value="'.$data['img'].'" class="btn btn-primary" name="id">
+                <input type="hidden" value="'.$data['img'].'" class="btn btn-primary" name="img">
                 <div class="container h-100 d-flex align-items-center justify-content-center">
                 <img style="width: 35vh" src="../../assets/img/cms-image/profile/'.$data['img'].'" alt="Logo" class="img-fluid">
                 </div>';
-                
                 $_SESSION['id'] = $data['id'];
-                $_SESSION['imag'] = $data['img'];
-                }
+                $_SESSION['image'] = $data['img'];
+                
               }
-              
+            }
                 
               
             ?>
@@ -425,6 +446,8 @@
                                     <input type="hidden" value="/cover-page/'. $data['img'].'" name="image">
                                     <input type="hidden" value="'. $data['img'].'" name="img">
                                     <input type="hidden" value="tb_coverphotohomepage" name="delete">
+                                    <input type="hidden" value="'. $data['ToHome'].'" name="tohome">
+
                                     
                                     <p class="card-text">
                                         <textarea placeholder="Insert a Caption" class="form-control" name="caption" style="border: none; background-color: inherit;">' . $data['caption'] .'</textarea>
@@ -432,30 +455,13 @@
                                     <button formaction="../config/addingCovertoHomepage.php" type="submit" class="btn btn-'.$ccolor.'">
                                     <i class="fas fa-save"></i>
                                     </button>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalDeleteWarning2">
-                                    <i class="fas fa-trash"></i>
+                                    <button formaction="../config/delete.php" type="submit" class="btn btn-danger">
+                                    <i class="fa fa-trash"></i>
                                   </button>
                                   
                                   <!-- Button trigger modal -->
 
-                                  <!-- Modal -->
-                                  <div class="modal fade" id="ModalDeleteWarning2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">Danger!!!</h5>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                          Are you sure to delete this card?
-                                        </div>
-                                        <div class="modal-footer">
-                                          
-                                          <button type="submit" formaction="../config/delete.php"" class="btn btn-danger">DELETE</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
+
 
 
 
@@ -533,7 +539,6 @@
             {
                 foreach($datas as $data){
                   if($data['ToHome'] == 1){
-                    
                     $ccolor = 'primary';
                   }elseif($data['ToHome'] == 0){
                     $ccolor = 'secondary';
@@ -551,7 +556,7 @@
                                   <input type="hidden" value="'.$data['img'].'" name="img">
                                   <input type="hidden" value="/card-and-imag/'.$data['img'].'" name="image">
                                   <input type="hidden" value="tb_cardHomepage" name="delete">
-                                    
+                                  <input type="hidden" value="'. $data['ToHome'].'" name="tohome">
                                   </h5>
                                   <p class="card-text">
                                       <textarea  placeholder="'. $data['caption'] .'" class="form-control" name="caption" style="border: none; background-color: inherit;">'. $data['caption'] .'</textarea>
@@ -559,29 +564,10 @@
                                   <button formaction="../config/addingCardtoHomepage.php " type="submit" class="btn btn-'.$ccolor.'">
                                   <i class="fas fa-save"></i>
                                   </button>
-                                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalDeleteWarning">
-                                    <i class="fas fa-trash"></i>
-                                  </button>
-                                  
-                                  <!-- Button trigger modal -->
+                                  <button formaction="../config/delete.php" type="submit" class="btn btn-danger">
+                                  <i class="fa fa-trash"></i>
+                                </button>
 
-                                  <!-- Modal -->
-                                  <div class="modal fade" id="ModalDeleteWarning" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">Danger!!!</h5>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                          Are you sure to delete this card?
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="submit" formaction="../config/delete.php" class="btn btn-danger">DELETE</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
 
                               
                                 </form>
@@ -657,45 +643,23 @@
                       <input type="hidden" value="tb_contenthomepage" name="delete">
                       <input type="text" class="form-control"  value="'.$data['title'].'" placeholder="'.$data['title'].'" name="title"> 
                       <input type="hidden" value="'.$data['id'].'" name="id">
+                      <input type="hidden" value="'. $data['ToHome'].'" name="tohome">
                       
-                  <p class="card-text">
-                  <h6>Caption</h6></p>
-                  <textarea  placeholder="'.$data['caption'].'" class="form-control" name="caption" background-color:="" inherit;"="">'.$data['caption'].'</textarea><p></p>
-                  <h5 class="card-title"></h5><h6>Size</h6>
-                  <input type="number" min="1" max="5" class="form-control" value="'.$data['sizes'].'" placeholder="'.$data['sizes'].'" name="size" > 
-                  <h6 style="margin-top: 10px;">Background Color</h6>
-                  <input type="color" class="form-control form-control-color" id="exampleColorInput" value="'.$data['color'].'" title="Choose your color" style="height: 25px; margin-bottom: 7px;" name="color">
-                  <button formaction="../config/addingContent.php" type="submit" class="btn btn-'.$ccolor.'">
-		                <i class="fa fa-save"></i>
-		              </button>
-                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalDeleteWarning3">
-                  <i class="fas fa-trash"></i>
-                  </button>
+                    <p class="card-text">
+                    <h6>Caption</h6></p>
+                    <textarea  placeholder="'.$data['caption'].'" class="form-control" name="caption" background-color:="" inherit;"="">'.$data['caption'].'</textarea><p></p>
+                    <h5 class="card-title"></h5><h6>Size</h6>
+                    <input type="number" min="1" max="5" class="form-control" value="'.$data['sizes'].'" placeholder="'.$data['sizes'].'" name="size" > 
+                    <h6 style="margin-top: 10px;">Background Color</h6>
+                    <input type="color" class="form-control form-control-color" id="exampleColorInput" value="'.$data['color'].'" title="Choose your color" style="height: 25px; margin-bottom: 7px;" name="color">
+                    <button formaction="../config/addingContent.php" type="submit" class="btn btn-'.$ccolor.'">
+                      <i class="fa fa-save"></i>
+                    </button>
+                    <button formaction="../config/delete.php" type="submit" class="btn btn-danger">
+                      <i class="fa fa-trash"></i>
+                    </button>
                   
                   <!-- Button trigger modal -->
-
-                  <!-- Modal -->
-                  <div class="modal fade" id="ModalDeleteWarning3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          Are you sure to delete this card?
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" formaction="../config/delete.php" class="btn btn-danger">DELETE</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  
-
-
                   </form>
               </div>
             </div>

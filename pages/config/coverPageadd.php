@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-        $_SESSION['alert'] = '<div class="alert alert-danger" role="alert">Sorry, your file was not uploaded.</div>';
+       
     } else {
         // Move the uploaded file to the specified directory
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {

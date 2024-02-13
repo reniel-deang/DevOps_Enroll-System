@@ -4,8 +4,8 @@ session_start();
 include "dbcon.php";
 
 $image = $_FILES['image']['name'];
-$imag = $_SESSION['imag'];
 $id = $_SESSION['id'];
+$imag = $_SESSION['image'];
 
 
 
@@ -25,9 +25,8 @@ if ($conn->query($sql1) === TRUE) {
 $path = "../../assets/img/cms-image/profile/$imag";
 
 
-if(!unlink($path)){
-  
-}
+
+
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submitProfile"])) {
@@ -76,20 +75,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submitProfile"])) {
 
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-        $_SESSION['alert'] = '<div class="alert alert-danger" role="alert">Sorry, your file was not uploaded.</div>';
-    } else {
         
+    } else {
+        $sql =  "SELECT * FROM tb_profile";
+        $result = mysqli_query($conn, $sql);
+        $datas = array();
+        if(mysqli_num_rows($result) > 0 ){
+            while($row =mysqli_fetch_assoc($result)){
+                $datas[] = $row;
+            }
+        }
+        if($datas != null){
+            !unlink($path);
+            
+            
+                    // Move the uploaded file to the specified directory
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
+
+            $_SESSION['alert']='<div class="alert alert-success" role="alert">The Logo "' . htmlspecialchars(basename($_FILES["image"]["name"])) . '" has been updated."</div>';
+            $sql = "UPDATE tb_profile SET img = '$image' WHERE id = $id";
+            if ($conn->query($sql) === TRUE) {
+            }
+
+        } else {
+            $_SESSION['alert'] = '<div class="alert alert-success" role="alert">Sorry, there was an error uploading your file.</div>';
+        }
+
+        }else{
+            
+       
         // Move the uploaded file to the specified directory
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
-            $_SESSION['alert']='<div class="alert alert-success" role="alert">The Logo "' . htmlspecialchars(basename($_FILES["image"]["name"])) . '" has been updated."</div>';
-            $sql = "UPDATE tb_profile SET img = '$image' WHERE id = 9";
+
+            $_SESSION['alert']='<div class="alert alert-success" role="alert">The Cover photo "' . htmlspecialchars(basename($_FILES["image"]["name"])) . '" has been uploaded."</div>';
+            $sql = "INSERT INTO tb_profile (img)VALUES ('$image')";
+            
             if ($conn->query($sql) === TRUE) {
             }
             
 
         } else {
             $_SESSION['alert'] = '<div class="alert alert-success" role="alert">Sorry, there was an error uploading your file.</div>';
-        }
+        }}
     }
     header("Location: ../dashboardcontent/ManageElem.php");
 
