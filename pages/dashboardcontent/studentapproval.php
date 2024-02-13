@@ -71,11 +71,7 @@ include '../config/dbcon.php';
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../config/logout.php" role="button">
-                        <i class="fas fa-people-arrows"></i>
-                    </a>
-                </li>
+
 
 
 
@@ -110,7 +106,7 @@ include '../config/dbcon.php';
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <li class="nav-item menu-open">
+                        <li class="nav-item">
                             <a href="dashboard.php" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
@@ -130,7 +126,7 @@ include '../config/dbcon.php';
 
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item menu-open">
                             <a href="enrollmentsystem.php" class="nav-link active">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
@@ -147,6 +143,21 @@ include '../config/dbcon.php';
                                 <p>
                                     Class List
                                     <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="color:white; padding-top: 20px; padding-bottom: 20px;">
+                            _______________________________
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../config/logout.php" class="nav-link">
+
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>
+                                    Log Out
+                                    <!--<i class="fas fa-angle-left right"></i>-->
                                 </p>
                             </a>
                         </li>
@@ -192,8 +203,9 @@ include '../config/dbcon.php';
                                 <!-- Modal Header -->
                                 <div class="modal-header">
                                     <h4 class="modal-title">Student Approval Request</h4>
-                                    <a href="enrollmentsystem.php"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="width: 100px;">Go Back</button></a>
-                                    
+                                    <a href="enrollmentsystem.php"><button type="button" class="btn btn-primary"
+                                            data-bs-dismiss="modal" style="width: 100px;">Go Back</button></a>
+
                                 </div>
 
 

@@ -91,11 +91,7 @@ if (isset($_SESSION['status'])) {
           </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="../config/logout.php" role="button">
-            <i class="fas fa-people-arrows"></i>
-          </a>
-        </li>
+        
 
 
 
@@ -128,7 +124,7 @@ if (isset($_SESSION['status'])) {
 
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item menu-open">
+            <li class="nav-item">
               <a href="dashboard.php" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
@@ -159,7 +155,7 @@ if (isset($_SESSION['status'])) {
               
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item menu-open">
               <a href="class.php" class="nav-link active">
                 <i class="nav-icon fas fa-table"></i>
                 <p>
@@ -168,6 +164,21 @@ if (isset($_SESSION['status'])) {
                 </p>
               </a>
             </li>
+            <li class="nav-item" style="color:white; padding-top: 20px; padding-bottom: 20px;">
+                            _______________________________
+
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../config/logout.php" class="nav-link">
+
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>
+                                    Log Out
+                                    <!--<i class="fas fa-angle-left right"></i>-->
+                                </p>
+                            </a>
+                        </li>
           </ul>
         </nav>
 
