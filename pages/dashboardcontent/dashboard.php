@@ -3,14 +3,7 @@
 <html lang="en">
 <?php
 include '../config/dbcon.php';
-session_start();
-<?php
-include '../config/dbcon.php';
 
-if (isset($_SESSION['status'])) {
-  $total = "SELECT * FROM tb_studentinfo";
-  $result = $conn->query($total);
-  $showtotal = mysqli_num_rows($result);
 if (isset($_SESSION['status'])) {
   $total = "SELECT * FROM tb_studentinfo";
   $result = $conn->query($total);
@@ -19,21 +12,6 @@ if (isset($_SESSION['status'])) {
   $enrolled = "SELECT * FROM tb_userdata WHERE verified = 1";
   $result1 = $conn->query($enrolled);
   $showenrolled = mysqli_num_rows($result1);
-  $enrolled = "SELECT * FROM tb_userdata WHERE verified = 1";
-  $result1 = $conn->query($enrolled);
-  $showenrolled = mysqli_num_rows($result1);
-
-  $pending = "SELECT * FROM tb_userdata WHERE verified = 0";
-  $result2 = $conn->query($pending);
-  $showpending = mysqli_num_rows($result2);
-} else {
-  header('Location: ../../index.php');
-  session_unset();
-}
-
-
-
-?>
 
   $pending = "SELECT * FROM tb_userdata WHERE verified = 0";
   $result2 = $conn->query($pending);
@@ -64,21 +42,12 @@ if (isset($_SESSION['status'])) {
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
 
-
 </head>
-
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-  <div class="wrapper">
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-      </ul>
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -108,34 +77,7 @@ if (isset($_SESSION['status'])) {
             </form>
           </div>
         </li>
-      <ul class="navbar-nav ml-auto">
 
-        <li class="nav-item">
-          <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-            <i class="fas fa-search"></i>
-          </a>
-          <div class="navbar-search-block">
-            <form class="form-inline">
-              <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                  <button class="btn btn-navbar" type="submit">
-                    <i class="fas fa-search"></i>
-                  </button>
-                  <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-            <i class="fas fa-expand-arrows-alt"></i>
-          </a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>
@@ -143,22 +85,9 @@ if (isset($_SESSION['status'])) {
         </li>
 
         
-        <li class="nav-item">
-          <a class="nav-link" href="../config/logout.php" role="button">
-            <i class="fas fa-people-arrows"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../config/logout.php" role="button">
-            <i class="fas fa-people-arrows"></i>
-          </a>
-        </li>
 
 
 
-
-      </ul>
-    </nav>
       </ul>
     </nav>
 
@@ -171,29 +100,9 @@ if (isset($_SESSION['status'])) {
         <span class="brand-text font-weight-light">Administration</span>
       </a>
 
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-
-      <a href="#" class="brand-link">
-        <span class="brand-text font-weight-light">Administration</span>
-      </a>
-
 
       <div class="sidebar">
 
-      <div class="sidebar">
-
-        <br>
-        <div class="form-inline">
-          <div class="input-group" data-widget="sidebar-search">
-            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-sidebar">
-                <i class="fas fa-search fa-fw"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <br>
         <br>
         <div class="form-inline">
           <div class="input-group" data-widget="sidebar-search">
@@ -210,74 +119,44 @@ if (isset($_SESSION['status'])) {
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
+              <a href="dashboard.php" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="./index.html" class="nav-link active">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Main Dashboard</p>
-                  </a>
-                </li>
-              </ul>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="ManageElem.php" class="nav-link">
                 <i class="nav-icon fas fa-edit"></i>
                 <p>
                   Manage Content
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/forms/general.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>General Elements</p>
-                  </a>
-                </li>
-              </ul>
+              
             </li>
+
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-people-arrows"></i>
+              <a href="enrollmentsystem.php" class="nav-link">
+                <i class="nav-icon fas fa-edit"></i>
                 <p>
-                  Manage Students
+                Enrollment Sytem
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/tables/simple.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>General</p>
-                  </a>
-                </li>
-              </ul>
+              
             </li>
+
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-mail-bulk"></i>
+              <a href="class.php" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
                 <p>
-                  Messages
+                    Class List
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
-<<<<<<< HEAD
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="message.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View Messages</p>
-                  </a>
-                </li>
-              </ul>
-=======
             </li>
             <li class="nav-item">
                             <a href="inbox.php" class="nav-link">
@@ -305,76 +184,12 @@ if (isset($_SESSION['status'])) {
               </a>
 
 
->>>>>>> c0e393027a25f2bacd6cab7858f666decf7a71cb
             </li>
           </ul>
         </nav>
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="dashboard.php" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Main Dashboard</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Manage Content
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="ManageElem.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>General Elements</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
-              <p>
-                Manage Students
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>General</p>
-                  
-                </a>
-
-                <a href="class.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Grades</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
 
       </div>
-      </div>
 
-    </aside>
     </aside>
 
 
@@ -399,17 +214,6 @@ if (isset($_SESSION['status'])) {
         </div>
       </div>
       <!--End Modal For Log Out-->
-    <div class="content-wrapper">
-
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0">Admin Dashboard</h1>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div class="content-header">
         <div class="container-fluid">
@@ -425,17 +229,10 @@ if (isset($_SESSION['status'])) {
 
       <section class="content">
         <div class="container-fluid">
-      <section class="content">
-        <div class="container-fluid">
 
           <div class="row">
             <div class="col-lg-3 col-6">
-          <div class="row">
-            <div class="col-lg-3 col-6">
 
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3><?php echo $showtotal; ?></h3>
               <div class="small-box bg-info">
                 <div class="inner">
                   <h3>
@@ -443,17 +240,6 @@ if (isset($_SESSION['status'])) {
                   </h3>
 
                   <p>Total Students</p>
-<<<<<<< HEAD
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-                  <p>Applications</p>
-=======
->>>>>>> c0e393027a25f2bacd6cab7858f666decf7a71cb
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
@@ -463,11 +249,7 @@ if (isset($_SESSION['status'])) {
             </div>
 
             <div class="col-lg-3 col-6">
-            <div class="col-lg-3 col-6">
 
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3><?php echo $showenrolled; ?></sup></h3>
               <div class="small-box bg-success">
                 <div class="inner">
                   <h3>
@@ -482,20 +264,7 @@ if (isset($_SESSION['status'])) {
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
-                  <p>Enrolled</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
 
-            <div class="col-lg-3 col-6">
-
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3><?php echo $showpending; ?></h3>
             <div class="col-lg-3 col-6">
 
               <div class="small-box bg-warning">
@@ -518,40 +287,15 @@ if (isset($_SESSION['status'])) {
           <div class="row">
 
             <section class="col-lg-7 connectedSortable">
-                  <p>Pending</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
 
-          </div>
-
-          <div class="row">
-
-            <section class="col-lg-7 connectedSortable">
-
-            </section>
-          </div>
             </section>
           </div>
 
         </div>
       </section>
-        </div>
-      </section>
 
     </div>
-    </div>
 
-    <footer class="main-footer">
-      All rights reserved
-      <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.0
-      </div>
-    </footer>
     <footer class="main-footer">
       All rights reserved
       <div class="float-right d-none d-sm-inline-block">
@@ -561,12 +305,9 @@ if (isset($_SESSION['status'])) {
 
 
     <aside class="control-sidebar control-sidebar-dark">
-    <aside class="control-sidebar control-sidebar-dark">
 
     </aside>
-    </aside>
 
-  </div>
   </div>
 
   <!--Modal LogOut-->
@@ -580,19 +321,6 @@ if (isset($_SESSION['status'])) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
     integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script>
-    $.widget.bridge('uibutton', $.ui.button)
-  </script>
-  <!-- Bootstrap 4 -->
-  <!-- overlayScrollbars -->
-  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     $.widget.bridge('uibutton', $.ui.button)
   </script>
@@ -602,6 +330,5 @@ if (isset($_SESSION['status'])) {
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
 </body>
-
 
 </html>
