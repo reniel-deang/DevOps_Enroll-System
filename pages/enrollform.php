@@ -238,8 +238,8 @@
                       <label for="genderSelect">Gender</label>
                       <select class="form-control" id="genderSelect" name="gender">
                         <option value="" selected></option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                       </select>
                     </div>
 
@@ -247,8 +247,9 @@
                       <label for="courseSelect">Course</label>
                       <select class="form-control"  name="course" id = "courseSelect">
                         <option value="" selected></option>
-                        <option value="bscs">BS Computer Science</option>
-                        <option value="bsit">BS Information Technology</option>
+                        <option value="BS Computer Science">BS Computer Science</option>
+                        <option value="BS Information Technology">BS Information Technology</option>
+                        <option value="BS Computer Engineering">BS Computer Engineering</option>
                       </select>
                     </div>
 
@@ -259,7 +260,7 @@
                         <option value="I">I</option>
                         <option value="II">II</option>
                         <option value="III">III</option>
-                        <option value="Iv">Iv</option>
+                        <option value="IV">IV</option>
                       </select>
                     </div>
 

@@ -5,6 +5,23 @@
 
 <?php
 include '../config/dbcon.php';
+
+$schedule = "SELECT * FROM tb_schedule";
+$resultschedule = $conn->query($schedule);
+
+
+$approval = "SELECT * FROM tb_studentinfo WHERE status = 0";
+$resultapproval = $conn->query($approval);
+
+
+$approval1 = "SELECT * FROM tb_studentinfo WHERE status = 1";
+$resultapproval1 = $conn->query($approval1);
+
+
+$subject = "SELECT * FROM tb_subject";
+$resultsubject = $conn->query($subject);
+
+
 ?>
 
 <head>
@@ -14,8 +31,7 @@ include '../config/dbcon.php';
 
     <!-- Google Font: Source Sans Pro -->
 
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -29,6 +45,44 @@ include '../config/dbcon.php';
     <!--Modal-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the time input element
+            var timeInput = document.getElementById("time-input");
+            var endTimeInput = document.querySelector('input[name="end-time"]');
+
+            // Add event listener for input change
+            timeInput.addEventListener("change", function() {
+                // Get the selected time value
+                var selectedTime = timeInput.value;
+
+                // Parse the selected time
+                var timeParts = selectedTime.split(':');
+                var hours = parseInt(timeParts[0], 10);
+                var minutes = parseInt(timeParts[1], 10);
+
+                // Adjust for AM/PM
+                var amPm = (hours >= 12) ? 'AM' : 'PM';
+                hours = (hours % 12) || 12;
+
+                // Convert to Date object
+                var selectedDateTime = new Date();
+                selectedDateTime.setHours(hours, minutes);
+
+                // Add 10 hours to the selected time
+                var endTime = new Date(selectedDateTime.getTime() + (10 * 60 * 60 * 1000));
+
+                // Format the end time
+                var formattedEndHours = ('0' + (endTime.getHours() % 12 || 12)).slice(-2);
+                var formattedEndTime = formattedEndHours + ':' + ('0' + endTime.getMinutes()).slice(-2) + ' ' + amPm;
+
+                // Update the end time display
+                var endTimeParagraph = document.getElementById("end-time");
+                endTimeParagraph.textContent = formattedEndTime;
+                endTimeInput.value = formattedEndTime;
+            });
+        });
+    </script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -51,8 +105,7 @@ include '../config/dbcon.php';
                     <div class="navbar-search-block">
                         <form class="form-inline">
                             <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                                    aria-label="Search">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                                 <div class="input-group-append">
                                     <button class="btn btn-navbar" type="submit">
                                         <i class="fas fa-search"></i>
@@ -94,8 +147,7 @@ include '../config/dbcon.php';
                 <br>
                 <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                            aria-label="Search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-sidebar">
                                 <i class="fas fa-search fa-fw"></i>
@@ -106,9 +158,14 @@ include '../config/dbcon.php';
 
 
                 <nav class="mt-2">
+<<<<<<< HEAD
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
+=======
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item menu-open">
+>>>>>>> d3781835234418cc48461cbe16dae4d313234c95
                             <a href="dashboard.php" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
@@ -188,6 +245,12 @@ include '../config/dbcon.php';
 
 
             <section class="content">
+                <?php
+                if (isset($_SESSION['success'])) {
+                    echo $_SESSION['success'];
+                    unset($_SESSION['success']);
+                }
+                ?>
 
 
 
@@ -207,32 +270,39 @@ include '../config/dbcon.php';
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <form method="POST"></form>
-                                        <input type="hidden" value="69" name="id">
-                                        <td>February 15, 2024 | Thursday</td>
-                                        <td>07:20 AM</td>
-                                        <td>08:20 AM</td>
-                                        <td>6</td>
-                                        <td>
-                                            <input type="submit" class="btn btn-danger" value="Delete"
-                                                formaction="../config/deleteSchedule.php">
-                                        </td>
+                                    <?php
+                                    if ($resultschedule->num_rows > 0) {
+                                        // output data of each row
+                                        while ($row = $resultschedule->fetch_assoc()) {
+                                            echo '
+                                        <form method = "POST"><tr>
+                                          <td>' . $row['date'] . ' | ' . $row['day'] . '</td>
+                                          <td>' . $row['start_time'] . '</td>
+                                          <td>' . $row['end_time'] . '</td>
+                                          <td>' . $row['slot'] . '</td>
+                                          <td>
+                                              <input type="submit" class="btn btn-danger" value="Delete" formaction="../config/deletesched.php?id=' . $row['shed_id'] . '">
+                                          </td>
+                                  </tr></form>';
+                                        }
+                                    } else {
+                                        echo "0 results";
+                                    }
 
-                                    </tr>
+                                    ?>
 
 
-                                    <form action="#addscheduleinthispart" method="POST"></form>
-                                    <tr>
-                                        <td> <input type="date" name="date" id="date-input" class="form-control"
-                                                required=""></td>
-                                        <td><input type="time" name="time" id="time-input" class="form-control"
-                                                required=""></td>
-                                        <td> </td>
-                                        <td><input type="number" min="1" name="slots" id="time-input"
-                                                class="form-control" required=""></td>
-                                        <td><input type="submit" class="btn btn-primary" value="  Add  "> </td>
-                                    </tr>
+                                    <form action="../config/addsched.php" method="POST">
+                                        <tr>
+                                            <td> <input type="date" name="date" id="date-input" class="form-control" required=""></td>
+                                            <td><input type="time" name="time" id="time-input" class="form-control" required=""></td>
+                                            <td><input type="hidden" name="end-time" class="form-control" value="">
+                                                <p id="end-time"></p></input>
+                                            </td>
+                                            <td><input type="number" min="1" name="slots" class="form-control" required=""></td>
+                                            <td><input type="submit" class="btn btn-primary" value="  Add  "> </td>
+                                        </tr>
+                                    </form>
 
                                 </tbody>
                             </table>
@@ -240,6 +310,21 @@ include '../config/dbcon.php';
                     </div>
                 </div>
                 <!--END-->
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var today = new Date().toISOString().split('T')[0];
+                        document.getElementById("date-input").setAttribute("min", today);
+
+                        document.getElementById("add-schedule-form").addEventListener("submit", function(event) {
+                            var selectedDate = document.getElementById("date-input").value;
+                            if (selectedDate < today) {
+                                alert("You can't schedule appointments before today.");
+                                event.preventDefault();
+                            }
+                        });
+                    });
+                </script>
 
 
                 <!--STUDENT APPROVAL REQUEST/ ONLY TABLE HEAD WHEN NO REQUEST-->
@@ -261,6 +346,7 @@ include '../config/dbcon.php';
                                     </tr>
                                 </thead>
                                 <tbody>
+<<<<<<< HEAD
                                     <tr>
                                         <form method="POST"></form>
                                         <input type="hidden" value="" name="id">
@@ -288,6 +374,32 @@ include '../config/dbcon.php';
 
                                     </tr>
 
+=======
+                                    <?php
+                                    if ($resultapproval->num_rows > 0) {
+                                        // output data of each row
+                                        while ($row = $resultapproval->fetch_assoc()) {
+                                            if ($row['status'] == 0) {
+                                                $status = "PENDING";
+                                                echo '
+                                    <form method = "POST">
+                                      <tr>
+                                      <td>' . $row['appointment_date'] . '</td>
+                                      <td>' . $row['time'] . '</td>
+                                      <td>' . $row['username'] . '</td>
+                                      <td>' . $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . '</td>
+                                      <td>' . $row['course'] . '</td>
+                                      <td>' . $row['year'] . '</td>
+                                      <td>' . $status . '</td>
+                                      <td><input type="submit" value = "Open" class="btn btn-primary" formaction = "studentapproval.php?id=' . $row['student_id'] . '"></td>
+                                      </tr>
+                                      </form>
+                                      ';
+                                            }
+                                        }
+                                    }
+                                    ?>
+>>>>>>> d3781835234418cc48461cbe16dae4d313234c95
                                 </tbody>
                             </table>
                         </div>
@@ -322,25 +434,29 @@ include '../config/dbcon.php';
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-
-
-                                        <td>anitamaxwynn@student </td>
-                                        <td>Anita Max Wynn </td>
-                                        <td>BS Computer Engineering </td>
-                                        <td> III </td>
-                                        <td> A </td>
-                                        <td>ENROLLED</td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"><a
-                                                    href="masterlist.php" style="color:white">Open</a>
-
-                                            </button>
-                                        </td>
-
-
-                                    </tr>
-
+                                    <?php
+                                    if ($resultapproval1->num_rows > 0) {
+                                        // output data of each row
+                                        while ($row = $resultapproval1->fetch_assoc()) {
+                                            if ($row['status'] == 1) {
+                                                $status = "ENROLLED";
+                                                echo '
+                                    <form method = "POST">
+                                      <tr>
+                                      <td>' . $row['username'] . '</td>
+                                      <td>' . $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . '</td>
+                                      <td>' . $row['course'] . '</td>
+                                      <td>' . $row['year'] . '</td>
+                                      <td>' . $row['section'] . '</td>
+                                      <td>' . $status . '</td>
+                                      <td><input type="submit" value = "Open" class="btn btn-primary" formaction = "masterlist.php?id=' . $row['student_id'] . '"></td>
+                                      </tr>
+                                      </form>
+                                      ';
+                                            }
+                                        }
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -370,112 +486,66 @@ include '../config/dbcon.php';
                                     </thead>
 
                                     <tbody>
-
-                                        <tr>
-                                            <input type="hidden" value="21" name="id">
-
-                                            <td><input type="text" value="DevOps2" class="form-control" name="subject"
-                                                    required=""></td>
-
-                                            <td>
-                                                <select class="form-control" name="course">
-                                                    <option value="BS Computer Engineering" selected="">BS Computer
-                                                        Engineering</option>
-                                                    <option value="BS Information Technology">BS Information Technology
-                                                    </option>
-                                                    <option value="BS Computer Science">BS Computer Science</option>
-                                                </select>
-                                            </td>
-                                            <td><input type="text" value="Engr. Sample" class="form-control"
-                                                    name="instructor" required=""></td>
-                                            <td style="width: 10%">
-                                                <select class="form-control" name="year">
-                                                    <option value="I">I</option>
-                                                    <option value="II">II</option>
-                                                    <option value="III">III</option>
-                                                    <option value="IV" selected="">IV</option>
-                                                </select>
-                                            </td>
-                                            <td style="width: 10%"><input type="number" min="1" value="6"
-                                                    class="form-control" name="hours" required=""></td>
-                                            <td>
-                                                <button type="submit" class="btn btn-success"
-                                                    formaction="updateSubject.php"><i class="fas fa-save"></i></button>
-                                                <button type="submit" class="btn btn-danger"
-                                                    formaction="deleteSubject.php"><i
-                                                        class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <input type="hidden" value="22" name="id">
-
-                                            <td><input type="text" value="CpE Practice and Design" class="form-control"
-                                                    name="subject" required=""></td>
-
-                                            <td>
-                                                <select class="form-control" name="course">
-                                                    <option value="BS Computer Engineering" selected="">BS Computer
-                                                        Engineering</option>
-                                                    <option value="BS Information Technology">BS Information Technology
-                                                    </option>
-                                                    <option value="BS Computer Science">BS Computer Science</option>
-                                                </select>
-                                            </td>
-
-                                            <td><input type="text" value="Dr. Sample" class="form-control"
-                                                    name="instructor" required="">
-                                            </td>
-
-                                            <td style="width: 10%">
-                                                <select class="form-control" name="year">
-                                                    <option value="I">I</option>
-                                                    <option value="II">II</option>
-                                                    <option value="III">III</option>
-                                                    <option value="IV" selected="">IV</option>
-                                                </select>
-                                            </td>
-
-                                            <td style="width: 10%"><input type="number" min="1" value="2"
-                                                    class="form-control" name="hours" required="">
-                                            </td>
-
-                                            <td>
-                                                <button type="submit" class="btn btn-success"
-                                                    formaction="updateSubject.php"><i class="fas fa-save"></i></button>
-                                                <button type="submit" class="btn btn-danger"
-                                                    formaction="deleteSubject.php"><i
-                                                        class="fas fa-trash-alt"></i></button>
-                                            </td>
-                                        </tr>
-
-                                        <form method="POST"></form>
-
-
-                                        <td><input type="text" name="subject" class="form-control"
-                                                placeholder="Type an subject" required=""></td>
-                                        <td><select class="form-control" name="course">
-                                                <option selected="" disabled="" value="">Select course...</option>
+                                        <?php
+                                        if ($resultsubject->num_rows > 0) {
+                                            // output data of each row
+                                            while ($row = $resultsubject->fetch_assoc()) {
+                                                echo '<form method = "POST"><tr>
+                                        <td><input type="text" value="' . $row['subjectname'] . '" class="form-control" name="subject" required=""></td>
+    
+                                        <td> <select class="form-control" name="course">
+                                            <option value="' . $row['course'] . '" selected="">' . $row['course'] . '</option>
                                                 <option value="BS Computer Engineering">BS Computer Engineering</option>
-                                                <option value="BS Information Technology'">BS Information Technology
-                                                </option>
+                                                <option value="BS Information Technology">BS Information Technology</option>
                                                 <option value="BS Computer Science">BS Computer Science</option>
-                                            </select></td>
-                                        <td><input type="text" name="instructor" class="form-control"
-                                                placeholder="Type a instructor" required=""></td>
-                                        <td> <select name="year" class="form-select" id="inputCourse" required="">
-                                                <option selected="" disabled="" value=""> Year</option>
-                                                <option>I</option>
-                                                <option>II</option>
-                                                <option>III</option>
-                                                <option>IV</option>
-                                            </select></td>
-                                        <td><input type="number" min="1" name="hours" class="form-control"
-                                                placeholder="Type a hours" required=""></td>
-                                        <td>
-                                            <button type="submit" class="btn btn-primary" formaction="addSubject.php">
-                                                <i class="fas fa-plus"></i> </button>
+                                            </select>
+    
                                         </td>
+                                        <td><input type="text" value="' . $row['instructor'] . '" class="form-control" name="instructor" required=""></td>
+                                        <td style="width: 10%"><select class="form-control" name="year">
+                                                <option value="' . $row['years'] . '" selected ="">' . $row['years'] . '</option>
+                                                <option value="I">I</option>
+                                                <option value="II">II</option>
+                                                <option value="III">III</option>
+                                                <option value="IV">IV</option>
+                                            </select></td>
+                                        <td style="width: 10%"><input type="number" value="' . $row['numhours'] . '" class="form-control" name="hours" required=""></td>
+                                        <td>
+                                            <input type = "hidden" name = "subject_id" value = "' . $row['subject_id'] . '">
+                                            <input type="submit" class="btn btn-success" value="Update" formaction="../config/updatesubject.php">
+                                            <input type="submit" class="btn btn-danger" value="Delete" formaction="../config/deletesubject.php">
+                                        </td>
+                                    </tr></form>';
+                                            }
+                                        }
+
+                                        ?>
+                                        <tr>
+                                            <form method="POST">
+
+
+                                                <td><input type="text" name="subject" class="form-control" placeholder="Type an subject" required=""></td>
+                                                <td><select class="form-control" name="course">
+                                                        <option selected="" disabled="" value="">Select course...</option>
+                                                        <option value="BS Computer Engineering">BS Computer Engineering</option>
+                                                        <option value="BS Information Technology'">BS Information Technology
+                                                        </option>
+                                                        <option value="BS Computer Science">BS Computer Science</option>
+                                                    </select></td>
+                                                <td><input type="text" name="instructor" class="form-control" placeholder="Type a instructor" required=""></td>
+                                                <td> <select name="year" class="form-select" id="inputCourse" required="">
+                                                        <option selected="" disabled> </option>
+                                                        <option value="I">I</option>
+                                                        <option value="II">II</option>
+                                                        <option value="III">III</option>
+                                                        <option value="IV">IV</option>
+                                                    </select></td>
+                                                <td><input type="number" name="hours" class="form-control" placeholder="Type a hours" required=""></td>
+                                                <td>
+                                                    <button type="submit" class="btn btn-primary" formaction="../config/addsubject.php">
+                                                        <i class="fas fa-plus"></i> </button>
+                                                </td>
+                                            </form>
 
                                         </tr>
 
@@ -508,12 +578,8 @@ include '../config/dbcon.php';
     </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
-        integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
