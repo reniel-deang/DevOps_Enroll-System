@@ -1,9 +1,13 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
-
-
 <?php
 include '../config/dbcon.php';
+$id = $_GET['id'];
+$approval = "SELECT * FROM tb_studentinfo WHERE student_id = $id";
+$resultapproval = $conn->query($approval);
+$row = $resultapproval->fetch_assoc();
+
 ?>
 
 <head>
@@ -13,8 +17,7 @@ include '../config/dbcon.php';
 
     <!-- Google Font: Source Sans Pro -->
 
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -50,8 +53,7 @@ include '../config/dbcon.php';
                     <div class="navbar-search-block">
                         <form class="form-inline">
                             <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                                    aria-label="Search">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                                 <div class="input-group-append">
                                     <button class="btn btn-navbar" type="submit">
                                         <i class="fas fa-search"></i>
@@ -96,8 +98,7 @@ include '../config/dbcon.php';
                 <br>
                 <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                            aria-label="Search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-sidebar">
                                 <i class="fas fa-search fa-fw"></i>
@@ -108,8 +109,7 @@ include '../config/dbcon.php';
 
 
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item menu-open">
                             <a href="dashboard.php" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -193,7 +193,7 @@ include '../config/dbcon.php';
                                 <div class="modal-header">
                                     <h4 class="modal-title">Student Approval Request</h4>
                                     <a href="enrollmentsystem.php"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="width: 100px;">Go Back</button></a>
-                                    
+
                                 </div>
 
 
@@ -207,185 +207,159 @@ include '../config/dbcon.php';
                                         <div class="container">
                                             <div class="container">
                                                 <div class="row">
-                                                    <h3>Name of Student</h3>
+                                                    <h3><?php echo $row['fname'] . " " . $row['mname'] . " " . $row['lname']; ?></h3>
                                                     <table class="table table-bordered table-hover">
                                                         <thead class="thead-dark">
                                                             <tr>
                                                                 <th><strong>Appointment Schedule:</strong></th>
-                                                                <th><strong>February 15, 2024 07:20 AM</strong></th>
+                                                                <th><strong><?php echo $row['appointment_date']; ?></strong></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>
                                                                 <td>Enrollment Status</td>
                                                                 <td>
-                                                                    PENDING
+                                                                    <?php
+
+                                                                    if ($row['status'] == 0) {
+                                                                        echo "PENDING";
+                                                                    } ?>
                                                 </div>
 
                                                 </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Username</td>
-                                                    <td><input name="username" type="hidden"
-                                                            value="#laman">#laman@student
+                                                    <td><input class="form-control" name="username" type="text" value="<?php echo $row['username']; ?>">
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Password</td>
-                                                    <td><input name="username" type="hidden" value="#laman">password ng
-                                                        account
-                                                    </td>
-                                                </tr>
-
-
                                                 <tr>
                                                     <td>First Name</td>
-                                                    <td><input type="text" name="fname" value="#laman"
-                                                            class="form-control">
+                                                    <td> <input class="form-control" type="text" name="fname" value="<?php echo $row['fname']; ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Middle Name</td>
-                                                    <td><input type="text" name="mname" value="#laman"
-                                                            class="form-control">
+                                                    <td><input class="form-control" type="text" name="mname" value="<?php echo $row['mname']; ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Last Name</td>
-                                                    <td><input type="text" name="lname" value="#laman"
-                                                            class="form-control">
+                                                    <td><input class="form-control" type="text" name="lname" value="<?php echo $row['lname']; ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Sex</td>
                                                     <td> <select class="form-control" name="sex">
-                                                            <option value="Male" selected="">Male</option>
+                                                            <option value="<?php echo $row['gender']; ?>" selected="">Male</option>
                                                             <option value="Female">Female</option>
+                                                            <option value="Male">Female</option>
                                                         </select></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Course</td>
                                                     <td> <select class="form-control" name="course">
-                                                            <option value="BS Computer Engineering" selected="">
-                                                                BS
-                                                                Computer Engineering</option>
-                                                            <option value="BS Information Technology'">BS
-                                                                Information
-                                                                Technology</option>
-                                                            <option value="BS Computer Science">BS Computer
-                                                                Science
-                                                            </option>
+                                                            <option value="<?php echo $row['course']; ?>" selected=""><?php echo $row['course']; ?></option>
+                                                            <option value="BS Computer Engineering">BS Computer Engineering</option>
+                                                            <option value="BS Information Technology">BS Information Technology</option>
+                                                            <option value="BS Computer Science">BS Computer Science</option>
                                                         </select></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Year</td>
                                                     <td><select class="form-control" name="year">
+                                                            <option value="<?php echo $row['year']; ?>" selected=""><?php echo $row['year']; ?></option>
                                                             <option value="I">I</option>
                                                             <option value="II">II</option>
-                                                            <option value="III" selected="">III</option>
+                                                            <option value="III">III</option>
                                                             <option value="IV">IV</option>
                                                         </select></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Section</td>
                                                     <td> <select class="form-control" name="section">
-                                                            <option value="A" selected="">A</option>
+                                                            <option value="A">A</option>
                                                             <option value="B">B</option>
                                                             <option value="C">C</option>
                                                             <option value="D">D</option>
+
                                                         </select>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Birthdate</td>
-                                                    <td> <input class="form-control" type="date" name="birthdate"
-                                                            value="#laman"></td>
+                                                    <td> <input class="form-control" type="date" name="birthdate" value="<?php echo $row['birthday']; ?>"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Home Address</td>
-                                                    <td> <input class="form-control" type="text" name="homeAddress"
-                                                            value="#laman"></td>
+                                                    <td> <input class="form-control" type="text" name="homeAddress" value="<?php echo $row['address']; ?>"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Phone Number</td>
-                                                    <td> <input class="form-control" type="text" name="phoneNumber"
-                                                            value="#laman"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Email</td>
-                                                    <td><input class="form-control" type="email" name="email"
-                                                            value="#laman"></td>
+                                                    <td> <input class="form-control" type="text" name="phoneNumber" value="<?php echo $row['num']; ?>"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Guardian Name</td>
-                                                    <td> <input class="form-control" type="text" name="guardianName"
-                                                            value="#laman"></td>
+                                                    <td> <input class="form-control" type="text" name="guardianName" value="<?php echo $row['guardian']; ?>"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Guardian Phone</td>
-                                                    <td> <input class="form-control" type="text" name="guardianPhone"
-                                                            value="#laman"></td>
+                                                    <td> <input class="form-control" type="text" name="guardianPhone" value="<?php echo $row['guardian_number']; ?>"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Guardian Address</td>
-                                                    <td> <input class="form-control" type="text" name="guardianAddress"
-                                                            value="#laman"></td>
+                                                    <td> <input class="form-control" type="text" name="guardianAddress" value="<?php echo $row['guardian_address']; ?>"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Elementary School</td>
-                                                    <td> <input class="form-control" type="text"
-                                                            name="elementary_school" value="#laman"></td>
+                                                    <td><input class="form-control" type="text" name="elementary_school" value="<?php echo $row['elem']; ?>"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Elementary Graduation Year</td>
-                                                    <td> <input class="form-control" type="number" min=""
-                                                            name="elementary_graduation_year" value="#laman">
+                                                    <td> <input class="form-control" type="number" min="1970" name="elementary_graduation_year" value="<?php echo $row['elem_year']; ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Junior High School</td>
-                                                    <td> <input class="form-control" type="text"
-                                                            name="junior_high_school" value="#laman">
+                                                    <td>
+                                                        <input class="form-control" type="text" name="junior_high_school" value="<?php echo $row['jhs']; ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Junior High Graduation Year</td>
-                                                    <td> <input class="form-control" type="number" min=""
-                                                            name="junior_high_graduation_year" value="#laman">
+                                                    <td> <input class="form-control" type="number" min="1970" name="junior_high_graduation_year" value="<?php echo $row['jhs_year']; ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Senior High School</td>
-                                                    <td> <input class="form-control" type="text"
-                                                            name="senior_high_school" value="#laman">
+                                                    <td> <input class="form-control" type="text" name="senior_high_school" value="<?php echo $row['shs']; ?>">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Senior High Graduation Year</td>
-                                                    <td><input class="form-control" type="number" min="1970"
-                                                            name="senior_high_graduation_year" value="#laman">
+                                                    <td> <input class="form-control" type="number" min="1970" name="senior_high_graduation_year" value="<?php echo $row['shs_year']; ?>">
                                                     </td>
                                                 </tr>
                                                 </tbody>
+                                                <input type="hidden" value="<?php echo $row['student_id']; ?>" name="id">
+                                                <input type="hidden" value="<?php echo $row['user_id']; ?>" name="userid">
                                                 </table>
                                             </div>
                                         </div>
                                 </div>
 
 
-
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-success" value="Enroll" formaction="../config/enrollpending.php">
+                                    <input type="submit" class="btn btn-danger" value="Reject" formaction="../config/deletepending.php">
+                                </div>
 
                                 </form>
                             </div>
 
                             <!-- Modal footer -->
 
-                            <div class="modal-footer">
-                                <input type="submit" class="btn btn-primary" value="Enroll"
-                                    formaction="EnrollStudent.php">
-                                <input type="submit" class="btn btn-danger" value="Reject"
-                                    formaction="DeleteApproval.php">
-                            </div>
+
 
 
 
@@ -420,12 +394,8 @@ include '../config/dbcon.php';
     </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
-        integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
