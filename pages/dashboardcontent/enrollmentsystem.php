@@ -108,49 +108,50 @@ include '../config/dbcon.php';
 
 
                 <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item menu-open">
-              <a href="dashboard.php" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Dashboard
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="ManageElem.php" class="nav-link">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>
-                  Manage Content
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              
-            </li>
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <li class="nav-item menu-open">
+                            <a href="dashboard.php" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Dashboard
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="ManageElem.php" class="nav-link">
+                                <i class="nav-icon fas fa-edit"></i>
+                                <p>
+                                    Manage Content
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
 
-            <li class="nav-item">
-              <a href="enrollmentsystem.php" class="nav-link active">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>
-                Enrollment Sytem
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              
-            </li>
+                        </li>
 
-            <li class="nav-item">
-              <a href="class.php" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
-                <p>
-                    Class List
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-            </li>
-          </ul>
-        </nav>
+                        <li class="nav-item">
+                            <a href="enrollmentsystem.php" class="nav-link active">
+                                <i class="nav-icon fas fa-edit"></i>
+                                <p>
+                                    Enrollment Sytem
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="class.php" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Class List
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
             </div>
 
@@ -266,8 +267,8 @@ include '../config/dbcon.php';
 
                                         <td>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#student-approval">
-                                                Open
+                                                ><a href="studentapproval.php" style="color:white">Open</a>
+                                                
                                             </button>
                                         </td>
 
@@ -281,610 +282,215 @@ include '../config/dbcon.php';
                 </div>
 
 
-                <!--MODAL OF STUDENT APPROVAL-->
-                <div class="modal fade" id="student-approval">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
-
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">Student Approval Request</h4>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
 
 
 
 
-                            <!-- Modal body -->
-                            <div class="modal-body">
-                                <form method="POST">
-                                    <input type="hidden" value="" name="id">
 
-                                    <div class="container">
-                                        <div class="container">
-                                            <div class="row">
-                                                <h3>Name of Student</h3>
-                                                <table class="table table-bordered table-hover">
-                                                    <thead class="thead-dark">
-                                                        <tr>
-                                                            <th><strong>Appointment Schedule:</strong></th>
-                                                            <th><strong>February 15, 2024 07:20 AM</strong></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Enrollment Status</td>
-                                                            <td>
-                                                                PENDING
-                                            </div>
+                <!--END-->
 
+                <!--MASTERLIST OF THE STUDENT WHERE YOU CAN EDIT INFO  -->
+                <div class="shadow p-3 mb-5 bg-body round">
+                    <div class="container mt-3">
+                        <h2>Master List</h2>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+
+                                        <th>Username</th>
+                                        <th>Name</th>
+                                        <th>Course</th>
+                                        <th>Year</th>
+                                        <th>Section</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+
+
+                                        <td>anitamaxwynn@student </td>
+                                        <td>Anita Max Wynn </td>
+                                        <td>BS Computer Engineering </td>
+                                        <td> III </td>
+                                        <td> A </td>
+                                        <td>ENROLLED</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"><a
+                                                    href="masterlist.php" style="color:white">Open</a>
+
+                                            </button>
+                                        </td>
+
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!--END-->
+
+
+
+                <!--SUBJECTS WHERE YOU CAN EDIT AND ADD -->
+                <div class="shadow p-3 mb-5 bg-body round">
+                    <div class="container mt-3">
+                        <h2>Subjects</h2>
+                        <div class="table-responsive">
+                            <form method="POST" style="display: flex; align-items: center;">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Subject</th>
+                                            <th>Course</th>
+                                            <th>Instructor</th>
+                                            <th>Year</th>
+                                            <th>Hours</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr>
+                                            <input type="hidden" value="21" name="id">
+
+                                            <td><input type="text" value="DevOps2" class="form-control" name="subject"
+                                                    required=""></td>
+
+                                            <td>
+                                                <select class="form-control" name="course">
+                                                    <option value="BS Computer Engineering" selected="">BS Computer
+                                                        Engineering</option>
+                                                    <option value="BS Information Technology">BS Information Technology
+                                                    </option>
+                                                    <option value="BS Computer Science">BS Computer Science</option>
+                                                </select>
                                             </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Username</td>
-                                                <td><input name="username" type="hidden" value="#laman">#laman@student
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Password</td>
-                                                <td><input name="username" type="hidden" value="#laman">password ng
-                                                    account
-                                                </td>
-                                            </tr>
+                                            <td><input type="text" value="Engr. Sample" class="form-control"
+                                                    name="instructor" required=""></td>
+                                            <td style="width: 10%">
+                                                <select class="form-control" name="year">
+                                                    <option value="I">I</option>
+                                                    <option value="II">II</option>
+                                                    <option value="III">III</option>
+                                                    <option value="IV" selected="">IV</option>
+                                                </select>
+                                            </td>
+                                            <td style="width: 10%"><input type="number" min="1" value="6"
+                                                    class="form-control" name="hours" required=""></td>
+                                            <td>
+                                                <button type="submit" class="btn btn-success"
+                                                    formaction="updateSubject.php"><i class="fas fa-save"></i></button>
+                                                <button type="submit" class="btn btn-danger"
+                                                    formaction="deleteSubject.php"><i
+                                                        class="fas fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <input type="hidden" value="22" name="id">
+
+                                            <td><input type="text" value="CpE Practice and Design" class="form-control"
+                                                    name="subject" required=""></td>
+
+                                            <td>
+                                                <select class="form-control" name="course">
+                                                    <option value="BS Computer Engineering" selected="">BS Computer
+                                                        Engineering</option>
+                                                    <option value="BS Information Technology">BS Information Technology
+                                                    </option>
+                                                    <option value="BS Computer Science">BS Computer Science</option>
+                                                </select>
+                                            </td>
+
+                                            <td><input type="text" value="Dr. Sample" class="form-control"
+                                                    name="instructor" required="">
+                                            </td>
+
+                                            <td style="width: 10%">
+                                                <select class="form-control" name="year">
+                                                    <option value="I">I</option>
+                                                    <option value="II">II</option>
+                                                    <option value="III">III</option>
+                                                    <option value="IV" selected="">IV</option>
+                                                </select>
+                                            </td>
+
+                                            <td style="width: 10%"><input type="number" min="1" value="2"
+                                                    class="form-control" name="hours" required="">
+                                            </td>
+
+                                            <td>
+                                                <button type="submit" class="btn btn-success"
+                                                    formaction="updateSubject.php"><i class="fas fa-save"></i></button>
+                                                <button type="submit" class="btn btn-danger"
+                                                    formaction="deleteSubject.php"><i
+                                                        class="fas fa-trash-alt"></i></button>
+                                            </td>
+                                        </tr>
+
+                                        <form method="POST"></form>
 
 
-                                            <tr>
-                                                <td>First Name</td>
-                                                <td><input type="text" name="fname" value="#laman" class="form-control">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Middle Name</td>
-                                                <td><input type="text" name="mname" value="#laman" class="form-control">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Last Name</td>
-                                                <td><input type="text" name="lname" value="#laman" class="form-control">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sex</td>
-                                                <td> <select class="form-control" name="sex">
-                                                        <option value="Male" selected="">Male</option>
-                                                        <option value="Female">Female</option>
-                                                    </select></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Course</td>
-                                                <td> <select class="form-control" name="course">
-                                                        <option value="BS Computer Engineering" selected="">
-                                                            BS
-                                                            Computer Engineering</option>
-                                                        <option value="BS Information Technology'">BS
-                                                            Information
-                                                            Technology</option>
-                                                        <option value="BS Computer Science">BS Computer
-                                                            Science
-                                                        </option>
-                                                    </select></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Year</td>
-                                                <td><select class="form-control" name="year">
-                                                        <option value="I">I</option>
-                                                        <option value="II">II</option>
-                                                        <option value="III" selected="">III</option>
-                                                        <option value="IV">IV</option>
-                                                    </select></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Section</td>
-                                                <td> <select class="form-control" name="section">
-                                                        <option value="A" selected="">A</option>
-                                                        <option value="B">B</option>
-                                                        <option value="C">C</option>
-                                                        <option value="D">D</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Birthdate</td>
-                                                <td> <input class="form-control" type="date" name="birthdate"
-                                                        value="#laman"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Home Address</td>
-                                                <td> <input class="form-control" type="text" name="homeAddress"
-                                                        value="#laman"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Phone Number</td>
-                                                <td> <input class="form-control" type="text" name="phoneNumber"
-                                                        value="#laman"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Email</td>
-                                                <td><input class="form-control" type="email" name="email"
-                                                        value="#laman"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Guardian Name</td>
-                                                <td> <input class="form-control" type="text" name="guardianName"
-                                                        value="#laman"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Guardian Phone</td>
-                                                <td> <input class="form-control" type="text" name="guardianPhone"
-                                                        value="#laman"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Guardian Address</td>
-                                                <td> <input class="form-control" type="text" name="guardianAddress"
-                                                        value="#laman"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Elementary School</td>
-                                                <td> <input class="form-control" type="text" name="elementary_school"
-                                                        value="#laman"></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Elementary Graduation Year</td>
-                                                <td> <input class="form-control" type="number" min=""
-                                                        name="elementary_graduation_year" value="#laman">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Junior High School</td>
-                                                <td> <input class="form-control" type="text" name="junior_high_school"
-                                                        value="#laman">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Junior High Graduation Year</td>
-                                                <td> <input class="form-control" type="number" min=""
-                                                        name="junior_high_graduation_year" value="#laman">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Senior High School</td>
-                                                <td> <input class="form-control" type="text" name="senior_high_school"
-                                                        value="#laman">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Senior High Graduation Year</td>
-                                                <td><input class="form-control" type="number" min="1970"
-                                                        name="senior_high_graduation_year" value="#laman">
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                            </div>
+                                        <td><input type="text" name="subject" class="form-control"
+                                                placeholder="Type an subject" required=""></td>
+                                        <td><select class="form-control" name="course">
+                                                <option selected="" disabled="" value="">Select course...</option>
+                                                <option value="BS Computer Engineering">BS Computer Engineering</option>
+                                                <option value="BS Information Technology'">BS Information Technology
+                                                </option>
+                                                <option value="BS Computer Science">BS Computer Science</option>
+                                            </select></td>
+                                        <td><input type="text" name="instructor" class="form-control"
+                                                placeholder="Type a instructor" required=""></td>
+                                        <td> <select name="year" class="form-select" id="inputCourse" required="">
+                                                <option selected="" disabled="" value=""> Year</option>
+                                                <option>I</option>
+                                                <option>II</option>
+                                                <option>III</option>
+                                                <option>IV</option>
+                                            </select></td>
+                                        <td><input type="number" min="1" name="hours" class="form-control"
+                                                placeholder="Type a hours" required=""></td>
+                                        <td>
+                                            <button type="submit" class="btn btn-primary" formaction="addSubject.php">
+                                                <i class="fas fa-plus"></i> </button>
+                                        </td>
 
+                                        </tr>
 
-
-
+                                    </tbody>
+                                </table>
                             </form>
                         </div>
-
-                        <!-- Modal footer -->
-
-                        <div class="modal-footer">
-                            <input type="submit" class="btn btn-primary" value="Enroll" formaction="EnrollStudent.php">
-                            <input type="submit" class="btn btn-danger" value="Reject" formaction="DeleteApproval.php">
-                        </div>
-
-
                     </div>
                 </div>
+                <!--END-->
+
+
+
+            </section>
+
         </div>
 
-
-        <!-- Modal footer -->
-
-
-
-
-        <!--END-->
-
-        <!--MASTERLIST OF THE STUDENT WHERE YOU CAN EDIT INFO  -->
-        <div class="shadow p-3 mb-5 bg-body round">
-            <div class="container mt-3">
-                <h2>Master List</h2>
-
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-
-                                <th>Username</th>
-                                <th>Name</th>
-                                <th>Course</th>
-                                <th>Year</th>
-                                <th>Section</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-
-
-                                <td>anitamaxwynn@student </td>
-                                <td>Anita Max Wynn </td>
-                                <td>BS Computer Engineering </td>
-                                <td> III </td>
-                                <td> A </td>
-                                <td>ENROLLED</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#master-list">
-                                        Open
-                                    </button>
-                                </td>
-
-
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
+        <footer class="main-footer">
+            All rights reserved
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0
             </div>
-        </div>
+        </footer>
 
 
+        <aside class="control-sidebar control-sidebar-dark">
 
-        <!--MODAL OF MASTER LIST-->
-        <div class="modal fade" id="master-list">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Name of Student</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-
-
-
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <form method="POST">
-                            <input type="hidden" value="" name="id">
-
-                            <div class="container">
-                                <div class="container">
-                                    <div class="row">
-                                        <h3>Basic Profile</h3>
-                                        <table class="table table-bordered table-hover">
-                                            <thead class="thead-dark">
-                                                <tr>
-                                                    <th>Title</th>
-                                                    <th>Value</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Username</td>
-                                                    <td><input name="username" type="hidden"
-                                                            value="#laman">#laman@student
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>First Name</td>
-                                                    <td><input type="text" name="fname" value="#laman"
-                                                            class="form-control"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Middle Name</td>
-                                                    <td><input type="text" name="mname" value="#laman"
-                                                            class="form-control"> </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Last Name</td>
-                                                    <td><input type="text" name="lname" value="#laman"
-                                                            class="form-control"> </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Sex</td>
-                                                    <td> <select class="form-control" name="sex">
-                                                            <option value="Male" selected="">Male</option>
-                                                            <option value="Female">Female</option>
-                                                        </select></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Course</td>
-                                                    <td> <select class="form-control" name="course">
-                                                            <option value="BS Computer Engineering" selected="">
-                                                                BS
-                                                                Computer Engineering</option>
-                                                            <option value="BS Information Technology'">BS
-                                                                Information
-                                                                Technology</option>
-                                                            <option value="BS Computer Science">BS Computer
-                                                                Science
-                                                            </option>
-                                                        </select></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Year</td>
-                                                    <td><select class="form-control" name="year">
-                                                            <option value="I">I</option>
-                                                            <option value="II">II</option>
-                                                            <option value="III" selected="">III</option>
-                                                            <option value="IV">IV</option>
-                                                        </select></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Section</td>
-                                                    <td> <select class="form-control" name="section">
-                                                            <option value="A" selected="">A</option>
-                                                            <option value="B">B</option>
-                                                            <option value="C">C</option>
-                                                            <option value="D">D</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Birthdate</td>
-                                                    <td> <input class="form-control" type="date" name="birthdate"
-                                                            value="#laman"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Home Address</td>
-                                                    <td> <input class="form-control" type="text" name="homeAddress"
-                                                            value="#laman"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Phone Number</td>
-                                                    <td> <input class="form-control" type="text" name="phoneNumber"
-                                                            value="#laman"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Email</td>
-                                                    <td><input class="form-control" type="email" name="email"
-                                                            value="#laman"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Guardian Name</td>
-                                                    <td> <input class="form-control" type="text" name="guardianName"
-                                                            value="#laman"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Guardian Phone</td>
-                                                    <td> <input class="form-control" type="text" name="guardianPhone"
-                                                            value="#laman"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Guardian Address</td>
-                                                    <td> <input class="form-control" type="text" name="guardianAddress"
-                                                            value="#laman"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Elementary School</td>
-                                                    <td> <input class="form-control" type="text"
-                                                            name="elementary_school" value="#laman"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Elementary Graduation Year</td>
-                                                    <td> <input class="form-control" type="number" min=""
-                                                            name="elementary_graduation_year" value="#laman">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Junior High School</td>
-                                                    <td> <input class="form-control" type="text"
-                                                            name="junior_high_school" value="#laman">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Junior High Graduation Year</td>
-                                                    <td> <input class="form-control" type="number" min=""
-                                                            name="junior_high_graduation_year" value="#laman">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Senior High School</td>
-                                                    <td> <input class="form-control" type="text"
-                                                            name="senior_high_school" value="#laman">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Senior High Graduation Year</td>
-                                                    <td><input class="form-control" type="number" min="1970"
-                                                            name="senior_high_graduation_year" value="#laman">
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-                        </form>
-                    </div>
-
-                    <!-- Modal footer -->
-
-                    <div class="modal-footer">
-                        <input type="submit" class="btn btn-success" value="Update" formaction="updateStudent.php">
-                        <input type="submit" class="btn btn-danger" value="Drop" formaction="dropStudent.php">
-                        
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Modal footer -->
-
-
-
-
-
-        <!--END-->
-
-
-
-        <!--SUBJECTS WHERE YOU CAN EDIT AND ADD -->
-        <div class="shadow p-3 mb-5 bg-body round">
-            <div class="container mt-3">
-                <h2>Subjects</h2>
-                <div class="table-responsive">
-                    <form method="POST" style="display: flex; align-items: center;">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Subject</th>
-                                    <th>Course</th>
-                                    <th>Instructor</th>
-                                    <th>Year</th>
-                                    <th>Hours</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-
-                                <tr>
-                                    <input type="hidden" value="21" name="id">
-
-                                    <td><input type="text" value="DevOps2" class="form-control" name="subject"
-                                            required=""></td>
-
-                                    <td>
-                                        <select class="form-control" name="course">
-                                            <option value="BS Computer Engineering" selected="">BS Computer
-                                                Engineering</option>
-                                            <option value="BS Information Technology">BS Information Technology
-                                            </option>
-                                            <option value="BS Computer Science">BS Computer Science</option>
-                                        </select>
-                                    </td>
-                                    <td><input type="text" value="Engr. Sample" class="form-control" name="instructor"
-                                            required=""></td>
-                                    <td style="width: 10%">
-                                        <select class="form-control" name="year">
-                                            <option value="I">I</option>
-                                            <option value="II">II</option>
-                                            <option value="III">III</option>
-                                            <option value="IV" selected="">IV</option>
-                                        </select>
-                                    </td>
-                                    <td style="width: 10%"><input type="number" min="1" value="6" class="form-control"
-                                            name="hours" required=""></td>
-                                    <td>
-                                        <button type="submit" class="btn btn-success" formaction="updateSubject.php"><i
-                                                class="fas fa-save"></i></button>
-                                        <button type="submit" class="btn btn-danger" formaction="deleteSubject.php"><i
-                                                class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <input type="hidden" value="22" name="id">
-
-                                    <td><input type="text" value="CpE Practice and Design" class="form-control"
-                                            name="subject" required=""></td>
-
-                                    <td>
-                                        <select class="form-control" name="course">
-                                            <option value="BS Computer Engineering" selected="">BS Computer
-                                                Engineering</option>
-                                            <option value="BS Information Technology">BS Information Technology
-                                            </option>
-                                            <option value="BS Computer Science">BS Computer Science</option>
-                                        </select>
-                                    </td>
-
-                                    <td><input type="text" value="Dr. Sample" class="form-control" name="instructor"
-                                            required="">
-                                    </td>
-
-                                    <td style="width: 10%">
-                                        <select class="form-control" name="year">
-                                            <option value="I">I</option>
-                                            <option value="II">II</option>
-                                            <option value="III">III</option>
-                                            <option value="IV" selected="">IV</option>
-                                        </select>
-                                    </td>
-
-                                    <td style="width: 10%"><input type="number" min="1" value="2" class="form-control"
-                                            name="hours" required="">
-                                    </td>
-
-                                    <td>
-                                        <button type="submit" class="btn btn-success" formaction="updateSubject.php"><i
-                                                class="fas fa-save"></i></button>
-                                        <button type="submit" class="btn btn-danger" formaction="deleteSubject.php"><i
-                                                class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
-
-                                <form method="POST"></form>
-
-
-                                <td><input type="text" name="subject" class="form-control" placeholder="Type an subject"
-                                        required=""></td>
-                                <td><select class="form-control" name="course">
-                                        <option selected="" disabled="" value="">Select course...</option>
-                                        <option value="BS Computer Engineering">BS Computer Engineering</option>
-                                        <option value="BS Information Technology'">BS Information Technology</option>
-                                        <option value="BS Computer Science">BS Computer Science</option>
-                                    </select></td>
-                                <td><input type="text" name="instructor" class="form-control"
-                                        placeholder="Type a instructor" required=""></td>
-                                <td> <select name="year" class="form-select" id="inputCourse" required="">
-                                        <option selected="" disabled="" value=""> Year</option>
-                                        <option>I</option>
-                                        <option>II</option>
-                                        <option>III</option>
-                                        <option>IV</option>
-                                    </select></td>
-                                <td><input type="number" min="1" name="hours" class="form-control"
-                                        placeholder="Type a hours" required=""></td>
-                                <td>
-                                    <button type="submit" class="btn btn-primary" formaction="addSubject.php"> <i
-                                            class="fas fa-plus"></i> </button>
-                                </td>
-
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!--END-->
-
-
-
-        </section>
-
-    </div>
-
-    <footer class="main-footer">
-        All rights reserved
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 1.0
-        </div>
-    </footer>
-
-
-    <aside class="control-sidebar control-sidebar-dark">
-
-    </aside>
+        </aside>
 
     </div>
 
