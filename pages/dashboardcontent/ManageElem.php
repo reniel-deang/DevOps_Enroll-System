@@ -99,12 +99,12 @@
 
 
 
- 
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    
-    <a href="#" class="brand-link">
-      <span class="brand-text font-weight-light">Administration</span>
-    </a>
+
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+      <a href="#" class="brand-link">
+        <span class="brand-text font-weight-light">Administration</span>
+      </a>
 
  
     <div class="sidebar">
@@ -123,67 +123,50 @@
       <br>
 
 
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="dashboard.php" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Main Dashboard</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Manage Content
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="ManageElem.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>General Elements</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
-              <p>
-                Manage Students
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>General</p>
-                  
-                </a>
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item menu-open">
+              <a href="dashboard.php" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Dashboard
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="ManageElem.php" class="nav-link active">
+                <i class="nav-icon fas fa-edit"></i>
+                <p>
+                  Manage Content
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              
+            </li>
 
-                <a href="class.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Grades</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
+            <li class="nav-item">
+              <a href="enrollmentsystem.php" class="nav-link">
+                <i class="nav-icon fas fa-edit"></i>
+                <p>
+                Enrollment Sytem
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              
+            </li>
+
+            <li class="nav-item">
+              <a href="class.php" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                    Class List
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+            </li>
+          </ul>
+        </nav>
 
     </div>
 
