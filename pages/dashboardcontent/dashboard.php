@@ -263,9 +263,6 @@ if (isset($_SESSION['status'])) {
     <aside class="control-sidebar control-sidebar-dark">
 
     </aside>
-    <?php
-    $_SESSION['alert'] == null;
-    ?>
 
   </div>
 
