@@ -1,9 +1,19 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
 include '../config/dbcon.php';
 
+if(!isset($_SESSION['status']))
+{
+  header('Location: ../../index.php');
 
+}
+
+$user_id = $_SESSION['status'];
+
+$sql = "SELECT * FROM tb_studentinfo WHERE user_id = '$user_id'";
+$result = $conn->query($sql);
 
 
 ?>

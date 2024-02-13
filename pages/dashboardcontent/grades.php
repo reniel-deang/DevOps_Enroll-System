@@ -1,33 +1,25 @@
-<?php session_start(); ?>
+<?php session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
 include '../config/dbcon.php';
 
-$usersCourse = array(); // Array to store user data
 
-if (isset($_SESSION['status'])) {
-  $total = "SELECT * FROM tb_studentinfo";
-  $result = $conn->query($total);
+$user_id = $_POST['user_id'];
 
-  if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-      // Store each row in the $usersData array
-      $usersCourse[] = array(
-        'course' => $row['course'],
+$subject = "SELECT * FROM tb_studentinfo where user_id = '$user_id'";
+$resultsubject = $conn->query($subject);
+$row1 = $resultsubject->fetch_assoc();
+$course = $row1['course'];
+$year = $row1['year'];
 
-      );
-    }
-  } else {
-    echo "No records found";
-  }
-} else {
-  header('Location: ../../index.php');
-  session_unset();
-}
-
+$subject = "SELECT * FROM tb_subject where course = '$course' AND years = '$year'";
+$resultsubject = $conn->query($subject);
 
 ?>
+
+
 
 <head>
   <meta charset="utf-8">
@@ -36,8 +28,7 @@ if (isset($_SESSION['status'])) {
 
   <!-- Google Font: Source Sans Pro -->
 
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -101,8 +92,7 @@ if (isset($_SESSION['status'])) {
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
       <a href="#" class="brand-link">
-        <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png"
-          style="width: 60px">
+        <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png" style="width: 60px">
         <span class="brand-text font-weight-light">Administration</span>
       </a>
 
@@ -229,13 +219,13 @@ if (isset($_SESSION['status'])) {
           <div class="col-md-6">
 
 
-            <p>Name: <!--Echo--></p>
-            <p>Course: <!--Echo--></p>
+            <p>Name:<?php echo $row1['fname'] .' '.$row1['mname'].' '.$row1['lname']; ?></p>
+            <p>Course: <?php echo $row1['course']; ?></p>
           </div>
           <div class="col-md-6">
 
-            <p>Year: <!--Echo--></p>
-            <p>Section: <!--Echo--></p>
+            <p>Year: <?php echo $year; ?></p>
+            <p>Section: <?php echo $row1['section']; ?></p>
           </div>
         </div>
       </div>
@@ -261,32 +251,69 @@ if (isset($_SESSION['status'])) {
                 </tr>
               </thead>
               <tbody>
-                <form action="../config/updateGrades.php" method="POST"></form>
-                <tr>
-
-                  <input type="hidden" value=" " name="name">
-                  <input type="hidden" value=" " name="course">
-                  <input type="hidden" value=" " name="year">
-                  <input type="hidden" value=" " name="section">
-                  <input type="hidden" value=" " name="usernameDB">
-                  <input type="hidden" value=" " name="id">
-                  <td> <!--Echo--></td>
-                  <td><!--Echo--></td>
-                  <td><input type="text" value="TBA" class="form-control" name="prelim"> </td>
-                  <td><input type="text" value="TBA" class="form-control" name="midterm"></td>
-                  <td><input type="text" value="TBA" class="form-control" name="finals"></td>
-                  <td>TBA
-                  </td>
-                  <td>TBA</td>
-                  <td>
-
-                    <input type="submit" class="btn btn-success" value="Save">
-                  </td>
-                </tr>
-
+                <?php
+                if ($resultsubject->num_rows > 0) {
+                  // output data of each row
+                  while ($row = $resultsubject->fetch_assoc()) {
+                    echo ' <form action="../config/updategrades.php?id='.$user_id.'" method="POST">
+                                    <tr>
+                                        <td>' . $row['subjectname'] . '</td>
+                                        <td>' . $row['instructor'] . '</td>
+                                        <td><input type="text" value="" class="form-control" name="prelim"> </td>
+                                        <td><input type="text" value="" class="form-control" name="midterm"></td>
+                                        <td><input type="text" value="" class="form-control" name="finals"></td>
+                                        <td><input type="text"  value="" class="form-control" name="average"></td>
+                                        <td><input type="text"  value="" class="form-control" name="remarks"></td>
+                                        <td>
+                                            <input type="submit" class="btn btn-primary" value="Create" name = "create">
+                                            <input type="submit" class="btn btn-success" value="Update" name = "update">
+                                            <input type="hidden"  value="' . $row['subjectname'] . '" class="form-control" name="subject">
+                                            <input type="hidden"  value="' . $row['instructor'] . '" class="form-control" name="instructor">
+                                            <input type="hidden"  value="' . $user_id . '" class="form-control" name="user_id">
+                                        </td>
+                                    </tr>
+                                </form>';
+                  }
+                }
+                ?>
               </tbody>
             </table>
           </div>
+
+          
+          <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get all input elements
+        var prelimInputs = document.querySelectorAll('input[name="prelim"]');
+        var midtermInputs = document.querySelectorAll('input[name="midterm"]');
+        var finalsInputs = document.querySelectorAll('input[name="finals"]');
+        var averageInputs = document.querySelectorAll('input[name="average"]');
+        var remarksInputs = document.querySelectorAll('input[name="remarks"]');
+
+        // Calculate average and determine remarks dynamically
+        function calculateAverageAndRemarks() {
+            for (var i = 0; i < prelimInputs.length; i++) {
+                var prelim = parseFloat(prelimInputs[i].value) || 0;
+                var midterm = parseFloat(midtermInputs[i].value) || 0;
+                var finals = parseFloat(finalsInputs[i].value) || 0;
+
+                var average = (prelim + midterm + finals) / 3;
+                var remarks = (average >= 75 && average <= 100) ? 'PASSED' : 'FAILED';
+
+                averageInputs[i].value = average.toFixed(2);
+                remarksInputs[i].value = remarks;
+            }
+        }
+
+        // Add event listeners to input elements
+        prelimInputs.forEach(input => input.addEventListener('input', calculateAverageAndRemarks));
+        midtermInputs.forEach(input => input.addEventListener('input', calculateAverageAndRemarks));
+        finalsInputs.forEach(input => input.addEventListener('input', calculateAverageAndRemarks));
+
+        // Initial calculation on page load
+        calculateAverageAndRemarks();
+    });
+</script>
 
           <div class="row">
 
@@ -319,12 +346,8 @@ if (isset($_SESSION['status'])) {
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!--Modal LogOut-->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
-    integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     $.widget.bridge('uibutton', $.ui.button)
   </script>

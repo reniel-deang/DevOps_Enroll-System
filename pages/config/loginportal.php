@@ -1,6 +1,7 @@
 <?php
-include "dbcon.php";
 session_start();
+include "dbcon.php";
+
 
 if (isset($_POST['submit']))
 {
@@ -30,7 +31,7 @@ if (isset($_POST['submit']))
             else
             {
                 $_SESSION['status'] = $row['user_id'];
-                header("Location:  ../dashboardcontent/dashboard.php");
+                header("Location:  ../usercontent/userdashboard.php");
                 exit(); 
             }
         }
