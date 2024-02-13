@@ -1,6 +1,7 @@
 <?php
-include "dbcon.php";
 session_start();
+include "dbcon.php";
+
 
 $id = $_POST['id'];
 $userid = $_POST['userid'];
