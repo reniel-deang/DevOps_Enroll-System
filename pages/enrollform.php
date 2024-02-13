@@ -4,7 +4,7 @@
 <html lang="en">
 <?php
 include "config/dbcon.php";
-$schedule = "SELECT * FROM tb_schedule";
+$schedule = "SELECT * FROM tb_schedule WHERE slot >= 1";
 $resultschedule = $conn->query($schedule);
 ?>
 
@@ -85,15 +85,15 @@ $resultschedule = $conn->query($schedule);
         </div>
 
         <section>
-          <div class="container mt-3">
-            <h2>Select Your Appointment Schedule</h2>
-            <p>Please check first the available schedules below.</p>
-            <br>
-            <table class="table table-striped">
-
-              <?php
-              if ($resultschedule->num_rows > 0) {
-                echo ' <thead>
+          <form action="config/register.php" method="post">
+            <div class="container mt-3">
+              <h2>Select Your Appointment Schedule</h2>
+              <p>Please check first the available schedules below.</p>
+              <br>
+              <table class="table table-striped">
+                <?php
+                if ($resultschedule->num_rows > 0) {
+                  echo ' <thead>
                   <tr>
                     <th>Date</th>
                     <th>Time</th>
@@ -102,230 +102,232 @@ $resultschedule = $conn->query($schedule);
                   </tr>
                 </thead>
                 <tbody>';
-                // output data of each row
-                while ($row = $resultschedule->fetch_assoc()) {
-                  echo '
+                  // output data of each row
+                  while ($row = $resultschedule->fetch_assoc()) {
+                    echo '
                                        <tr>
                                           <td>' . $row['date'] . ' | ' . $row['day'] . '</td>
                                           <td>' . $row['start_time'] . ' | ' . $row['end_time'] . '</td>
                                           <td>' . $row['slot'] . '</td>
                                           <td><input type="radio" name="selectsched" value="' . $row['shed_id'] . '" required></td>
                                   </tr>';
-                }
-              } else {
-                echo '<div class="alert alert-danger">
+                  }
+                } else {
+                  echo '<div class="alert alert-danger">
                   <strong>No Available Schedule. </strong> Please wait for further announcement </a>.
                   <input type="hidden" name="selectsched" value="novalue">
                 </div>';
-              }
+                }
 
-              ?>
-            </table>
-          </div>
+                ?>
+                </tbody>
+              </table>
+            </div>
+
         </section>
 
-        <form action="config/register.php" method="post">
-          <section class="content">
-            <div class="container-fluid">
-              <div class="row">
 
-                <div class="col-md-6">
-                  <h2>I. Create Student Portal Account</h2>
-                  <br>
-                  <div class="card">
-                    <div class="card-header">
-                      <h2 class="card-title">Login Credentials</h2>
-                    </div>
-                    <!-- /.card-header -->
-                    <!-- form start -->
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
 
-                    <div class="card-body">
-                      <div class="form-row">
-                        <!-- Email Address Input -->
-                        <div class="form-group col-md-6">
-                          <label for="exampleInputEmail1">Username</label>
-                          <input type="text" class="form-control" placeholder="Enter Username" name="user" id="name">
-                        </div>
-                        <!-- Additional Textbox on the Right Side -->
-                        <div class="form-group col-md-6">
-                          <label for="exampleInputAdditional">User Type</label>
-                          <input type="number" class="form-control" placeholder="@student" name="extension" disabled>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Email</label>
-                        <input type="email" class="form-control" placeholder="Email Address" name="email" id="email">
-                      </div>
-
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" placeholder="Password" name="pass" id="pass">
-                      </div>
-                    </div>
-                    <!-- /.card-body -->
-
-
+              <div class="col-md-6">
+                <h2>I. Create Student Portal Account</h2>
+                <br>
+                <div class="card">
+                  <div class="card-header">
+                    <h2 class="card-title">Login Credentials</h2>
                   </div>
+                  <!-- /.card-header -->
+                  <!-- form start -->
+
+                  <div class="card-body">
+                    <div class="form-row">
+                      <!-- Email Address Input -->
+                      <div class="form-group col-md-6">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" class="form-control" placeholder="Enter Username" name="user" id="name">
+                      </div>
+                      <!-- Additional Textbox on the Right Side -->
+                      <div class="form-group col-md-6">
+                        <label for="exampleInputAdditional">User Type</label>
+                        <input type="number" class="form-control" placeholder="@student" name="extension" disabled>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Email</label>
+                      <input type="email" class="form-control" placeholder="Email Address" name="email" id="email">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" placeholder="Password" name="pass" id="pass">
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+
+
                 </div>
-
-                <div class="col-md-6">
-                  <h2>II. Educational Attainment</h2>
-                  <br>
-                  <div class="card">
-                    <div class="card-header">
-                      <h2 class="card-title">About Educational Experiences</h2>
-                    </div>
-                    <!-- /.card-header -->
-                    <!-- form start -->
-
-                    <div class="card-body">
-                      <div class="form-row">
-                        <!-- Email Address Input -->
-                        <div class="form-group col-md-6">
-                          <label for="exampleInputEmail1">Elementary</label>
-                          <input type="text" class="form-control" placeholder="Enter school" name="elem" id="elem" required>
-                        </div>
-                        <!-- Additional Textbox on the Right Side -->
-                        <div class="form-group col-md-6">
-                          <label for="exampleInputAdditional">Graduation Year</label>
-                          <input type="number" class="form-control" name="elemyear" id="elemyear" required max="9999" required>
-                        </div>
-                      </div>
-
-                      <div class="form-row">
-                        <!-- Email Address Input -->
-                        <div class="form-group col-md-6">
-                          <label for="exampleInputEmail1">Junior High School</label>
-                          <input type="text" class="form-control" placeholder="Enter school" name="jhs" id="jhs" required>
-                        </div>
-                        <!-- Additional Textbox on the Right Side -->
-                        <div class="form-group col-md-6">
-                          <label for="exampleInputAdditional">Graduation Year</label>
-                          <input type="number" class="form-control" name="jhsyear" id="jhsyear" required max="9999" required>
-                        </div>
-                      </div>
-
-                      <div class="form-row">
-                        <!-- Email Address Input -->
-                        <div class="form-group col-md-6">
-                          <label for="exampleInputEmail1">Senior High School</label>
-                          <input type="text" class="form-control" placeholder="Enter school" name="shs" id="shs" required>
-                        </div>
-                        <!-- Additional Textbox on the Right Side -->
-                        <div class="form-group col-md-6">
-                          <label for="exampleInputAdditional">Graduation Year</label>
-                          <input type="number" class="form-control" id="shsyear" name="shsyear" required max="9999" required>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- /.card-body -->
-
-
-                  </div>
-                </div>
-
-                <section class="container mt-4">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <h2>III. Enrollment Form</h2>
-                      <br>
-                      <div class="card">
-                        <div class="card-header">
-                          <h2 class="card-title">General Information</h2>
-                        </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
-
-
-                        <div class="card-body">
-                          <div class="form-group">
-                            <label for="inputName">First Name</label>
-                            <input type="text" class="form-control" id="fname" placeholder="Enter your first name" name="fname" required>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="inputName">Middle Name</label>
-                            <input type="text" class="form-control" id="mname" placeholder="Enter your middle name" name="mname" required>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="inputName">Last Name</label>
-                            <input type="text" class="form-control" id="lname" placeholder="Enter your last name" name="lname" required>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="genderSelect">Gender</label>
-                            <select class="form-control" id="genderSelect" name="gender">
-                              <option value="" selected></option>
-                              <option value="Male">Male</option>
-                              <option value="Female">Female</option>
-                            </select>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="courseSelect">Course</label>
-                            <select class="form-control" name="course" id="courseSelect">
-                              <option value="" selected></option>
-                              <option value="BS Computer Science">BS Computer Science</option>
-                              <option value="BS Information Technology">BS Information Technology</option>
-                              <option value="BS Computer Engineering">BS Computer Engineering</option>
-                            </select>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="courseSelect">Year</label>
-                            <select class="form-control" name="year" id="yearSelect">
-                              <option value="" selected></option>
-                              <option value="I">I</option>
-                              <option value="II">II</option>
-                              <option value="III">III</option>
-                              <option value="IV">IV</option>
-                            </select>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="datepicker">Date of Birth</label>
-                            <input type="date" class="form-control" id="datepicker" placeholder="Select date" name="birthday" required>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="inputName">Home Address</label>
-                            <input type="text" class="form-control" id="address" name="address" required>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="inputName">Phone Number (Philippine Format)</label>
-                            <input type="text" class="form-control" name="number" id="number" required pattern="^(09|\+639)\d{9}$" title="Please enter a valid Philippine phone number starting with '09' or '+639' followed by 9 digits">
-                          </div>
-
-                          <div class="form-group">
-                            <label for="inputName">Guardian name</label>
-                            <input type="text" class="form-control" name="guardianname" id="elemyear" required>
-                          </div>
-
-                          <div class="form-group">
-                            <label for="inputName">Phone Number (Philippine Format)</label>
-                            <input type="text" class="form-control" name="guardiannumber" id="guardiannumber" required pattern="^(09|\+639)\d{9}$" title="Please enter a valid Philippine phone number starting with '09' or '+639' followed by 9 digits">
-                          </div>
-
-                          <div class="form-group">
-                            <label for="inputName">Guardian Address</label>
-                            <input type="text" class="form-control" name="guardianaddress" id="guardianaddress" required>
-                          </div>
-                          <div class="form-group">
-                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                          </div>
-                        </div>
-                        <!-- /.card-body -->
-
-                      </div>
-                    </div>
-                  </div>
-                </section>
               </div>
+
+              <div class="col-md-6">
+                <h2>II. Educational Attainment</h2>
+                <br>
+                <div class="card">
+                  <div class="card-header">
+                    <h2 class="card-title">About Educational Experiences</h2>
+                  </div>
+                  <!-- /.card-header -->
+                  <!-- form start -->
+
+                  <div class="card-body">
+                    <div class="form-row">
+                      <!-- Email Address Input -->
+                      <div class="form-group col-md-6">
+                        <label for="exampleInputEmail1">Elementary</label>
+                        <input type="text" class="form-control" placeholder="Enter school" name="elem" id="elem" required>
+                      </div>
+                      <!-- Additional Textbox on the Right Side -->
+                      <div class="form-group col-md-6">
+                        <label for="exampleInputAdditional">Graduation Year</label>
+                        <input type="number" class="form-control" name="elemyear" id="elemyear" required max="9999" required>
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                      <!-- Email Address Input -->
+                      <div class="form-group col-md-6">
+                        <label for="exampleInputEmail1">Junior High School</label>
+                        <input type="text" class="form-control" placeholder="Enter school" name="jhs" id="jhs" required>
+                      </div>
+                      <!-- Additional Textbox on the Right Side -->
+                      <div class="form-group col-md-6">
+                        <label for="exampleInputAdditional">Graduation Year</label>
+                        <input type="number" class="form-control" name="jhsyear" id="jhsyear" required max="9999" required>
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                      <!-- Email Address Input -->
+                      <div class="form-group col-md-6">
+                        <label for="exampleInputEmail1">Senior High School</label>
+                        <input type="text" class="form-control" placeholder="Enter school" name="shs" id="shs" required>
+                      </div>
+                      <!-- Additional Textbox on the Right Side -->
+                      <div class="form-group col-md-6">
+                        <label for="exampleInputAdditional">Graduation Year</label>
+                        <input type="number" class="form-control" id="shsyear" name="shsyear" required max="9999" required>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+
+
+                </div>
+              </div>
+
+              <section class="container mt-4">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2>III. Enrollment Form</h2>
+                    <br>
+                    <div class="card">
+                      <div class="card-header">
+                        <h2 class="card-title">General Information</h2>
+                      </div>
+                      <!-- /.card-header -->
+                      <!-- form start -->
+
+
+                      <div class="card-body">
+                        <div class="form-group">
+                          <label for="inputName">First Name</label>
+                          <input type="text" class="form-control" id="fname" placeholder="Enter your first name" name="fname" required>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputName">Middle Name</label>
+                          <input type="text" class="form-control" id="mname" placeholder="Enter your middle name" name="mname" required>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputName">Last Name</label>
+                          <input type="text" class="form-control" id="lname" placeholder="Enter your last name" name="lname" required>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="genderSelect">Gender</label>
+                          <select class="form-control" id="genderSelect" name="gender">
+                            <option value="" selected></option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="courseSelect">Course</label>
+                          <select class="form-control" name="course" id="courseSelect">
+                            <option value="" selected></option>
+                            <option value="BS Computer Science">BS Computer Science</option>
+                            <option value="BS Information Technology">BS Information Technology</option>
+                            <option value="BS Computer Engineering">BS Computer Engineering</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="courseSelect">Year</label>
+                          <select class="form-control" name="year" id="yearSelect">
+                            <option value="" selected></option>
+                            <option value="I">I</option>
+                            <option value="II">II</option>
+                            <option value="III">III</option>
+                            <option value="IV">IV</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="datepicker">Date of Birth</label>
+                          <input type="date" class="form-control" id="datepicker" placeholder="Select date" name="birthday" required>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputName">Home Address</label>
+                          <input type="text" class="form-control" id="address" name="address" required>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputName">Phone Number (Philippine Format)</label>
+                          <input type="text" class="form-control" name="number" id="number" required pattern="^(09|\+639)\d{9}$" title="Please enter a valid Philippine phone number starting with '09' or '+639' followed by 9 digits">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputName">Guardian name</label>
+                          <input type="text" class="form-control" name="guardianname" id="elemyear" required>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputName">Phone Number (Philippine Format)</label>
+                          <input type="text" class="form-control" name="guardiannumber" id="guardiannumber" required pattern="^(09|\+639)\d{9}$" title="Please enter a valid Philippine phone number starting with '09' or '+639' followed by 9 digits">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputName">Guardian Address</label>
+                          <input type="text" class="form-control" name="guardianaddress" id="guardianaddress" required>
+                        </div>
+                        <div class="form-group">
+                          <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </div>
+                      <!-- /.card-body -->
+
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
-          </section>
+          </div>
+        </section>
         </form>
       </div>
     </section><!-- End Services Section -->

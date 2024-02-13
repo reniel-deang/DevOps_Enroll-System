@@ -1,6 +1,6 @@
 <?php
-include "dbcon.php";
 session_start();
+include "dbcon.php";
 
 if (isset($_POST['submit'])) {
     if ($_POST['selectsched'] == "novalue") {
@@ -47,6 +47,7 @@ if (isset($_POST['submit'])) {
         $guardianname = $_POST['guardianname'];
         $guardiannumber = $_POST['guardiannumber'];
         $guardianaddress = $_POST['guardianaddress'];
+        $section = "";
         $verified = 0;
 
         // Prepare userdata query
@@ -62,19 +63,18 @@ if (isset($_POST['submit'])) {
 
         if ($result_id->num_rows > 0) {
             $row =  $result_id->fetch_assoc();
+            $id = $row['user_id'];
 
             // Prepare studentinfo query
             $sql = $conn->prepare("INSERT INTO tb_studentinfo (username, appointment_date, time ,elem, elem_year, jhs, jhs_year, shs, shs_year, fname, mname, lname, gender, course, year, section, birthday, address, num, guardian, guardian_number, guardian_address, status, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $sql->bind_param("ssssssssssssssssssssssii", $user, $appointmentdate, $time, $elem, $elemyear, $jhs, $jhsyear, $shs, $shsyear, $fname, $mname, $lname, $gender, $course, $year,'', $birthday, $address, $number, $guardianname, $guardiannumber, $guardianaddress, $verified, $id);
+            $sql->bind_param("ssssssssssssssssssssssii", $user, $appointmentdate, $time, $elem, $elemyear, $jhs, $jhsyear, $shs, $shsyear, $fname, $mname, $lname, $gender, $course, $year, $section, $birthday, $address, $number, $guardianname, $guardiannumber, $guardianaddress, $verified, $id);
 
             if ($sql->execute()) {
                 $_SESSION["validation"] = "OK";
 
                 header("Location: ../enrollform.php");
                 exit();
-            } else {
-                echo "Error";
-            }
+            } 
         } else {
         
             $_SESSION["validation"] = "FAILED";
