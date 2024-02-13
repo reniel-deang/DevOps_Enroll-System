@@ -4,6 +4,22 @@
   <?php 
   include '../config/dbcon.php';
   session_start();
+  if (isset($_SESSION['status'])) {
+    $total = "SELECT * FROM tb_studentinfo";
+    $result = $conn->query($total);
+    $showtotal = mysqli_num_rows($result);
+  
+    $enrolled = "SELECT * FROM tb_userdata WHERE verified = 1";
+    $result1 = $conn->query($enrolled);
+    $showenrolled = mysqli_num_rows($result1);
+  
+    $pending = "SELECT * FROM tb_userdata WHERE verified = 0";
+    $result2 = $conn->query($pending);
+    $showpending = mysqli_num_rows($result2);
+  } else {
+    header('Location: ../../index.php');
+    session_unset();
+  }
   ?>
 <head>
   <meta charset="utf-8">
@@ -369,7 +385,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Change the logo</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Upload Cover</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" >
@@ -385,7 +401,7 @@
         </div>
        
 
-        <!-- grid layout -->
+        
         <div class="row" style="margin-top: 20px; display: flex; justify-content: center;"> 
 
             <?php
@@ -407,6 +423,13 @@
             }else
             {
                 foreach($datas as $data){
+                  if($data['ToHome'] == 1){
+                    
+                    $ccolor = 'primary';
+                  }elseif($data['ToHome'] == 0){
+                    $ccolor = 'secondary';
+
+                  }
 
                 echo '  <div class="card" style="width: 300px; margin: 20px; padding: 0;">
                             <img class="card-img-top" src="../../assets/img/cms-image/cover-page/' . $data['img'] .' " style="height: 300px; width: 100%" alt="Card image">
@@ -417,13 +440,14 @@
                                     <input type="text" class="form-control"  style="border: none;" value="' . $data['title'] .'" placeholder="Insert a Title" name="title"> 
                                     <input type="hidden" name="id" value="'. $data['id'] .'">
                                     <input type="hidden" value="/cover-page/'. $data['img'].'" name="image">
+                                    <input type="hidden" value="'. $data['img'].'" name="img">
                                     <input type="hidden" value="tb_coverphotohomepage" name="delete">
                                     
                                     <p class="card-text">
                                         <textarea placeholder="Insert a Caption" class="form-control" name="caption" style="border: none; background-color: inherit;">' . $data['caption'] .'</textarea>
                                     </p>
-                                    <button formaction="../config/addingCovertoHomepage.php" type="submit" class="btn btn-primary">
-                                        <i class="fas fa-save"></i>
+                                    <button formaction="../config/addingCovertoHomepage.php" type="submit" class="btn btn-'.$ccolor.'">
+                                    <i class="fas fa-save"></i>
                                     </button>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalDeleteWarning2">
                                     <i class="fas fa-trash"></i>
@@ -436,14 +460,14 @@
                                     <div class="modal-dialog">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                          <h5 class="modal-title" id="exampleModalLabel">Danger!!!</h5>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                           Are you sure to delete this card?
                                         </div>
                                         <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                          
                                           <button type="submit" formaction="../config/delete.php"" class="btn btn-danger">DELETE</button>
                                         </div>
                                       </div>
@@ -476,7 +500,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Change the logo</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Upload Card</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -525,6 +549,13 @@
             }else
             {
                 foreach($datas as $data){
+                  if($data['ToHome'] == 1){
+                    
+                    $ccolor = 'primary';
+                  }elseif($data['ToHome'] == 0){
+                    $ccolor = 'secondary';
+
+                  }
 
                 echo '  <div class="card" style="width: 300px; margin: 20px; padding: 0;">
                             <img class="card-img-top" src="../../assets/img/cms-image/card-and-imag/'. $data['img'] .' " style="height: 300px; width: 100%" alt="Card image">
@@ -534,6 +565,7 @@
                               
                                   <input type="text" class="form-control" value="'. $data['title'] .'"  style="border: none;" placeholder="'. $data['title'] .'" name="title"> 
                                   <input type="hidden" value="'. $data['id'] .'" name="id">
+                                  <input type="hidden" value="'.$data['img'].'" name="img">
                                   <input type="hidden" value="/card-and-imag/'.$data['img'].'" name="image">
                                   <input type="hidden" value="tb_cardHomepage" name="delete">
                                     
@@ -541,8 +573,8 @@
                                   <p class="card-text">
                                       <textarea  placeholder="'. $data['caption'] .'" class="form-control" name="caption" style="border: none; background-color: inherit;">'. $data['caption'] .'</textarea>
                                   </p>
-                                  <button formaction="../config/addingCardtoHomepage.php " type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save"></i>
+                                  <button formaction="../config/addingCardtoHomepage.php " type="submit" class="btn btn-'.$ccolor.'">
+                                  <i class="fas fa-save"></i>
                                   </button>
                                   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalDeleteWarning">
                                     <i class="fas fa-trash"></i>
@@ -555,14 +587,13 @@
                                     <div class="modal-dialog">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                          <h5 class="modal-title" id="exampleModalLabel">Danger!!!</h5>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                           Are you sure to delete this card?
                                         </div>
                                         <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                           <button type="submit" formaction="../config/delete.php" class="btn btn-danger">DELETE</button>
                                         </div>
                                       </div>
@@ -604,7 +635,7 @@
                     <textarea required="" placeholder="Insert a Caption" class="form-control" name="caption" background-color:="" inherit;"=""></textarea><p></p>
                     <h5 class="card-title"></h5><h6>Size</h6>
                     <input type="number" min="1" max="5" class="form-control" placeholder="Insert a size" name="size" required=""> 
-                    <h6>Background Color</h6>
+                    <h6 style="margin-top: 10px;">Background Color</h6>
                     <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#ffffff" title="Choose your color" style="height: 25px; margin-bottom: 7px;" name="color">
                     <button formaction="../config/grid-content.php" type="submit" class="btn btn-primary" name="submit3">
                         <i class="fas fa-plus"></i>
@@ -625,6 +656,14 @@
             }
             
             foreach($datas as $data){
+              if($data['ToHome'] == 1){
+                    
+                $ccolor = 'primary';
+              }elseif($data['ToHome'] == 0){
+                $ccolor = 'secondary';
+
+              }
+              
             echo '
             <div class="card" style="width:300px; margin: 20px; padding: 0">
             <div class="card-body">
@@ -640,10 +679,10 @@
                   <h6>Caption</h6></p>
                   <textarea  placeholder="'.$data['caption'].'" class="form-control" name="caption" background-color:="" inherit;"="">'.$data['caption'].'</textarea><p></p>
                   <h5 class="card-title"></h5><h6>Size</h6>
-                  <input type="number" min="0" max="5" class="form-control" value="'.$data['sizes'].'" placeholder="'.$data['sizes'].'" name="size" > 
-                  <h6>Background Color</h6>
+                  <input type="number" min="1" max="5" class="form-control" value="'.$data['sizes'].'" placeholder="'.$data['sizes'].'" name="size" > 
+                  <h6 style="margin-top: 10px;">Background Color</h6>
                   <input type="color" class="form-control form-control-color" id="exampleColorInput" value="'.$data['color'].'" title="Choose your color" style="height: 25px; margin-bottom: 7px;" name="color">
-                  <button formaction="../config/addingContent.php" type="submit" class="btn btn-primary">
+                  <button formaction="../config/addingContent.php" type="submit" class="btn btn-'.$ccolor.'">
 		                <i class="fa fa-save"></i>
 		              </button>
                   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalDeleteWarning3">

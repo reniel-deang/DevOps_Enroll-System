@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <?php
+  include 'pages/config/dbcon.php';
   session_start();
   if (!isset($_SESSION['status']))
     {
@@ -35,6 +36,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styleCards.css">
 
 </head>
 
@@ -61,21 +63,113 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-          <h1>Welcome to East Bridge State University</h1>
-          <h2> We Don't Choose Excellence We Create Them</h2>
-        </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-          <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
-        </div>
-      </div>
-    </div>
+            <?php
+                $sql =  "SELECT * FROM tb_coverphotohomepage WHERE ToHome = 1";
+                $result = mysqli_query($conn, $sql);
+                $datas = array();
+                if(mysqli_num_rows($result) > 0 ){
+                    while($row =mysqli_fetch_assoc($result)){
+                        $datas[] = $row;
+                    }
+                }
 
-  </section><!-- End Hero -->
+                if($datas!=null){
+                    
+                    }else
+                    {   
+                    echo'
+                    <section id="hero" class="d-flex align-items-center" style="display: none;">
+
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+                          <h1>Welcome to East Bridge State University</h1>
+                          <h2> We Dont Choose Excellence We Create Them</h2>
+                        </div>
+                        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+                          <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+                        </div>
+                      </div>
+                    </div>
+                
+                  </section>
+                    ';
+        
+                    }
+    
+            ?>
+
+  <!-- End Hero -->
+
+
+
+<div id="demo" class="carousel slide" data-bs-ride="carousel" style="display:  
+            <?php
+                $sql =  "SELECT * FROM tb_coverphotohomepage WHERE ToHome = 1";
+                $result = mysqli_query($conn, $sql);
+                $datas = array();
+                if(mysqli_num_rows($result) > 0 ){
+                    while($row =mysqli_fetch_assoc($result)){
+                        $datas[] = $row;
+                    }
+                }
+
+                if($datas==null){
+                    echo'none';
+                    }else
+                    {   
+                    echo'block';
+        
+                    }
+    
+            ?>">
+
+<!-- Indicators/dots -->
+<div class="carousel-indicators">
+  <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+  <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+  <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+</div>
+
+<!-- The slideshow/carousel -->
+<div class="carousel-inner">
+<?php
+    $sql =  "SELECT * FROM tb_coverphotohomepage WHERE ToHome = 1";
+    $result = mysqli_query($conn, $sql);
+    $datas = array();
+    if(mysqli_num_rows($result) > 0 ){
+        while($row =mysqli_fetch_assoc($result)){
+        $datas[] = $row;
+        }
+    }
+
+    foreach($datas as $data){
+
+        echo '
+        <div class="carousel-item active">
+            <img src="assets/img/cms-image/cover-page/'.$data['img'].'" alt="Los Angeles" class="d-block" style="width:100%">
+            <div class="carousel-caption">
+                <h3>'.$data['title'].'</h3>
+                <p>'.$data['caption'].'</p>
+            </div>
+        </div>';
+        }?>
+
+
+
+</div>
+
+<!-- Left and right controls/icons -->
+<button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+  <span class="carousel-control-prev-icon"></span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+  <span class="carousel-control-next-icon"></span>
+</button>
+</div>
+
+
 
   <main id="main">
     
@@ -108,7 +202,181 @@
         </div>
 
       </div>
-    </section><!-- End About Us Section -->
+    </section>
+
+    <!-- End About Us Section -->
+
+
+<div class="cardss">
+
+    <div class="section-title" style="display: 
+            <?php
+            $sql =  "SELECT * FROM tb_cardHomepage WHERE ToHome = 1";
+            $result = mysqli_query($conn, $sql);
+            $datas = array();
+            if(mysqli_num_rows($result) > 0 ){
+                while($row =mysqli_fetch_assoc($result)){
+                    $datas[] = $row;
+                }
+            }
+
+            if($datas==null){
+                echo'none';
+                }else
+                {   
+                    echo'block';
+    
+                }
+ 
+        ?>
+    ;">
+        <h2>Cards and Images</h2>
+    </div>
+    <div class="shadow p-3 mb-5 bg-body rounded" style="text-align: center;display:
+        <?php
+            $sql =  "SELECT * FROM tb_cardHomepage WHERE ToHome = 1";
+            $result = mysqli_query($conn, $sql);
+            $datas = array();
+            if(mysqli_num_rows($result) > 0 ){
+                while($row =mysqli_fetch_assoc($result)){
+                    $datas[] = $row;
+                }
+            }
+            if($datas==null){
+                echo'none';
+                }else
+                {   
+                echo'block';
+    
+                }  
+        ?>
+     ;">
+        
+        <!-- grid layout -->
+        <div class="row" style="margin-top: 20px; display: flex; justify-content: center;"> 
+        
+          <?php
+            $sql =  "SELECT * FROM tb_cardHomepage WHERE ToHome = 1";
+            $result = mysqli_query($conn, $sql);
+            $datas = array();
+            if(mysqli_num_rows($result) > 0 ){
+                while($row =mysqli_fetch_assoc($result)){
+                    $datas[] = $row;
+                }
+            }
+
+                foreach($datas as $data){
+
+                echo '  <div class="card" style="width: 300px; margin: 20px; padding: 0;">
+                            <img class="card-img-top" src="assets/img/cms-image/card-and-imag/'. $data['img'] .' " style="height: 300px; width: 100%" alt="Card image">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                <form method="POST">
+                              
+                                <div class="article-content">
+                                
+                                <h3 class="card-title">'. $data['title'] .'</h3>
+                                <p class="card-excerpt">
+                                '. $data['caption'] .'
+                                </p>
+            
+                            </div>
+
+                             </form>
+                            </div>
+                        </div>
+                    ';
+            }
+
+            ?>      
+        </div>
+
+
+  </div>
+
+</div>
+
+  <!-- GRID CONTENT  BEGINING -->
+
+<div class="cardss">
+
+    <div class="section-title" style="display: 
+            <?php
+            $sql =  "SELECT * FROM tb_contenthomepage WHERE ToHome = 1";
+            $result = mysqli_query($conn, $sql);
+            $datas = array();
+            if(mysqli_num_rows($result) > 0 ){
+                while($row =mysqli_fetch_assoc($result)){
+                    $datas[] = $row;
+                }
+            }
+
+            if($datas==null){
+                echo'none';
+                }else
+                {   
+                    echo'block';
+    
+                }
+           
+   
+            
+        ?>
+    ;">
+        <h2>Grid Contents</h2>
+    </div>
+
+    <div class="shadow p-3 mb-5 bg-body rounded" style="text-align: center;display:
+        <?php
+            $sql =  "SELECT * FROM tb_contenthomepage WHERE ToHome = 1";
+            $result = mysqli_query($conn, $sql);
+            $datas = array();
+            if(mysqli_num_rows($result) > 0 ){
+                while($row =mysqli_fetch_assoc($result)){
+                    $datas[] = $row;
+                }
+            }
+            if($datas==null){
+                echo'none';
+                }else
+                {   
+                echo'block';
+    
+                }  
+        ?>
+     ;">
+        
+        <div class="row" style=" margin-top: 20px; display: flex;  justify-content: center;">
+
+
+
+          <?php
+            $sql =  "SELECT * FROM tb_contenthomepage WHERE ToHome = 1";
+            $result = mysqli_query($conn, $sql);
+            $datas = array();
+            if(mysqli_num_rows($result) > 0 ){
+              while($row =mysqli_fetch_assoc($result)){
+                  $datas[] = $row;
+              }
+            }
+            
+            foreach($datas as $data){
+            echo '
+            <div class="card border-secondary mb-'.$data['sizes'].'"  style="max-width: 18rem;margin:20px;     background-color:'.$data['color'].';">
+            <div class="card-header" style="backgound:'.$data['color'].';font-size: 20px;font-weight: bold;">'.$data['caption'].'</div>
+            <div class="card-body">
+            <h5 class="card-title style="margin-bottom:10px;backgound:'.$data['color'].'"></h5>
+            <p class="card-text">'.$data['caption'].'</p></div></div>
+            
+              ';
+            }
+
+          ?>
+
+
+        </div>
+  </div>
+  </div>
 
      <!-- ======= Contact Section ======= -->
      <section id="contact" class="contact">
@@ -248,7 +516,7 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
@@ -258,6 +526,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
 
 </body>
 
