@@ -165,17 +165,17 @@ if (isset($_SESSION['status'])) {
               </a>
             </li>
 
-                        <li class="nav-item">
-                            <a href="../config/logout.php" class="nav-link">
-                                <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <p>
-                                    Logout
+            <li class="nav-item">
+              <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#profilepicModal">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>
+                  Log Out
 
-                                </p>
-                            </a>
+                </p>
+              </a>
 
 
-                        </li>
+            </li>
           </ul>
         </nav>
 
@@ -185,6 +185,26 @@ if (isset($_SESSION['status'])) {
 
 
     <div class="content-wrapper">
+
+    <!--MODAL FOR LOGOUT-->
+    <div class="modal fade" id="profilepicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to logout?
+            </div>
+            <div class="modal-footer">
+              <a href="../config/logout.php"><button type="button" class="btn btn-primary">Yes</button></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--End Modal For Log Out-->
 
       <div class="content-header">
         <div class="container-fluid">
@@ -281,6 +301,10 @@ if (isset($_SESSION['status'])) {
 
   </div>
 
+  <!--Modal LogOut-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--Modal LogOut-->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
