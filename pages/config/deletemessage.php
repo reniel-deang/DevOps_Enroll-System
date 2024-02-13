@@ -2,8 +2,7 @@
 session_start();
 include "dbcon.php";
 
-
-$id = $_POST['id'];
+$id = $_GET['id'];
 $sql = "DELETE FROM tb_messages WHERE messageid= '$id'";
 
 
