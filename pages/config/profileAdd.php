@@ -81,12 +81,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submitProfile"])) {
         
         // Move the uploaded file to the specified directory
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
-            $_SESSION['alert']='<div class="alert alert-success" role="alert">The Logo "' . htmlspecialchars(basename($_FILES["image"]["name"])) . '" has been updated."</div>';
-            $sql = "UPDATE tb_profile SET img = '$image' WHERE id = 12";
-            if ($conn->query($sql) === TRUE) {
-            }
-            
-
+            echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+            $_SESSION['alert'] = '<div class="alert alert-success" role="alert">
+            THE LOGO HAS SUCCESSFULLY UPDATED</div>';
         } else {
             $_SESSION['alert'] = '<div class="alert alert-success" role="alert">Sorry, there was an error uploading your file.</div>';
         }
