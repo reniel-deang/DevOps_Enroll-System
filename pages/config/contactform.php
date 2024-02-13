@@ -1,6 +1,7 @@
 <?php
-include "dbcon.php";
 session_start();
+
+include "dbcon.php";
 
 if (isset($_POST['submit']))
 {
@@ -14,11 +15,17 @@ if (isset($_POST['submit']))
 
   if($send_message->execute())
   {
-    echo "Message sucessfully sended";
+   $_SESSION['send'] = '<div class="alert alert-success">
+   <strong>Success!</strong> Message sended successfully</a>.
+ </div>';
+ header('Location: ../../index.php');
   }
   else 
   {
-    echo "Not sucessfully sended";
+    $_SESSION['send'] = '<div class="alert alert-danger">
+   <strong>Error !</strong> Please try again</a>.
+ </div>';
+ header('Location: ../../index.php');
   }
 
 }

@@ -5,20 +5,24 @@
 include '../config/dbcon.php';
 
 if (isset($_SESSION['status'])) {
-    $total = "SELECT * FROM tb_studentinfo";
-    $result = $conn->query($total);
-    $showtotal = mysqli_num_rows($result);
+  $total = "SELECT * FROM tb_studentinfo";
+  $result = $conn->query($total);
+  $showtotal = mysqli_num_rows($result);
 
-    $enrolled = "SELECT * FROM tb_userdata WHERE verified = 1";
-    $result1 = $conn->query($enrolled);
-    $showenrolled = mysqli_num_rows($result1);
+  $enrolled = "SELECT * FROM tb_userdata WHERE verified = 1";
+  $result1 = $conn->query($enrolled);
+  $showenrolled = mysqli_num_rows($result1);
 
-    $pending = "SELECT * FROM tb_userdata WHERE verified = 0";
-    $result2 = $conn->query($pending);
-    $showpending = mysqli_num_rows($result2);
+  $pending = "SELECT * FROM tb_userdata WHERE verified = 0";
+  $result2 = $conn->query($pending);
+  $showpending = mysqli_num_rows($result2);
+
+  $messages = "SELECT * FROM tb_messages";
+  $result3 = $conn->query($messages);
+  $showmessages = mysqli_num_rows($result3);
 } else {
-    header('Location: ../../index.php');
-    session_unset();
+  header('Location: ../../index.php');
+  session_unset();
 }
 
 
@@ -235,7 +239,10 @@ if (isset($_SESSION['status'])) {
       </div>
 -->
 
-
+<?php if(isset($_SESSION['mdelete'])) {
+    echo $_SESSION['mdelete'];
+    unset($_SESSION['mdelete']);
+ }?>
             <section class="content">
                 <div class="shadow p-3 mb-5 bg-body round">
                     <div class="container mt-3">
@@ -278,29 +285,30 @@ if (isset($_SESSION['status'])) {
                                         <th>Sender</th>
                                         <th>Email Address</th>
                                         <th>Date and Time</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- The Modal -->
-                                    <form method="POST"></form>
-                                    <tr>
-                                        <td>23</td>
-                                        <td>mikorivera178@gmail.com</td>
-                                        <td>mikorivera178@gmail.com</td>
-                                        <td>2024-02-13 08:55:36</td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#myModal">
-                                                Open
-                                            </button>
-                                            <input type="hidden" name="id" value="23">
-                                            <input type="submit" class="btn btn-danger" value="Delete"
-                                                formaction="../config/deletemessage.php">
-                                        </td>
-                                    </tr>
-                                    <!-- The Modal -->
-
+                                <?php
+                  if ($result3->num_rows > 0) {
+                    // output data of each row
+                    while ($row = $result3->fetch_assoc()) {
+                      echo '<form><tr>
+                        <td>' . $row['messageid'] . '</td>
+                        <td>' . $row['name'] . '</td>
+                        <td>' . $row['email'] . '</td>
+                        <td>' . $row['date'] . '</td>
+                        <td>' . $row['subject'] . '</td>
+                        <td>' . $row['message'] . '</td>
+                        <td>
+                        <input type = "hidden" name = "id" value = "'.$row['messageid'].'" >
+                        <input type = "submit" class = "btn btn-danger" value = "Delete" formaction="../config/deletemessage.php?id='.$row['messageid'].'" ></td>
+                      </tr></form>';
+                    }
+                  }
+                  ?>
 
                                 </tbody>
                             </table>
