@@ -3,7 +3,7 @@
 session_start();
 include "dbcon.php";
 
-$image = $_POST['image'];
+$image = $_POST['img'];
 $title = $_POST['title'];
 $caption = $_POST['caption'];
 $id = $_POST['id'];
@@ -12,11 +12,11 @@ $sql = "UPDATE tb_coverphotohomepage SET img = '$image', title = '$title' , capt
 
 if ($conn->query($sql) === TRUE) {
     $_SESSION['alert'] = '<div class="alert alert-success" role="alert">
-    THE FILE '. $_FILES["image"]["name"] .' HAS BEEN UPLOADED.</div>';
+    THE COVER PHOTO '. $_FILES["image"]["name"] .' HAS BEEN UPLOADED.</div>';
     header("Location: ../dashboardcontent/ManageElem.php");
   
 } else {
-  echo "failed";
+  
   
 }
 ?>
