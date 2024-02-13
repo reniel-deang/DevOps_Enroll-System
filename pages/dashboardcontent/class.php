@@ -1,37 +1,14 @@
-<?php session_start(); ?>
+<?php session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
 include '../config/dbcon.php';
 
 
-$usersData = array(); // Array to store user data
-
-
-if (isset($_SESSION['status'])) {
-  $total = "SELECT tb_userdata.*, tb_studentinfo.* FROM tb_userdata
-    INNER JOIN tb_studentinfo ON tb_userdata.user_id = tb_studentinfo.user_id";
-  $result = $conn->query($total);
-
-  if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-      // Store each row in the $usersData array
-      $usersData[] = array(
-        'fname' => $row['fname'],
-        'mname' => $row['mname'],
-        'lname' => $row['lname'],
-        'username' => $row['username'],
-        'course' => $row['course'],
-        'year' => $row['year']
-      );
-    }
-  } else {
-    echo "No records found";
-  }
-} else {
-  header('Location: ../../index.php');
-  session_unset();
-}
+$list = "SELECT * FROM tb_studentinfo WHERE status = 1";
+$resultlist = $conn->query($list);
 
 
 ?>
@@ -42,8 +19,7 @@ if (isset($_SESSION['status'])) {
   <title>Management Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -112,8 +88,7 @@ if (isset($_SESSION['status'])) {
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
       <a href="#" class="brand-link">
-        <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png"
-          style="width: 60px">
+        <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png" style="width: 60px">
         <span class="brand-text font-weight-light">Administration</span>
       </a>
 
@@ -176,6 +151,15 @@ if (isset($_SESSION['status'])) {
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+                            <a href="inbox.php" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-envelope"></i>
+                                <p>
+                                    Inbox
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                        </li>
             <li class="nav-item" style="color:white; padding-top: 20px; padding-bottom: 20px;">
               _______________________________
 
@@ -193,6 +177,7 @@ if (isset($_SESSION['status'])) {
 
 
             </li>
+
 
           </ul>
         </nav>
@@ -224,8 +209,18 @@ if (isset($_SESSION['status'])) {
         </div>
       </div>
       <!--End Modal For Log Out-->
-
-
+      <?php 
+      if(isset($_SESSION['grade']))
+      {
+        echo $_SESSION['grade'];
+        unset($_SESSION['grade']);
+      }
+      else if(isset( $_SESSION['deletegrade']))
+      {
+        echo  $_SESSION['deletegrade'];
+        unset($_SESSION['grade']);
+      }
+      ?>
 
 
       <div class="content-header">
@@ -288,33 +283,41 @@ if (isset($_SESSION['status'])) {
 
 
             <table class="table table-bordered" style="margin-top: 20px;">
-              <tr>
-                <th>Name</th>
-                <th>Username</th>
-                <th>Course</th>
-                <th>Year</th>
-                <th>Sections</th>
-                <th>Actions</th>
-              </tr>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Course</th>
+                  <th>Year</th>
+                  <th>Sections</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                if ($resultlist->num_rows > 0) {
+                  // output data of each row
+                  while ($row = $resultlist->fetch_assoc()) {
+                    echo '<tr>
+                        <form action="grades.php" method="POST">
+                            <td><input type="hidden" value="' . $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . '" name="name">' . $row['fname'] . ' ' . $row['mname'] . ' ' . $row['lname'] . '</td>
+                            <td>
+                                <input type="hidden" value="' . $row['username'] . '" name="username">
+                                ' . $row['username'] . '
 
-
-
-              <!--Display the Contents -->
-              <?php
-              // Loop through the $usersData array to display each row
-              foreach ($usersData as $userData) {
-                echo "<tr>";
-                echo "<td>{$userData['fname']} {$userData['mname']} {$userData['lname']}</td>";
-                echo "<td>{$userData['username']}</td>";
-                echo "<td>{$userData['course']}</td>";
-                echo "<td>{$userData['year']}</td>";
-                echo "<td>A</td>";
-                echo '<td> <button type="button" class="btn btn-primary"><a href="grades.php" style="color:White;">View</a></button> </td>';
-
-                // Add more columns if needed
-                echo "</tr>";
-              }
-              ?>
+                            </td>
+                            <td> <input type="hidden" value="' . $row['course'] . '" name="course">' . $row['course'] . '</td>
+                            <td> <input type="hidden" value="' . $row['year'] . '" name="year">' . $row['year'] . '</td>
+                            <td> <input type="hidden" value="' . $row['section'] . '" name="section">' . $row['section'] . '</td>
+                            <input type="hidden" value="' . $row['user_id'] . '" name="user_id">
+                            <td> <input type="submit" class="btn btn-primary" value="Edit">
+                            <input type="submit" class="btn btn-success" value="Show" formaction = "showgrades.php"></td>
+                        </form>
+                    </tr>';
+                  }
+                } 
+                ?>
+              </tbody>
 
 
             </table>
@@ -353,12 +356,8 @@ if (isset($_SESSION['status'])) {
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!--Modal LogOut-->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
-    integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     $.widget.bridge('uibutton', $.ui.button)
   </script>

@@ -1,10 +1,22 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
 include '../config/dbcon.php';
 
+if (!isset($_SESSION['status'])) {
+  header('Location: ../../index.php');
+}
 
+$id = $_SESSION['status'];
 
+$sql = "SELECT * FROM tb_studentinfo WHERE user_id = $id ";
+$result = $conn->query($sql);
+
+$row = $result->fetch_assoc();
+
+$sql1 = "SELECT * FROM tb_grades WHERE user_id = $id ";
+$result1 = $conn->query($sql1);
 
 ?>
 
@@ -14,8 +26,7 @@ include '../config/dbcon.php';
   <title>User Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -84,8 +95,7 @@ include '../config/dbcon.php';
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
       <a href="#" class="brand-link">
-        <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png"
-          style="width: 60px">
+        <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png" style="width: 60px">
         <span class="brand-text font-weight-light">University</span>
       </a>
 
@@ -208,15 +218,20 @@ include '../config/dbcon.php';
               <div class="row">
                 <div class="col-md-6">
 
-                  <p><strong> Name: </strong><!--Echo--></p>
-                  <p><strong>Course: </strong><!--Echo--></p>
-                  <p><strong>Status:</strong> <span style="padding: 10px" class="badge bg-success"><!--Echo--></span>
+                  <p><strong> Name: </strong><?php echo $row['fname'].' '.$row['mname'].' '.$row['lname']; ?></p>
+                  <p><strong>Course: </strong><?php echo $row['course']; ?></p>
+                  <p><strong>Status:</strong> <span style="padding: 10px" class="badge bg-success"><?php 
+                  if($row['status'] == 1)
+                  {
+                    echo "ENROLLED";
+                  }
+                  ?></span>
                   </p>
 
                 </div>
                 <div class="col-md-6">
-                  <p><strong>Year: </strong><!--Echo--></p>
-                  <p><strong>Section: </strong><!--Echo--></p>
+                  <p><strong>Year: </strong><?php echo $row['year']; ?></p>
+                  <p><strong>Section: </strong><?php echo $row['section']; ?></p>
 
                 </div>
               </div>
@@ -235,22 +250,26 @@ include '../config/dbcon.php';
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <?php 
+                    if ($result1->num_rows > 0) {
+                      // output data of each row
+                      while($row = $result1->fetch_assoc()) {
+                        echo '<tr>
 
-                      <td><!--Echo--></td>
-                      <td><!--Echo--></td>
-                      <td><!--Echo--></td>
-                      <td><!--Echo--></td>
-                      <td><!--Echo--></td>
-                      <td><!--Echo--></td>
-                      <td>
-                        <div style="color: ">
-                          <!--Echo-->
-                        </div>
-                      </td>
-
-
-                    </tr>
+                        <td>'.$row['subject'].'</td>
+                        <td>'.$row['instructor'].'</td>
+                        <td>'.$row['prelim'].'</td>
+                        <td>'.$row['midterm'].'</td>
+                        <td>'.$row['finals'].'</td>
+                        <td>'.$row['average'].'</td>
+                        <td>'.$row['remarks'].'</td>
+  
+  
+                      </tr>';
+                      }
+                    }
+                    ?>
+                    
                   </tbody>
                 </table>
               </div>
@@ -285,12 +304,8 @@ include '../config/dbcon.php';
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!--Modal LogOut-->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
-    integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     $.widget.bridge('uibutton', $.ui.button)
   </script>

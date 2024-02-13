@@ -268,6 +268,7 @@ if (isset($_SESSION['status'])) {
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
+<<<<<<< HEAD
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a href="message.php" class="nav-link">
@@ -276,6 +277,35 @@ if (isset($_SESSION['status'])) {
                   </a>
                 </li>
               </ul>
+=======
+            </li>
+            <li class="nav-item">
+                            <a href="inbox.php" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-envelope"></i>
+                                <p>
+                                    Inbox
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                        </li>
+
+            <li class="nav-item" style="color:white; padding-top: 20px; padding-bottom: 20px;">
+              _______________________________
+
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#profilepicModal">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>
+                  Log Out
+
+                </p>
+              </a>
+
+
+>>>>>>> c0e393027a25f2bacd6cab7858f666decf7a71cb
             </li>
           </ul>
         </nav>
@@ -413,6 +443,7 @@ if (isset($_SESSION['status'])) {
                   </h3>
 
                   <p>Total Students</p>
+<<<<<<< HEAD
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
@@ -421,6 +452,8 @@ if (isset($_SESSION['status'])) {
               </div>
             </div>
                   <p>Applications</p>
+=======
+>>>>>>> c0e393027a25f2bacd6cab7858f666decf7a71cb
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>

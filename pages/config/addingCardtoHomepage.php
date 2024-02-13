@@ -1,12 +1,21 @@
 <?php
 session_start();
 include "dbcon.php";
-$image = $_POST['image'];
+
+
+$image = $_POST['img'];
 $title = $_POST['title'];
 $caption = $_POST['caption'];
 $id = $_POST['id'];
+$Tohome = $_POST['tohome'];
 
-$sql = "UPDATE tb_cardHomepage SET img = '$image', title = '$title' , caption = '$caption' , ToHome = 1 WHERE id = $id";
+if($Tohome == 0){
+  $Tohome = 1;
+}else{
+  $Tohome = 0;
+
+}
+$sql = "UPDATE tb_cardHomepage SET img = '$image', title = '$title' , caption = '$caption' , ToHome = $Tohome WHERE id = $id";
 
 if ($conn->query($sql) === TRUE) {
     $_SESSION['alert'] = '<div class="alert alert-success" role="alert">
@@ -14,6 +23,7 @@ if ($conn->query($sql) === TRUE) {
     header("Location: ../dashboardcontent/ManageElem.php");
   
 } else {
+  
   
 }
 

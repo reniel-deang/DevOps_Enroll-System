@@ -46,7 +46,7 @@ if (isset($_SESSION['status'])) {
 
 <style>
     body {
-      background-image: url('../assets/img/cta-bg.jpg'); /* Set the path to your background image */
+     
       background-size: cover;
       background-position: center;
     }
