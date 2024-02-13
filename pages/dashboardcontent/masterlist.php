@@ -18,7 +18,8 @@ $row = $resultapproval->fetch_assoc();
 
     <!-- Google Font: Source Sans Pro -->
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -54,7 +55,8 @@ $row = $resultapproval->fetch_assoc();
                     <div class="navbar-search-block">
                         <form class="form-inline">
                             <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                                    aria-label="Search">
                                 <div class="input-group-append">
                                     <button class="btn btn-navbar" type="submit">
                                         <i class="fas fa-search"></i>
@@ -74,7 +76,7 @@ $row = $resultapproval->fetch_assoc();
                     </a>
                 </li>
 
-            
+
 
 
             </ul>
@@ -85,7 +87,8 @@ $row = $resultapproval->fetch_assoc();
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
             <a href="#" class="brand-link">
-            <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png" style="width: 60px">
+                <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png"
+                    style="width: 60px">
                 <span class="brand-text font-weight-light">Administration</span>
             </a>
 
@@ -95,7 +98,8 @@ $row = $resultapproval->fetch_assoc();
                 <br>
                 <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
+                            aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-sidebar">
                                 <i class="fas fa-search fa-fw"></i>
@@ -106,7 +110,8 @@ $row = $resultapproval->fetch_assoc();
 
 
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
                         <li class="nav-item">
                             <a href="dashboard.php" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -148,22 +153,23 @@ $row = $resultapproval->fetch_assoc();
                             </a>
                         </li>
                         <li class="nav-item" style="color:white; padding-top: 20px; padding-bottom: 20px;">
-              _______________________________
+                            _______________________________
 
-              </a>
-            </li>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
-                            <a href="../config/logout.php" class="nav-link">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#profilepicModal">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>
-                                    Logout
+                                    Log Out
 
                                 </p>
                             </a>
 
 
                         </li>
+
                     </ul>
                 </nav>
 
@@ -172,6 +178,28 @@ $row = $resultapproval->fetch_assoc();
         </aside>
 
         <div class="content-wrapper">
+            <!--MODAL FOR LOGOUT-->
+            <div class="modal fade" id="profilepicModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal"
+                                aria-label="Close">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to logout?
+                        </div>
+                        <div class="modal-footer">
+                            <a href="../config/logout.php"><button type="button"
+                                    class="btn btn-primary">Yes</button></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--End Modal For Log Out-->
 
             <!--
 <div class="content-header">
@@ -203,8 +231,11 @@ $row = $resultapproval->fetch_assoc();
 
                                 <!-- Modal Header -->
                                 <div class="modal-header">
-                                    <h4 class="modal-title"><?php echo $row['fname'] . " " . $row['mname'] . " " . $row['lname']; ?></h4>
-                                    <a href="enrollmentsystem.php"><button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="width: 100px;">Go Back</button></a>
+                                    <h4 class="modal-title">
+                                        <?php echo $row['fname'] . " " . $row['mname'] . " " . $row['lname']; ?>
+                                    </h4>
+                                    <a href="enrollmentsystem.php"><button type="button" class="btn btn-primary"
+                                            data-bs-dismiss="modal" style="width: 100px;">Go Back</button></a>
                                 </div>
 
 
@@ -223,35 +254,46 @@ $row = $resultapproval->fetch_assoc();
                                                         <thead class="thead-dark">
                                                             <tr>
                                                                 <th>STATUS</th>
-                                                                <th><?php
+                                                                <th>
+                                                                    <?php
 
                                                                     if ($row['status'] == 1) {
                                                                         echo "ENROLLED";
-                                                                    } ?></th>
+                                                                    } ?>
+                                                                </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>
                                                                 <td>Username</td>
-                                                                <td><input class="form-control" name="username" type="text" value="<?php echo $row['username']; ?>">
+                                                                <td><input class="form-control" name="username"
+                                                                        type="text"
+                                                                        value="<?php echo $row['username']; ?>">
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>First Name</td>
-                                                                <td> <input class="form-control" type="text" name="fname" value="<?php echo $row['fname']; ?>"></td>
+                                                                <td> <input class="form-control" type="text"
+                                                                        name="fname"
+                                                                        value="<?php echo $row['fname']; ?>"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Middle Name</td>
-                                                                <td><input class="form-control" type="text" name="mname" value="<?php echo $row['mname']; ?>"></td>
+                                                                <td><input class="form-control" type="text" name="mname"
+                                                                        value="<?php echo $row['mname']; ?>"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Last Name</td>
-                                                                <td><input class="form-control" type="text" name="lname" value="<?php echo $row['lname']; ?>"></td>
+                                                                <td><input class="form-control" type="text" name="lname"
+                                                                        value="<?php echo $row['lname']; ?>"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Sex</td>
                                                                 <td> <select class="form-control" name="sex">
-                                                                        <option value="<?php echo $row['gender']; ?>" selected=""><?php echo $row['gender']; ?></option>
+                                                                        <option value="<?php echo $row['gender']; ?>"
+                                                                            selected="">
+                                                                            <?php echo $row['gender']; ?>
+                                                                        </option>
                                                                         <option value="Female">Female</option>
                                                                         <option value="Male">Male</option>
                                                                     </select></td>
@@ -259,16 +301,25 @@ $row = $resultapproval->fetch_assoc();
                                                             <tr>
                                                                 <td>Course</td>
                                                                 <td> <select class="form-control" name="course">
-                                                                        <option value="<?php echo $row['course']; ?>" selected=""><?php echo $row['course']; ?></option>
-                                                                        <option value="BS Computer Engineering">BS Computer Engineering</option>
-                                                                        <option value="BS Information Technology">BS Information Technology</option>
-                                                                        <option value="BS Computer Science">BS Computer Science</option>
+                                                                        <option value="<?php echo $row['course']; ?>"
+                                                                            selected="">
+                                                                            <?php echo $row['course']; ?>
+                                                                        </option>
+                                                                        <option value="BS Computer Engineering">BS
+                                                                            Computer Engineering</option>
+                                                                        <option value="BS Information Technology">BS
+                                                                            Information Technology</option>
+                                                                        <option value="BS Computer Science">BS Computer
+                                                                            Science</option>
                                                                     </select></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Year</td>
                                                                 <td><select class="form-control" name="year">
-                                                                        <option value="<?php echo $row['year']; ?>" selected=""><?php echo $row['year']; ?></option>
+                                                                        <option value="<?php echo $row['year']; ?>"
+                                                                            selected="">
+                                                                            <?php echo $row['year']; ?>
+                                                                        </option>
                                                                         <option value="I">I</option>
                                                                         <option value="II">II</option>
                                                                         <option value="III">III</option>
@@ -278,7 +329,9 @@ $row = $resultapproval->fetch_assoc();
                                                             <tr>
                                                                 <td>Section</td>
                                                                 <td> <select class="form-control" name="section">
-                                                                        <option value="<?php echo $row['section']; ?>"><?php echo $row['section']; ?></option>
+                                                                        <option value="<?php echo $row['section']; ?>">
+                                                                            <?php echo $row['section']; ?>
+                                                                        </option>
                                                                         <option value="A">A</option>
                                                                         <option value="B">B</option>
                                                                         <option value="C">C</option>
@@ -288,59 +341,87 @@ $row = $resultapproval->fetch_assoc();
                                                             </tr>
                                                             <tr>
                                                                 <td>Birthdate</td>
-                                                                <td><input class="form-control" type="date" name="birthdate" value="<?php echo $row['birthday']; ?>"></td>
+                                                                <td><input class="form-control" type="date"
+                                                                        name="birthdate"
+                                                                        value="<?php echo $row['birthday']; ?>"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Home Address</td>
-                                                                <td> <input class="form-control" type="text" name="homeAddress" value="<?php echo $row['address']; ?>"></td>
+                                                                <td> <input class="form-control" type="text"
+                                                                        name="homeAddress"
+                                                                        value="<?php echo $row['address']; ?>"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Phone Number</td>
-                                                                <td> <input class="form-control" type="text" name="phoneNumber" value="<?php echo $row['num']; ?>"></td>
+                                                                <td> <input class="form-control" type="text"
+                                                                        name="phoneNumber"
+                                                                        value="<?php echo $row['num']; ?>"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Guardian Name</td>
-                                                                <td> <input class="form-control" type="text" name="guardianName" value="<?php echo $row['guardian']; ?>"></td>
+                                                                <td> <input class="form-control" type="text"
+                                                                        name="guardianName"
+                                                                        value="<?php echo $row['guardian']; ?>"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Guardian Phone</td>
-                                                                <td> <input class="form-control" type="text" name="guardianPhone" value="<?php echo $row['guardian_number']; ?>"></td>
+                                                                <td> <input class="form-control" type="text"
+                                                                        name="guardianPhone"
+                                                                        value="<?php echo $row['guardian_number']; ?>">
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Guardian Address</td>
-                                                                <td> <input class="form-control" type="text" name="guardianAddress" value="<?php echo $row['guardian_address']; ?>"></td>
+                                                                <td> <input class="form-control" type="text"
+                                                                        name="guardianAddress"
+                                                                        value="<?php echo $row['guardian_address']; ?>">
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Elementary School</td>
-                                                                <td> <input class="form-control" type="text" name="elementary_school" value="<?php echo $row['elem']; ?>"></td>
+                                                                <td> <input class="form-control" type="text"
+                                                                        name="elementary_school"
+                                                                        value="<?php echo $row['elem']; ?>"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Elementary Graduation Year</td>
-                                                                <td> <input class="form-control" type="number" min="1970" name="elementary_graduation_year" value="<?php echo $row['elem_year']; ?>">
+                                                                <td> <input class="form-control" type="number"
+                                                                        min="1970" name="elementary_graduation_year"
+                                                                        value="<?php echo $row['elem_year']; ?>">
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Junior High School</td>
-                                                                <td> <input class="form-control" type="text" name="junior_high_school" value="<?php echo $row['jhs']; ?>">
+                                                                <td> <input class="form-control" type="text"
+                                                                        name="junior_high_school"
+                                                                        value="<?php echo $row['jhs']; ?>">
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Junior High Graduation Year</td>
-                                                                <td> <input class="form-control" type="number" min="1970" name="junior_high_graduation_year" value="<?php echo $row['jhs_year']; ?>">
+                                                                <td> <input class="form-control" type="number"
+                                                                        min="1970" name="junior_high_graduation_year"
+                                                                        value="<?php echo $row['jhs_year']; ?>">
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Senior High School</td>
-                                                                <td> <input class="form-control" type="text" name="senior_high_school" value="<?php echo $row['shs']; ?>">
+                                                                <td> <input class="form-control" type="text"
+                                                                        name="senior_high_school"
+                                                                        value="<?php echo $row['shs']; ?>">
                                                 </div>
                                                 </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Senior High Graduation Year</td>
-                                                    <td> <input class="form-control" type="number" min="1970" name="senior_high_graduation_year" value="<?php echo $row['shs_year']; ?>">
+                                                    <td> <input class="form-control" type="number" min="1970"
+                                                            name="senior_high_graduation_year"
+                                                            value="<?php echo $row['shs_year']; ?>">
                                                     </td>
-                                                    <input type="hidden" value="<?php echo $row['student_id']; ?>" name="id">
-                                                    <input type="hidden" value="<?php echo $row['user_id']; ?>" name="userid">
+                                                    <input type="hidden" value="<?php echo $row['student_id']; ?>"
+                                                        name="id">
+                                                    <input type="hidden" value="<?php echo $row['user_id']; ?>"
+                                                        name="userid">
                                                 </tr>
                                                 </tbody>
                                                 </table>
@@ -348,8 +429,10 @@ $row = $resultapproval->fetch_assoc();
                                         </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="submit" class="btn btn-success" value="Update" formaction="../config/updatemaster.php">
-                                    <input type="submit" class="btn btn-danger" value="Drop" formaction="../config/dropstudent.php">
+                                    <input type="submit" class="btn btn-success" value="Update"
+                                        formaction="../config/updatemaster.php">
+                                    <input type="submit" class="btn btn-danger" value="Drop"
+                                        formaction="../config/dropstudent.php">
 
                                 </div>
 
@@ -385,9 +468,18 @@ $row = $resultapproval->fetch_assoc();
 
     </div>
 
+    <!--Modal LogOut-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--Modal LogOut-->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+        integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
