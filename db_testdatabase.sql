@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2024 at 11:41 AM
+-- Generation Time: Feb 13, 2024 at 09:57 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -35,6 +35,14 @@ CREATE TABLE `tb_cardhomepage` (
   `ToHome` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tb_cardhomepage`
+--
+
+INSERT INTO `tb_cardhomepage` (`id`, `img`, `title`, `caption`, `ToHome`) VALUES
+(32, 'nel2.png', 'Nelliel', 'Sexy Nelliel', 1),
+(33, 'Power3.png', 'Power', 'Power', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +57,14 @@ CREATE TABLE `tb_contenthomepage` (
   `color` varchar(500) NOT NULL,
   `ToHome` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_contenthomepage`
+--
+
+INSERT INTO `tb_contenthomepage` (`id`, `sizes`, `title`, `caption`, `color`, `ToHome`) VALUES
+(19, 4, 'Announcement', 'Di pa kame tapos depota', '#db0000', 1),
+(20, 4, 'Ang Gago', 'Ayaw kona', '#ffffff', 1);
 
 -- --------------------------------------------------------
 
@@ -73,6 +89,34 @@ CREATE TABLE `tb_coverphotohomepage` (
   `title` varchar(500) NOT NULL,
   `caption` varchar(500) NOT NULL,
   `ToHome` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_coverphotohomepage`
+--
+
+INSERT INTO `tb_coverphotohomepage` (`id`, `img`, `title`, `caption`, `ToHome`) VALUES
+(49, 'Power2.jpg', 'Power', 'Hehe', 1),
+(50, 'Power3.png', 'Power', 'Hehe', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_grades`
+--
+
+CREATE TABLE `tb_grades` (
+  `grades_id` int(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `instructor` varchar(255) NOT NULL,
+  `course` varchar(255) NOT NULL,
+  `year` varchar(255) NOT NULL,
+  `prelim` double NOT NULL,
+  `midterm` double NOT NULL,
+  `finals` double NOT NULL,
+  `average` double NOT NULL,
+  `remarks` varchar(255) NOT NULL,
+  `user_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -122,13 +166,6 @@ CREATE TABLE `tb_schedule` (
   `end_time` varchar(255) NOT NULL,
   `slot` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_schedule`
---
-
-INSERT INTO `tb_schedule` (`shed_id`, `date`, `day`, `start_time`, `end_time`, `slot`) VALUES
-(4, '2024-02-13', 'Tuesday', '05:58 PM', '03:58 AM', 5);
 
 -- --------------------------------------------------------
 
@@ -188,13 +225,6 @@ CREATE TABLE `tb_studentinfo` (
   `user_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tb_studentinfo`
---
-
-INSERT INTO `tb_studentinfo` (`student_id`, `username`, `appointment_date`, `time`, `elem`, `elem_year`, `jhs`, `jhs_year`, `shs`, `shs_year`, `fname`, `mname`, `lname`, `gender`, `course`, `year`, `section`, `birthday`, `address`, `num`, `guardian`, `guardian_number`, `guardian_address`, `status`, `user_id`) VALUES
-(28, '', '', '', 'San Isidro Elementary School', '2015', 'San Isidro High School', '2019', 'Holy Cross College', '2021', 'Reniel', 'Ostia', 'Deang', 'Male', 'BS Computer Science', 'III', 'A', '2002-08-08', '508 San Isidro Sta.ana Pampanga', '09555328922', 'Anelyn Deang', '09555328922', '508 San Isidro Sta. Ana Pampanga', 1, 29);
-
 -- --------------------------------------------------------
 
 --
@@ -229,8 +259,7 @@ CREATE TABLE `tb_userdata` (
 --
 
 INSERT INTO `tb_userdata` (`user_id`, `username`, `pass`, `email`, `verified`) VALUES
-(1, 'Admin@admin', 'admin', '', 3),
-(29, 'Nielo@student', 'grimlocker08', 'rxthespankengine@gmail.com', 1);
+(1, 'Admin@admin', 'admin', '', 3);
 
 --
 -- Indexes for dumped tables
@@ -259,6 +288,13 @@ ALTER TABLE `tb_courses`
 --
 ALTER TABLE `tb_coverphotohomepage`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_grades`
+--
+ALTER TABLE `tb_grades`
+  ADD PRIMARY KEY (`grades_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `tb_messages`
@@ -311,13 +347,13 @@ ALTER TABLE `tb_userdata`
 -- AUTO_INCREMENT for table `tb_cardhomepage`
 --
 ALTER TABLE `tb_cardhomepage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `tb_contenthomepage`
 --
 ALTER TABLE `tb_contenthomepage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tb_courses`
@@ -329,7 +365,13 @@ ALTER TABLE `tb_courses`
 -- AUTO_INCREMENT for table `tb_coverphotohomepage`
 --
 ALTER TABLE `tb_coverphotohomepage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT for table `tb_grades`
+--
+ALTER TABLE `tb_grades`
+  MODIFY `grades_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tb_messages`
@@ -347,7 +389,7 @@ ALTER TABLE `tb_profile`
 -- AUTO_INCREMENT for table `tb_schedule`
 --
 ALTER TABLE `tb_schedule`
-  MODIFY `shed_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `shed_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tb_schoolprofile`
@@ -359,23 +401,29 @@ ALTER TABLE `tb_schoolprofile`
 -- AUTO_INCREMENT for table `tb_studentinfo`
 --
 ALTER TABLE `tb_studentinfo`
-  MODIFY `student_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `student_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `tb_subject`
 --
 ALTER TABLE `tb_subject`
-  MODIFY `subject_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `subject_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `tb_userdata`
 --
 ALTER TABLE `tb_userdata`
-  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `user_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `tb_grades`
+--
+ALTER TABLE `tb_grades`
+  ADD CONSTRAINT `tb_grades_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tb_studentinfo` (`user_id`);
 
 --
 -- Constraints for table `tb_studentinfo`
