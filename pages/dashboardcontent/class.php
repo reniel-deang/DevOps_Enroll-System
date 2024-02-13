@@ -138,62 +138,45 @@ if (isset($_SESSION['status'])) {
 
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item">
-              <a href="#" class="nav-link">
+            <li class="nav-item menu-open">
+              <a href="dashboard.php" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="dashboard.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Main Dashboard</p>
-                  </a>
-                </li>
-              </ul>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="ManageElem.php" class="nav-link">
                 <i class="nav-icon fas fa-edit"></i>
                 <p>
                   Manage Content
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="ManageElem.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>General Elements</p>
-                  </a>
-                </li>
-              </ul>
+              
             </li>
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>
+
+            <li class="nav-item">
+              <a href="enrollmentsystem.php" class="nav-link">
+                <i class="nav-icon fas fa-edit"></i>
                 <p>
-                  Manage Students
+                Enrollment Sytem
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>General</p>
+              
+            </li>
 
-                  </a>
-
-                  <a href="class.php" class="nav-link active">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Grades</p>
-                  </a>
-                </li>
-              </ul>
+            <li class="nav-item">
+              <a href="class.php" class="nav-link active">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                    Class List
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
             </li>
           </ul>
         </nav>
@@ -221,47 +204,47 @@ if (isset($_SESSION['status'])) {
       <section class="content">
         <div class="container-fluid">
 
-          <div class="row" >
+          <div class="row">
 
-  <div class="col-md-2 custom-col">
-    <label for="course-select" class="form-label">Course</label>
-    <select name="course" class="form-select custom-select" id="course-select" required="">
-      <option selected="">BS Computer Engineering</option>
-      <option value="BS Computer Engineering">BS Computer Engineering</option>
-      <option value="BS Computer Science">BS Computer Science</option>
-      <option value="BS Information Technology">BS Information Technology</option>
-    </select>
-  </div>
+            <div class="col-md-2 custom-col">
+              <label for="course-select" class="form-label">Course</label>
+              <select name="course" class="form-select custom-select" id="course-select" required="">
+                <option selected="">BS Computer Engineering</option>
+                <option value="BS Computer Engineering">BS Computer Engineering</option>
+                <option value="BS Computer Science">BS Computer Science</option>
+                <option value="BS Information Technology">BS Information Technology</option>
+              </select>
+            </div>
 
-  <div class="col-md-2 custom-col">
-    <label for="year-select" class="form-label">Year</label>
-    <select name="year" class="form-select custom-select" id="year-select" required="">
-      <option selected="">I</option>
-      <option value="I">I</option>
-      <option value="II">II</option>
-      <option value="III">III</option>
-      <option value="IV">IV</option>
-    </select>
-  </div>
+            <div class="col-md-2 custom-col">
+              <label for="year-select" class="form-label">Year</label>
+              <select name="year" class="form-select custom-select" id="year-select" required="">
+                <option selected="">I</option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+              </select>
+            </div>
 
-  <div class="col-md-2 custom-col">
-    <label for="section-select" class="form-label">Section</label>
-    <select name="section" class="form-select custom-select" id="section-select" required="">
-      <option selected="">A</option>
-      <option value="A">A</option>
-      <option value="B">B</option>
-      <option value="C">C</option>
-      <option value="D">D</option>
-    </select>
-  </div>
+            <div class="col-md-2 custom-col">
+              <label for="section-select" class="form-label">Section</label>
+              <select name="section" class="form-select custom-select" id="section-select" required="">
+                <option selected="">A</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+              </select>
+            </div>
 
-  <div class="col-md-2 custom-col">
-    <label for="submit-btn" class="form-label" style="visibility: hidden;">Hidden Label</label>
-    <input type="submit" value="Submit" class="btn btn-primary custom-btn">
-  </div>
+            <div class="col-md-2 custom-col">
+              <label for="submit-btn" class="form-label" style="visibility: hidden;">Hidden Label</label>
+              <input type="submit" value="Submit" class="btn btn-primary custom-btn">
+            </div>
 
 
-            
+
 
 
             <table class="table table-bordered" style="margin-top: 20px;">

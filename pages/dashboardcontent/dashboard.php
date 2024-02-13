@@ -31,7 +31,8 @@ if (isset($_SESSION['status'])) {
   <title>Management Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -118,67 +119,50 @@ if (isset($_SESSION['status'])) {
         </div>
 
 
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="dashboard.php" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Main Dashboard</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Manage Content
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="ManageElem.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>General Elements</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
-              <p>
-                Manage Students
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>General</p>
-                  
-                </a>
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item menu-open">
+              <a href="dashboard.php" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Dashboard
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="ManageElem.php" class="nav-link">
+                <i class="nav-icon fas fa-edit"></i>
+                <p>
+                  Manage Content
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              
+            </li>
 
-                <a href="class.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Grades</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
+            <li class="nav-item">
+              <a href="enrollmentsystem.php" class="nav-link">
+                <i class="nav-icon fas fa-edit"></i>
+                <p>
+                Enrollment Sytem
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              
+            </li>
+
+            <li class="nav-item">
+              <a href="class.php" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                    Class List
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+            </li>
+          </ul>
+        </nav>
 
       </div>
 
@@ -207,7 +191,9 @@ if (isset($_SESSION['status'])) {
 
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3><?php echo $showtotal; ?></h3>
+                  <h3>
+                    <?php echo $showtotal; ?>
+                  </h3>
 
                   <p>Applications</p>
                 </div>
@@ -222,7 +208,9 @@ if (isset($_SESSION['status'])) {
 
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3><?php echo $showenrolled; ?></sup></h3>
+                  <h3>
+                    <?php echo $showenrolled; ?></sup>
+                  </h3>
 
                   <p>Enrolled</p>
                 </div>
@@ -237,7 +225,9 @@ if (isset($_SESSION['status'])) {
 
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3><?php echo $showpending; ?></h3>
+                  <h3>
+                    <?php echo $showpending; ?>
+                  </h3>
 
                   <p>Pending</p>
                 </div>
@@ -280,8 +270,12 @@ if (isset($_SESSION['status'])) {
   </div>
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+    integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     $.widget.bridge('uibutton', $.ui.button)
   </script>

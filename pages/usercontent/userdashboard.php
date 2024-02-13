@@ -14,7 +14,8 @@ include '../config/dbcon.php';
   <title>User Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -84,7 +85,8 @@ include '../config/dbcon.php';
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
       <a href="#" class="brand-link">
-      <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png" style="width: 60px">
+        <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png"
+          style="width: 60px">
         <span class="brand-text font-weight-light">University</span>
       </a>
 
@@ -92,61 +94,61 @@ include '../config/dbcon.php';
       <div class="sidebar">
 
         <br>
-        
 
 
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          <li class="nav-item menu-open">
-            <a href="userdashboard.php" class="nav-link">
-              <i class="nav-icon fas fa-th-large"></i>
-              <p>
-                Dashboard
-                
-              </p>
-            </a>
-            
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          </li>
-          <li class="nav-item">
-            <a href="userprofile.php" class="nav-link">
-              <i class="nav-icon fas fa fa-user"></i>
-              <p>
-                Profile
-                
-              </p>
-            </a>
-            
+            <li class="nav-item menu-open">
+              <a href="userdashboard.php" class="nav-link">
+                <i class="nav-icon fas fa-th-large"></i>
+                <p>
+                  Dashboard
 
-          </li>
-          <li class="nav-item">
-            <a href="egrades.php" class="nav-link">
-              <i class="nav-icon fas fa fa-book"></i>
-              <p>
-                E-Grades
-                
-              </p>
-            </a>
-            
-            
-          </li>
-
-          <li class="nav-item">
-            <a href="../config/logout.php" class="nav-link">
-              <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>
-                Logout
-                
-              </p>
-            </a>
-            
-            
-          </li>
+                </p>
+              </a>
 
 
-        </ul>
-      </nav>
+            </li>
+            <li class="nav-item">
+              <a href="userprofile.php" class="nav-link">
+                <i class="nav-icon fas fa fa-user"></i>
+                <p>
+                  Profile
+
+                </p>
+              </a>
+
+
+            </li>
+            <li class="nav-item">
+              <a href="egrades.php" class="nav-link">
+                <i class="nav-icon fas fa fa-book"></i>
+                <p>
+                  E-Grades
+
+                </p>
+              </a>
+
+
+            </li>
+
+            <li class="nav-item">
+              <a href="../config/logout.php" class="nav-link">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>
+                  Logout
+
+                </p>
+              </a>
+
+
+            </li>
+
+
+          </ul>
+        </nav>
 
       </div>
 
@@ -155,7 +157,7 @@ include '../config/dbcon.php';
 
     <div class="content-wrapper">
 
-    <!--  
+      <!--  
     <div class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
@@ -169,17 +171,17 @@ include '../config/dbcon.php';
 
 
       <section class="content">
-      
-      <div class="col-sm p-3 min-vh-100">
-<div class="shadow p-3 mb-5 bg-body round">
-       <div class="container mt-3 text-center">
-							<h1> East Bridge College Student Portal</h1>
-				<h5> Welcome to East Bridge College School Management System.</h5>
-			
-	   
-	   </div>
-	 </div>
-</div>
+
+        <div class="col-sm p-3 min-vh-100">
+          <div class="shadow p-3 mb-5 bg-body round">
+            <div class="container mt-3 text-center">
+              <h1> East Bridge College Student Portal</h1>
+              <h5> Welcome to East Bridge College School Management System.</h5>
+
+
+            </div>
+          </div>
+        </div>
 
 
       </section>
@@ -197,12 +199,16 @@ include '../config/dbcon.php';
     <aside class="control-sidebar control-sidebar-dark">
 
     </aside>
-    
+
   </div>
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+    integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     $.widget.bridge('uibutton', $.ui.button)
   </script>

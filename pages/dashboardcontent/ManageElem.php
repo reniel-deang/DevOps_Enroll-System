@@ -42,7 +42,8 @@ if (isset($_SESSION['status'])) {
   <title>Management Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -131,61 +132,45 @@ if (isset($_SESSION['status'])) {
 
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item ">
-              <a href="#" class="nav-link">
+            <li class="nav-item menu-open">
+              <a href="dashboard.php" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="dashboard.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Main Dashboard</p>
-                  </a>
-                </li>
-              </ul>
             </li>
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
+            <li class="nav-item">
+              <a href="ManageElem.php" class="nav-link active">
                 <i class="nav-icon fas fa-edit"></i>
                 <p>
                   Manage Content
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="ManageElem.php" class="nav-link active">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>General Elements</p>
-                  </a>
-                </li>
-              </ul>
+              
             </li>
+
             <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
+              <a href="enrollmentsystem.php" class="nav-link">
+                <i class="nav-icon fas fa-edit"></i>
                 <p>
-                  Manage Students
+                Enrollment Sytem
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>General</p>
-                  </a>
-                  <a href="class.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Grades</p>
-                </a>
+              
+            </li>
 
-                </li>
-              </ul>
+            <li class="nav-item">
+              <a href="class.php" class="nav-link">
+                <i class="nav-icon fas fa-table"></i>
+                <p>
+                    Class List
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
             </li>
           </ul>
         </nav>
@@ -211,7 +196,7 @@ if (isset($_SESSION['status'])) {
         </button>
         <br><br>
         <?php
-        $sql =  "SELECT * FROM tb_profile";
+        $sql = "SELECT * FROM tb_profile";
         $result = mysqli_query($conn, $sql);
         $datas = array();
         if (mysqli_num_rows($result) > 0) {
@@ -234,7 +219,8 @@ if (isset($_SESSION['status'])) {
         }
         ?>
         <!-- modal  -->
-        <div class="modal fade" id="profilepicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="profilepicModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -260,7 +246,7 @@ if (isset($_SESSION['status'])) {
       </div>
 
       <?php
-      $sql =  "SELECT * FROM tb_SchoolProfile";
+      $sql = "SELECT * FROM tb_SchoolProfile";
       $result = mysqli_query($conn, $sql);
       $datas = array();
       if (mysqli_num_rows($result) > 0) {
@@ -400,7 +386,7 @@ if (isset($_SESSION['status'])) {
         <div class="row" style="margin-top: 20px; display: flex; justify-content: center;">
 
           <?php
-          $sql =  "SELECT * FROM tb_coverphotohomepage";
+          $sql = "SELECT * FROM tb_coverphotohomepage";
           $result = mysqli_query($conn, $sql);
           if (mysqli_num_rows($result) > 0) {
             while ($data = mysqli_fetch_assoc($result)) {
@@ -471,7 +457,8 @@ if (isset($_SESSION['status'])) {
         </button>
 
         <!-- modal -->
-        <div class="modal fade" id="imageModalCards" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="imageModalCards" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -507,7 +494,7 @@ if (isset($_SESSION['status'])) {
         <div class="row" style="margin-top: 20px; display: flex; justify-content: center;">
 
           <?php
-          $sql =  "SELECT * FROM tb_cardHomepage";
+          $sql = "SELECT * FROM tb_cardHomepage";
           $result = mysqli_query($conn, $sql);
           $datas = array();
           if (mysqli_num_rows($result) > 0) {
@@ -594,18 +581,23 @@ if (isset($_SESSION['status'])) {
                 <form method="POST">
                   <h6>Title</h6>
                   <input type="text" class="form-control" required="" placeholder="Insert a title" name="title">
-                  <input type="hidden" value="<br /><b>Warning</b>:  Trying to access array offset on value of type null in <b>/storage/ssd5/962/21842962/public_html/dashboard/adminDashboard.php</b> on line <b>340</b><br />" name="id">
+                  <input type="hidden"
+                    value="<br /><b>Warning</b>:  Trying to access array offset on value of type null in <b>/storage/ssd5/962/21842962/public_html/dashboard/adminDashboard.php</b> on line <b>340</b><br />"
+                    name="id">
 
                   <p class="card-text">
                   <h6>Caption</h6>
                   </p>
-                  <textarea required="" placeholder="Insert a Caption" class="form-control" name="caption" background-color:="" inherit;"=""></textarea>
+                  <textarea required="" placeholder="Insert a Caption" class="form-control" name="caption"
+                    background-color:="" inherit;"=""></textarea>
                   <p></p>
                   <h5 class="card-title"></h5>
                   <h6>Size</h6>
-                  <input type="number" min="1" max="5" class="form-control" placeholder="Insert a size" name="size" required="">
+                  <input type="number" min="1" max="5" class="form-control" placeholder="Insert a size" name="size"
+                    required="">
                   <h6>Background Color</h6>
-                  <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#ffffff" title="Choose your color" style="height: 25px; margin-bottom: 7px;" name="color">
+                  <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#ffffff"
+                    title="Choose your color" style="height: 25px; margin-bottom: 7px;" name="color">
                   <button formaction="../config/grid-content.php" type="submit" class="btn btn-primary" name="submit3">
                     <i class="fas fa-plus"></i>
                   </button>
@@ -615,7 +607,7 @@ if (isset($_SESSION['status'])) {
           </div>
 
           <?php
-          $sql =  "SELECT * FROM tb_contenthomepage";
+          $sql = "SELECT * FROM tb_contenthomepage";
           $result = mysqli_query($conn, $sql);
           $datas = array();
           if (mysqli_num_rows($result) > 0) {
@@ -702,8 +694,12 @@ if (isset($_SESSION['status'])) {
 
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+      integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
       $.widget.bridge('uibutton', $.ui.button)
     </script>
