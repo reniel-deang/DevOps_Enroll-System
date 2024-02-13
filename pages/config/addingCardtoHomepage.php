@@ -1,9 +1,6 @@
 <?php
-
 session_start();
 include "dbcon.php";
-
-
 $image = $_POST['image'];
 $title = $_POST['title'];
 $caption = $_POST['caption'];
@@ -17,7 +14,6 @@ if ($conn->query($sql) === TRUE) {
     header("Location: ../dashboardcontent/ManageElem.php");
   
 } else {
-  echo "failed";
   
 }
 
