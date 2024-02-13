@@ -73,11 +73,7 @@ $row = $resultapproval->fetch_assoc();
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="../config/logout.php" role="button">
-                        <i class="fas fa-people-arrows"></i>
-                    </a>
-                </li>
+               
 
 
 
@@ -89,6 +85,7 @@ $row = $resultapproval->fetch_assoc();
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
             <a href="#" class="brand-link">
+            <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png" style="width: 60px">
                 <span class="brand-text font-weight-light">Administration</span>
             </a>
 
@@ -110,7 +107,7 @@ $row = $resultapproval->fetch_assoc();
 
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item menu-open">
+                        <li class="nav-item">
                             <a href="dashboard.php" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
@@ -130,7 +127,7 @@ $row = $resultapproval->fetch_assoc();
 
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item menu-open">
                             <a href="enrollmentsystem.php" class="nav-link active">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
@@ -149,6 +146,23 @@ $row = $resultapproval->fetch_assoc();
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
+                        </li>
+                        <li class="nav-item" style="color:white; padding-top: 20px; padding-bottom: 20px;">
+              _______________________________
+
+              </a>
+            </li>
+
+                        <li class="nav-item">
+                            <a href="../config/logout.php" class="nav-link">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>
+                                    Logout
+
+                                </p>
+                            </a>
+
+
                         </li>
                     </ul>
                 </nav>
