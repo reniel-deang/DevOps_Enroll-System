@@ -107,6 +107,7 @@ if (isset($_SESSION['status'])) {
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
       <a href="#" class="brand-link">
+      <img src="https://www.eastbridgecollege.org/admin_ebc/news_image/EAST_BRIDGE_COLLEGE__su_1a.png" style="width: 60px">
         <span class="brand-text font-weight-light">Administration</span>
       </a>
 

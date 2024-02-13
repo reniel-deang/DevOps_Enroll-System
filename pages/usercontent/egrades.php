@@ -131,17 +131,21 @@ include '../config/dbcon.php';
             
           </li>
 
-          <li class="nav-item">
-            <a href="../config/logout.php" class="nav-link">
-              <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>
-                Logout
-                
-              </p>
-            </a>
-            
-            
-          </li>
+          <li class="nav-item" style="color:white; padding-top: 20px; padding-bottom: 20px;">
+              _______________________________
+
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="../config/logout.php" class="nav-link">
+
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>
+                  Log Out
+                  <!--<i class="fas fa-angle-left right"></i>-->
+                </p>
+              </a>
+            </li> 
 
         </ul>
       </nav>
